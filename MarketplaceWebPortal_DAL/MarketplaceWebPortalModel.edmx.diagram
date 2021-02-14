@@ -27,6 +27,7 @@
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechSpecFilter_tblProduct" ManuallyRouted="false" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechSpechFilter_tblTechSpec" ManuallyRouted="false" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.tblTechSpecSubCategory" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.view_FilterTable" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

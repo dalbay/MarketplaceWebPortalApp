@@ -42,8 +42,6 @@ namespace MarketplaceWebPortalRepository
                 );
         }
 
-
-
         public tblConsumer Sp_UserValidation(string input, string password)
         {
             return Context.Database.SqlQuery<tblConsumer>(

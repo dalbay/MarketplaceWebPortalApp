@@ -12,15 +12,16 @@ namespace MarketplaceWebPortalRepository
     {
         TEntity GetByID(int id);
         void Insert(TEntity entity);
-
     }
+
+
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext Context;
         public Repository(DbContext dbContext)
-       {
+        {
             Context = dbContext;
-       }
+        }
 
         public TEntity GetByID(int id)
         {
