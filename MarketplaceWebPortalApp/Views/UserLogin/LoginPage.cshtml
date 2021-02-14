@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "LoginPage";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @Styles.Render("~/Content/styles.css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/font-awesome.css")
+    @Styles.Render("~/Content/font-awesome.min.css")
+</head>
+
+<body class="loginPage container">
+    <div class="signupHeader">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-sm loginBtn" data-toggle="modal" data-target="#registerModal">
+            Sign Up
+        </button>
+    </div>
+    <div class="loginForm">
+        <div class="d-flex justify-content-center">
+            <div>
+                <form>
+                    <div class="displayLogo">
+                        <img height="100" width="200" src="@Url.Content("~/Images/Joole.png")" />
+
+                    </div>
+                    <div class="loginTitle">
+                        <p>Building Product Selection Platform</p>
+                    </div>
+                    <div class="form-group inputLbl">
+                        <span>
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control form-control-sm" id="loginEmail" aria-describedby="emailHelp" placeholder="Username or Email" required>
+                    </div>
+                    <div class="form-group inputLbl">
+                        <span>
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <input type="password" class="form-control form-control-sm" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary loginBtn">Log in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade " id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Register as User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <label for="userNameReg" class="col-sm-4 col-form-label regLbl"></label>
+                            <label for="imagePreview" class="regLbl">Image Preview</label>
+                        </div>
+                        <div class="row">
+                            <label for="userNameReg" class="col-sm-4 col-form-label regLbl"></label>
+                            <img height="100" width="100" id="imageOutput" src="@Url.Content("~/Images/default.png")">
+                        </div>
+                        <div class="row">
+                            <label for="userNameReg" class="col-sm-4 col-form-label regLbl"></label>
+                            <label class="regLbl">Your Profile Pic</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="userNameReg" class="col-sm-4 col-form-label regLbl"></label>
+                            <input type="file" name="yourImage" onchange="loadImage(event)" required>
+                        </div>
+                        <div class="form-group row">
+                            <label for="userNameReg" class="col-sm-4 col-form-label regLbl">UserName:</label>
+                            <input type="text" class="form-control form-control-sm" id="userNameReg" aria-describedby="" placeholder="User Name" required>
+                        </div>
+                        <div class="form-group row">
+                            <label for="emailReg" class="col-sm-4 col-form-label regLbl">Email Address:</label>
+                            <input type="email" class="form-control form-control-sm" id="emailReg" aria-describedby="" placeholder="Email Id" required>
+                        </div>
+                        <div class="form-group row">
+                            <label for="passwordReg" class="col-sm-4 col-form-label regLbl">Password:</label>
+                            <input type="password" class="form-control form-control-sm" id="passwordReg" aria-describedby="" placeholder="Password" required>
+                        </div>
+                        <div class="form-group row">
+                            <label for="confirmPasswordReg" class="col-sm-4 col-form-label regLbl">Confirm Password:</label>
+                            <input type="password" class="form-control form-control-sm" id="confirmPasswordReg" aria-describedby="" placeholder="Confirm Password" required>
+
+                        </div>
+                        <div class="row">
+                            <label for="confirmError" class="col-sm-4 col-form-label regLbl"></label>
+                            <small id="confirmError" class="form-text text-muted" style="color:red !important;">Password didn't match!</small>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-primary loginBtn">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/my_scripts.js")
+
+
+</body>
+

@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "SearchPage";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @Styles.Render("~/Content/styles.css")
+    @Styles.Render("~/Content/autocomplete.css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/font-awesome.css")
+    @Styles.Render("~/Content/font-awesome.min.css")
+</head>
+
+<body class="loginPage container">
+    <div class="loginForm">
+        <div class="d-flex justify-content-center">
+            <div>
+                <form>
+                    <div class="displayLogo">
+                        <img height="100" width="200" src="@Url.Content("~/Images/Joole.png")" />
+                    </div>
+                    <div class="loginTitle">
+                        <p>Building Product Selection Platform</p>
+                    </div>
+                </form>
+                <div class="input-group searchBox">
+                    <div class="input-group">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
+                        <div class="dropdown-menu categoryDropDown">
+                            <a class="dropdown-item" href="#">Mechanical</a>
+                            <a class="dropdown-item" href="#">Electrical</a>
+                            <a class="dropdown-item" href="#">Stationary</a>
+                            <a class="dropdown-item" href="#">Furniture</a>
+                        </div>
+                        <input type="text" class="form-control form-control-sm searchLbl" id="search" aria-label="Text input with dropdown button">
+                        <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jqueryAutoComplete.js")
+    @Scripts.Render("~/Scripts/jquery-ui-autoComplete.js")
+    @Scripts.Render("~/Scripts/my_scripts.js")
+
+
+</body>
+
+
+
+
+

@@ -1,0 +1,35 @@
+#navigation{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #e9eef0d0;
+}
+
+.navbar-brand{
+    margin-right: 0px;
+    margin-left: 5px;
+}
+
+.desc{
+    background-color: rgba(187, 193, 199, 0.815);
+    font-weight: bold;
+}
+
+.border-top{
+    border-top: 2px solid silver;
+}
+
+
+.bg-transparent{
+    background-color: white;
+}
+
+.navbar {
+    position: relative;
+    min-height: 30px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+}
+
+.equal td{
+    width: 25%;
+}
