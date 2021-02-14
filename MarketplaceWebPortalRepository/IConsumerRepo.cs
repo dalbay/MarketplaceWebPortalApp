@@ -13,9 +13,11 @@ namespace MarketplaceWebPortalRepository
     public interface IConsumerRepo : IRepository<tblConsumer>
     {
         tblConsumer GetConsumerByID(int id);
-        void InsertConsumer(tblConsumer entity);
+        //void InsertConsumer(tblConsumer entity);
+        void Sp_RegisterUser(string username, string email, string password, string image);
 
-        tblConsumer sp_UserValidation(string input, string password);
+        tblConsumer Sp_UserValidation(string input, string password);
+        
     }
     public class ConsumerRepo : Repository<tblConsumer>, IConsumerRepo
     {
@@ -26,12 +28,23 @@ namespace MarketplaceWebPortalRepository
             throw new NotImplementedException();
         }
 
-        public void InsertConsumer(tblConsumer entity)
+        //public void InsertConsumer(tblConsumer entity)
+        //{
+        //    //Context.Set<tblConsumer>().Add(entity);
+        //}
+        public void Sp_RegisterUser(string username, string email, string password, string image)
         {
-            throw new NotImplementedException();
+            Context.Database.SqlQuery<tblConsumer>("sp_RegisterUser @ param1, @param2, @param3, @param4",
+                new SqlParameter("@param1", username),
+                new SqlParameter("@param2", email),
+                new SqlParameter("@param3", password),
+                new SqlParameter("@param4", image)
+                );
         }
 
-        public tblConsumer sp_UserValidation(string input, string password)
+
+
+        public tblConsumer Sp_UserValidation(string input, string password)
         {
             return Context.Database.SqlQuery<tblConsumer>(
 
