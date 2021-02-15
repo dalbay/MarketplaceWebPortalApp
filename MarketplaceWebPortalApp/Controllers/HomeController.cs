@@ -1,58 +1,33 @@
-﻿using MarketplaceWebPortal_BLL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿<li>
+	<script>
+		$(function () {
+			$("#slider-range-diameter").slider({
+				range: true,
+				min: 0,
+				max: 500,
+				values: [0, 500],
+				slide: function (event, ui) {
+					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+				}
+			});
+			$("#amountMinDiameter").val("$" + $("#slider-range-diameter").slider("values", 0)),
+				$("#amountMaxDiameter").val("$" + $("#slider-range-diameter").slider("values", 1));
+		});
+	</script>
 
-namespace MarketplaceWebPortalApp.Controllers
-{
-    public class HomeController : Controller
-    {
-        //Authorizing a consumer
-        //--------------------------------------------------------------
-        public ActionResult AuthorizeUser()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AuthorizeUser(Consumer consumer)
-        {
-            Service service = new Service();
-            var valitConsumer = service.GetValidatedConsumer(consumer.Email, consumer.Password);
-            ViewData["consumer"] = valitConsumer.Email + " - " + valitConsumer.Password;
-            return View();
-        }
-        //--------------------------------------------------------------
-
-
-        //Inserting a new Consumer to the Database
-        //---------------------------------------------------------------
-        public ActionResult RegisterUser(string name, string email, string password,string image)
-        {
-            Service service = new Service();
-            service.InsertNewConsumer(name, email, password, image);
-            return View();
-        }
-        //---------------------------------------------------------------
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-    }
-}
+	<p>
+		<i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+		<label for="amount">
+			Airflow(CFM)
+		</label>
+	</p>
+	<div class="row">
+		<div class="col-md-3">
+			<input type="text" class="sliderValue" id="amountMinDiameter" readonly />
+		</div>
+		<div id="slider-range-diameter" class="col-md-6  sliderBox"></div>
+		<div class="col-md-2">
+			<input type="text" class="sliderValue" id="amountMaxDiameter" readonly>
+		</div>
+	</div>
+</li>
