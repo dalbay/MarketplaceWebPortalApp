@@ -9,8 +9,6 @@ namespace MarketplaceWebPortalApp.Controllers
 {
     public class HomeController : Controller
     {
-        //Authorizing a consumer
-        //--------------------------------------------------------------
         public ActionResult AuthorizeUser()
         {
             return View();
@@ -23,19 +21,6 @@ namespace MarketplaceWebPortalApp.Controllers
             ViewData["consumer"] = valitConsumer.Email + " - " + valitConsumer.Password;
             return View();
         }
-        //--------------------------------------------------------------
-
-
-        //Inserting a new Consumer to the Database
-        //---------------------------------------------------------------
-        public ActionResult RegisterUser(string name, string email, string password,string image)
-        {
-            Service service = new Service();
-            service.InsertNewConsumer(name, email, password, image);
-            return View();
-        }
-        //---------------------------------------------------------------
-
         public ActionResult Index()
         {
             return View();
