@@ -18,13 +18,18 @@ namespace MarketplaceWebPortal_BLL
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)
         {
             MarketplaceWebPortal_BLL.Consumer consumer = new MarketplaceWebPortal_BLL.Consumer();
-            var validatedConsumer = ufw.consumer.sp_UserValidation(input, password);
+            var validatedConsumer = ufw.consumer.Sp_UserValidation(input, password);
             consumer.UserName = validatedConsumer.UserName;
             consumer.User_ID = validatedConsumer.User_ID;
             consumer.Password = validatedConsumer.Password;
             consumer.Image = validatedConsumer.Image;
             consumer.Email = validatedConsumer.Email;
             return consumer;
-        }        
+        } 
+        
+        public void InsertNewConsumer(string newUsername, string newEmail, string newPassword, string newImage)
+        {
+            ufw.consumer.Sp_RegisterUser(newUsername, newEmail, newPassword, newImage);
+        }
     }
 }

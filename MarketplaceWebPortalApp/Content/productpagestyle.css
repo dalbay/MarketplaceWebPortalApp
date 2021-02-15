@@ -1,0 +1,51 @@
+﻿#breadcrumbb {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 10px;
+    background-color: none;
+    border-radius: 0px;
+    
+}
+#breadcrumbb a{
+    color:black;
+}
+
+.productBox {
+    border: 1px solid #ddd;
+    box-shadow: 0px 1px #888888;
+    text-align: center;
+    font-size: 14px;
+}
+.productBox label{
+        display: block;
+        margin-bottom: 0px;
+}
+    .productItem {
+        margin-bottom:15px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .custom-checkbox{
+        margin-left:10px;
+   
+font-weight:bold;
+    }
+    .custombutton{
+        margin-bottom:3px;
+        
+    }
+    .table{
+        background-color:#fbf9f9;
+    }
+
+.sliderValue {
+    background-color:white;
+    border:0;
+    border-radius: 4px;
+    width: 45px;
+}
+.sliderBox{
+    margin-top:7px;
+}

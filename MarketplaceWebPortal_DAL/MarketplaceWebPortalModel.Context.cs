@@ -39,6 +39,7 @@ namespace MarketplaceWebPortal_DAL
         public virtual DbSet<tblTechSpec> tblTechSpecs { get; set; }
         public virtual DbSet<tblTechSpecFilter> tblTechSpecFilters { get; set; }
         public virtual DbSet<tblUseType> tblUseTypes { get; set; }
+        public virtual DbSet<view_FilterTable> view_FilterTable { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -230,6 +231,104 @@ namespace MarketplaceWebPortal_DAL
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_UserValidation_Result>("sp_UserValidation", inputParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<sp_FanFilter_Result> sp_FanFilter(string subCategoryName, Nullable<double> minPower, Nullable<double> maxPower)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minPowerParameter = minPower.HasValue ?
+                new ObjectParameter("minPower", minPower) :
+                new ObjectParameter("minPower", typeof(double));
+    
+            var maxPowerParameter = maxPower.HasValue ?
+                new ObjectParameter("maxPower", maxPower) :
+                new ObjectParameter("maxPower", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanFilter_Result>("sp_FanFilter", subCategoryNameParameter, minPowerParameter, maxPowerParameter);
+        }
+    
+        public virtual ObjectResult<sp_FanHeightFilter_Result> sp_FanHeightFilter(string subCategoryName, Nullable<double> minHeight, Nullable<double> maxHeight)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minHeightParameter = minHeight.HasValue ?
+                new ObjectParameter("minHeight", minHeight) :
+                new ObjectParameter("minHeight", typeof(double));
+    
+            var maxHeightParameter = maxHeight.HasValue ?
+                new ObjectParameter("maxHeight", maxHeight) :
+                new ObjectParameter("maxHeight", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanHeightFilter_Result>("sp_FanHeightFilter", subCategoryNameParameter, minHeightParameter, maxHeightParameter);
+        }
+    
+        public virtual ObjectResult<sp_FanPoweFilter_Result> sp_FanPoweFilter(string subCategoryName, Nullable<double> minPower, Nullable<double> maxPower)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minPowerParameter = minPower.HasValue ?
+                new ObjectParameter("minPower", minPower) :
+                new ObjectParameter("minPower", typeof(double));
+    
+            var maxPowerParameter = maxPower.HasValue ?
+                new ObjectParameter("maxPower", maxPower) :
+                new ObjectParameter("maxPower", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanPoweFilter_Result>("sp_FanPoweFilter", subCategoryNameParameter, minPowerParameter, maxPowerParameter);
+        }
+    
+        public virtual ObjectResult<sp_FanSpeedFilter_Result> sp_FanSpeedFilter(string subCategoryName, Nullable<double> minSpeed, Nullable<double> maxSpeed)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minSpeedParameter = minSpeed.HasValue ?
+                new ObjectParameter("minSpeed", minSpeed) :
+                new ObjectParameter("minSpeed", typeof(double));
+    
+            var maxSpeedParameter = maxSpeed.HasValue ?
+                new ObjectParameter("maxSpeed", maxSpeed) :
+                new ObjectParameter("maxSpeed", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSpeedFilter_Result>("sp_FanSpeedFilter", subCategoryNameParameter, minSpeedParameter, maxSpeedParameter);
+        }
+    
+        public virtual ObjectResult<sp_FanSubCategorySetFilter_Result> sp_FanSubCategorySetFilter(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSubCategorySetFilter_Result>("sp_FanSubCategorySetFilter", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_FanVoltageFilter_Result> sp_FanVoltageFilter(string subCategoryName, Nullable<double> minVoltage, Nullable<double> maxVoltage)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minVoltageParameter = minVoltage.HasValue ?
+                new ObjectParameter("minVoltage", minVoltage) :
+                new ObjectParameter("minVoltage", typeof(double));
+    
+            var maxVoltageParameter = maxVoltage.HasValue ?
+                new ObjectParameter("maxVoltage", maxVoltage) :
+                new ObjectParameter("maxVoltage", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanVoltageFilter_Result>("sp_FanVoltageFilter", subCategoryNameParameter, minVoltageParameter, maxVoltageParameter);
         }
     }
 }

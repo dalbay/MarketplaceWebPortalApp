@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MarketplaceWebPortalDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MarketplaceWebPortalDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -122,6 +122,20 @@
           <Property Name="Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_FilterTable">
+          <Key>
+            <PropertyRef Name="TechSpec_Name" />
+            <PropertyRef Name="Amount" />
+            <PropertyRef Name="Filter_Name" />
+            <PropertyRef Name="SubCategory_Name" />
+          </Key>
+          <Property Name="TechSpec_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Filter_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubCategory_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK_tblProduct_tblApplication">
           <End Role="tblApplication" Type="Self.tblApplication" Multiplicity="1" />
           <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
@@ -182,7 +196,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblSubCategory_tblCategory1">
+        <Association Name="FK_tblSubCategory_tblCategory">
           <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="1" />
           <End Role="tblSubCategory" Type="Self.tblSubCategory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -306,9 +320,34 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_FanSubCategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="sp_FanFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
+          <Parameter Name="minPower" Type="float" Mode="In" />
+          <Parameter Name="maxPower" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_FanHeightFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
+          <Parameter Name="minHeight" Type="float" Mode="In" />
+          <Parameter Name="maxHeight" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_FanPoweFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
+          <Parameter Name="minPower" Type="float" Mode="In" />
+          <Parameter Name="maxPower" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_FanSpeedFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
+          <Parameter Name="minSpeed" Type="float" Mode="In" />
+          <Parameter Name="maxSpeed" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_FanSubCategorySetFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModelYearMin" Type="smallint" Mode="In" />
           <Parameter Name="ModelYearMax" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="sp_FanVoltageFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
+          <Parameter Name="minVoltage" Type="float" Mode="In" />
+          <Parameter Name="maxVoltage" Type="float" Mode="In" />
         </Function>
         <Function Name="sp_GetAllCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetAllCategoryNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -360,6 +399,14 @@
           <EntitySet Name="tblTechSpecFilter" EntityType="Self.tblTechSpecFilter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTechSpecSubCategory" EntityType="Self.tblTechSpecSubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUseType" EntityType="Self.tblUseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="view_FilterTable" EntityType="Self.view_FilterTable" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_FilterTable].[TechSpec_Name] AS [TechSpec_Name], 
+    [view_FilterTable].[Amount] AS [Amount], 
+    [view_FilterTable].[Filter_Name] AS [Filter_Name], 
+    [view_FilterTable].[SubCategory_Name] AS [SubCategory_Name]
+    FROM [dbo].[view_FilterTable] AS [view_FilterTable]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_tblProduct_tblApplication" Association="Self.FK_tblProduct_tblApplication">
             <End Role="tblApplication" EntitySet="tblApplication" />
             <End Role="tblProduct" EntitySet="tblProduct" />
@@ -380,7 +427,7 @@
             <End Role="tblUseType" EntitySet="tblUseType" />
             <End Role="tblProduct" EntitySet="tblProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblSubCategory_tblCategory1" Association="Self.FK_tblSubCategory_tblCategory1">
+          <AssociationSet Name="FK_tblSubCategory_tblCategory" Association="Self.FK_tblSubCategory_tblCategory">
             <End Role="tblCategory" EntitySet="tblCategory" />
             <End Role="tblSubCategory" EntitySet="tblSubCategory" />
           </AssociationSet>
@@ -405,8 +452,7 @@
             <End Role="tblTechSpecSubCategory" EntitySet="tblTechSpecSubCategory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MarketplaceWebPortalDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -728,13 +774,13 @@
           <FunctionImport Name="sp_GetAllCategoryNames" ReturnType="Collection(String)" />
           <FunctionImport Name="sp_GetAllSubCategories" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result)" />
           <FunctionImport Name="sp_GetProductCompare">
-            <Parameter Name="Product_ID" Mode="In" Type="Int32" />
+          <Parameter Name="Product_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetProductSummaryDescription" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetProductSummaryDescription_Result)">
-            <Parameter Name="Product_ID" Mode="In" Type="Int32" />
+          <Parameter Name="Product_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetProductSummaryTechSpec">
-            <Parameter Name="Product_ID" Mode="In" Type="Int32" />
+          <Parameter Name="Product_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -759,6 +805,36 @@
           <FunctionImport Name="sp_UserValidation" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_UserValidation_Result)">
             <Parameter Name="Input" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="view_FilterTable" EntityType="MarketplaceWebPortalDataModel.view_FilterTable" />
+          <FunctionImport Name="sp_FanFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanFilter_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minPower" Mode="In" Type="Double" />
+            <Parameter Name="maxPower" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FanHeightFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanHeightFilter_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minHeight" Mode="In" Type="Double" />
+            <Parameter Name="maxHeight" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FanPoweFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanPoweFilter_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minPower" Mode="In" Type="Double" />
+            <Parameter Name="maxPower" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FanSpeedFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSpeedFilter_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minSpeed" Mode="In" Type="Double" />
+            <Parameter Name="maxSpeed" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FanSubCategorySetFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSubCategorySetFilter_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FanVoltageFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanVoltageFilter_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minVoltage" Mode="In" Type="Double" />
+            <Parameter Name="maxVoltage" Mode="In" Type="Double" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_FanSubCategoryFilter_Result">
@@ -806,6 +882,48 @@
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Image" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="view_FilterTable">
+          <Key>
+            <PropertyRef Name="TechSpec_Name" />
+            <PropertyRef Name="Amount" />
+            <PropertyRef Name="Filter_Name" />
+            <PropertyRef Name="SubCategory_Name" />
+          </Key>
+          <Property Name="TechSpec_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Filter_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubCategory_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_FanFilter_Result">
+          <Property Type="Double" Name="Column1" Nullable="true" />
+          <Property Type="Double" Name="Column2" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FanHeightFilter_Result">
+          <Property Type="Double" Name="Column1" Nullable="true" />
+          <Property Type="Double" Name="Column2" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FanPoweFilter_Result">
+          <Property Type="Double" Name="Column1" Nullable="true" />
+          <Property Type="Double" Name="Column2" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FanSpeedFilter_Result">
+          <Property Type="Double" Name="Column1" Nullable="true" />
+          <Property Type="Double" Name="Column2" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FanSubCategorySetFilter_Result">
+          <Property Type="Double" Name="minAirFlow" Nullable="true" />
+          <Property Type="Double" Name="maxAirFlow" Nullable="true" />
+          <Property Type="Double" Name="minPower" Nullable="true" />
+          <Property Type="Double" Name="maxPower" Nullable="true" />
+          <Property Type="Double" Name="minSound" Nullable="true" />
+          <Property Type="Double" Name="maxSound" Nullable="true" />
+          <Property Type="Double" Name="minDiameter" Nullable="true" />
+          <Property Type="Double" Name="maxDiameter" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FanVoltageFilter_Result">
+          <Property Type="Double" Name="Column1" Nullable="true" />
+          <Property Type="Double" Name="Column2" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -943,20 +1061,6 @@
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MarketplaceWebPortalDataModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MarketplaceWebPortalDataModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MarketplaceWebPortalDataModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_FanSubCategoryFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanSubCategoryFilter">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanSubCategoryFilter_Result">
-                <ScalarProperty Name="minAirFlow" ColumnName="minAirFlow" />
-                <ScalarProperty Name="maxAirFlow" ColumnName="maxAirFlow" />
-                <ScalarProperty Name="minPower" ColumnName="minPower" />
-                <ScalarProperty Name="maxPower" ColumnName="maxPower" />
-                <ScalarProperty Name="minSound" ColumnName="minSound" />
-                <ScalarProperty Name="maxSound" ColumnName="maxSound" />
-                <ScalarProperty Name="minDiameter" ColumnName="minDiameter" />
-                <ScalarProperty Name="maxDiameter" ColumnName="maxDiameter" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetAllCategories" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetAllCategories">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllCategories_Result">
@@ -1020,6 +1124,70 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="view_FilterTable">
+            <EntityTypeMapping TypeName="MarketplaceWebPortalDataModel.view_FilterTable">
+              <MappingFragment StoreEntitySet="view_FilterTable">
+                <ScalarProperty Name="SubCategory_Name" ColumnName="SubCategory_Name" />
+                <ScalarProperty Name="Filter_Name" ColumnName="Filter_Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TechSpec_Name" ColumnName="TechSpec_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_FanFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanFilter_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FanHeightFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanHeightFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanHeightFilter_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FanPoweFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanPoweFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanPoweFilter_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FanSpeedFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanSpeedFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanSpeedFilter_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FanSubCategorySetFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanSubCategorySetFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanSubCategorySetFilter_Result">
+                <ScalarProperty Name="minAirFlow" ColumnName="minAirFlow" />
+                <ScalarProperty Name="maxAirFlow" ColumnName="maxAirFlow" />
+                <ScalarProperty Name="minPower" ColumnName="minPower" />
+                <ScalarProperty Name="maxPower" ColumnName="maxPower" />
+                <ScalarProperty Name="minSound" ColumnName="minSound" />
+                <ScalarProperty Name="maxSound" ColumnName="maxSound" />
+                <ScalarProperty Name="minDiameter" ColumnName="minDiameter" />
+                <ScalarProperty Name="maxDiameter" ColumnName="maxDiameter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FanVoltageFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanVoltageFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanVoltageFilter_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
