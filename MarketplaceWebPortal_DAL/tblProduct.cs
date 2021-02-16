@@ -18,6 +18,7 @@ namespace MarketplaceWebPortal_DAL
         public tblProduct()
         {
             this.tblTechSpecFilters = new HashSet<tblTechSpecFilter>();
+            this.tblTechnicalSpecifiactionNonValues = new HashSet<tblTechnicalSpecifiactionNonValue>();
         }
     
         public int Product_ID { get; set; }
@@ -41,5 +42,7 @@ namespace MarketplaceWebPortal_DAL
         public virtual tblUseType tblUseType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTechSpecFilter> tblTechSpecFilters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTechnicalSpecifiactionNonValue> tblTechnicalSpecifiactionNonValues { get; set; }
     }
 }

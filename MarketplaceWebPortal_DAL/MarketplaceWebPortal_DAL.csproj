@@ -105,6 +105,24 @@
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_SofaLengthFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SofaSubCategorySetFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletRAMFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletScreenFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletStorageFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletSubCategorySetFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_UserValidation_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
@@ -133,6 +151,9 @@
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSubCategory.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTechnicalSpecifiactionNonValue.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTechSpec.cs">

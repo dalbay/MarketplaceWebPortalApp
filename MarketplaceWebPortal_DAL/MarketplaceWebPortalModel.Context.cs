@@ -40,6 +40,7 @@ namespace MarketplaceWebPortal_DAL
         public virtual DbSet<tblTechSpecFilter> tblTechSpecFilters { get; set; }
         public virtual DbSet<tblUseType> tblUseTypes { get; set; }
         public virtual DbSet<view_FilterTable> view_FilterTable { get; set; }
+        public virtual DbSet<tblTechnicalSpecifiactionNonValue> tblTechnicalSpecifiactionNonValues { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -250,7 +251,7 @@ namespace MarketplaceWebPortal_DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanFilter_Result>("sp_FanFilter", subCategoryNameParameter, minPowerParameter, maxPowerParameter);
         }
     
-        public virtual ObjectResult<sp_FanHeightFilter_Result> sp_FanHeightFilter(string subCategoryName, Nullable<double> minHeight, Nullable<double> maxHeight)
+        public virtual ObjectResult<sp_FanHeightFilter_Result> sp_FanHeightFilter(string subCategoryName, Nullable<double> minHeight, Nullable<double> maxHeight, Nullable<short> minDate, Nullable<short> maxDate)
         {
             var subCategoryNameParameter = subCategoryName != null ?
                 new ObjectParameter("SubCategoryName", subCategoryName) :
@@ -264,10 +265,18 @@ namespace MarketplaceWebPortal_DAL
                 new ObjectParameter("maxHeight", maxHeight) :
                 new ObjectParameter("maxHeight", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanHeightFilter_Result>("sp_FanHeightFilter", subCategoryNameParameter, minHeightParameter, maxHeightParameter);
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanHeightFilter_Result>("sp_FanHeightFilter", subCategoryNameParameter, minHeightParameter, maxHeightParameter, minDateParameter, maxDateParameter);
         }
     
-        public virtual ObjectResult<sp_FanPoweFilter_Result> sp_FanPoweFilter(string subCategoryName, Nullable<double> minPower, Nullable<double> maxPower)
+        public virtual ObjectResult<sp_FanPoweFilter_Result> sp_FanPoweFilter(string subCategoryName, Nullable<double> minPower, Nullable<double> maxPower, Nullable<short> minDate, Nullable<short> maxDate)
         {
             var subCategoryNameParameter = subCategoryName != null ?
                 new ObjectParameter("SubCategoryName", subCategoryName) :
@@ -281,10 +290,18 @@ namespace MarketplaceWebPortal_DAL
                 new ObjectParameter("maxPower", maxPower) :
                 new ObjectParameter("maxPower", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanPoweFilter_Result>("sp_FanPoweFilter", subCategoryNameParameter, minPowerParameter, maxPowerParameter);
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanPoweFilter_Result>("sp_FanPoweFilter", subCategoryNameParameter, minPowerParameter, maxPowerParameter, minDateParameter, maxDateParameter);
         }
     
-        public virtual ObjectResult<sp_FanSpeedFilter_Result> sp_FanSpeedFilter(string subCategoryName, Nullable<double> minSpeed, Nullable<double> maxSpeed)
+        public virtual ObjectResult<sp_FanSpeedFilter_Result> sp_FanSpeedFilter(string subCategoryName, Nullable<double> minSpeed, Nullable<double> maxSpeed, Nullable<short> minDate, Nullable<short> maxDate)
         {
             var subCategoryNameParameter = subCategoryName != null ?
                 new ObjectParameter("SubCategoryName", subCategoryName) :
@@ -298,7 +315,15 @@ namespace MarketplaceWebPortal_DAL
                 new ObjectParameter("maxSpeed", maxSpeed) :
                 new ObjectParameter("maxSpeed", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSpeedFilter_Result>("sp_FanSpeedFilter", subCategoryNameParameter, minSpeedParameter, maxSpeedParameter);
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSpeedFilter_Result>("sp_FanSpeedFilter", subCategoryNameParameter, minSpeedParameter, maxSpeedParameter, minDateParameter, maxDateParameter);
         }
     
         public virtual ObjectResult<sp_FanSubCategorySetFilter_Result> sp_FanSubCategorySetFilter(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
@@ -314,7 +339,7 @@ namespace MarketplaceWebPortal_DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSubCategorySetFilter_Result>("sp_FanSubCategorySetFilter", modelYearMinParameter, modelYearMaxParameter);
         }
     
-        public virtual ObjectResult<sp_FanVoltageFilter_Result> sp_FanVoltageFilter(string subCategoryName, Nullable<double> minVoltage, Nullable<double> maxVoltage)
+        public virtual ObjectResult<sp_FanVoltageFilter_Result> sp_FanVoltageFilter(string subCategoryName, Nullable<double> minVoltage, Nullable<double> maxVoltage, Nullable<short> minDate, Nullable<short> maxDate)
         {
             var subCategoryNameParameter = subCategoryName != null ?
                 new ObjectParameter("SubCategoryName", subCategoryName) :
@@ -328,7 +353,141 @@ namespace MarketplaceWebPortal_DAL
                 new ObjectParameter("maxVoltage", maxVoltage) :
                 new ObjectParameter("maxVoltage", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanVoltageFilter_Result>("sp_FanVoltageFilter", subCategoryNameParameter, minVoltageParameter, maxVoltageParameter);
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanVoltageFilter_Result>("sp_FanVoltageFilter", subCategoryNameParameter, minVoltageParameter, maxVoltageParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_SofaLengthFilter_Result> sp_SofaLengthFilter(string subCategoryName, Nullable<double> minLength, Nullable<double> maxLength, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minLengthParameter = minLength.HasValue ?
+                new ObjectParameter("minLength", minLength) :
+                new ObjectParameter("minLength", typeof(double));
+    
+            var maxLengthParameter = maxLength.HasValue ?
+                new ObjectParameter("maxLength", maxLength) :
+                new ObjectParameter("maxLength", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaLengthFilter_Result>("sp_SofaLengthFilter", subCategoryNameParameter, minLengthParameter, maxLengthParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_SofaSubCategorySetFilter_Result> sp_SofaSubCategorySetFilter(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaSubCategorySetFilter_Result>("sp_SofaSubCategorySetFilter", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletRAMFilter_Result> sp_TabletRAMFilter(string subCategoryName, Nullable<double> minRAM, Nullable<double> maxRAM, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minRAMParameter = minRAM.HasValue ?
+                new ObjectParameter("minRAM", minRAM) :
+                new ObjectParameter("minRAM", typeof(double));
+    
+            var maxRAMParameter = maxRAM.HasValue ?
+                new ObjectParameter("maxRAM", maxRAM) :
+                new ObjectParameter("maxRAM", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletRAMFilter_Result>("sp_TabletRAMFilter", subCategoryNameParameter, minRAMParameter, maxRAMParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletScreenFilter_Result> sp_TabletScreenFilter(string subCategoryName, Nullable<double> minScreen, Nullable<double> maxScreen, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minScreenParameter = minScreen.HasValue ?
+                new ObjectParameter("minScreen", minScreen) :
+                new ObjectParameter("minScreen", typeof(double));
+    
+            var maxScreenParameter = maxScreen.HasValue ?
+                new ObjectParameter("maxScreen", maxScreen) :
+                new ObjectParameter("maxScreen", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletScreenFilter_Result>("sp_TabletScreenFilter", subCategoryNameParameter, minScreenParameter, maxScreenParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletStorageFilter_Result> sp_TabletStorageFilter(string subCategoryName, Nullable<double> minStorage, Nullable<double> maxStorage, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minStorageParameter = minStorage.HasValue ?
+                new ObjectParameter("minStorage", minStorage) :
+                new ObjectParameter("minStorage", typeof(double));
+    
+            var maxStorageParameter = maxStorage.HasValue ?
+                new ObjectParameter("maxStorage", maxStorage) :
+                new ObjectParameter("maxStorage", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletStorageFilter_Result>("sp_TabletStorageFilter", subCategoryNameParameter, minStorageParameter, maxStorageParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletSubCategorySetFilter_Result> sp_TabletSubCategorySetFilter(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletSubCategorySetFilter_Result>("sp_TabletSubCategorySetFilter", modelYearMinParameter, modelYearMaxParameter);
         }
     }
 }
