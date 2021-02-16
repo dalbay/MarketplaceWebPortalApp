@@ -24,7 +24,7 @@
     <div class="loginForm">
         <div class="d-flex justify-content-center">
             <div>
-                <form>
+                <form action="@Url.Action("AuthUser", "UserLogin")" method="post">
                     <div class="displayLogo">
                         <img height="100" width="200" src="@Url.Content("~/Images/Joole.png")" />
 
@@ -36,13 +36,14 @@
                         <span>
                             <i class="fa fa-user"></i>
                         </span>
-                        <input type="text" class="form-control form-control-sm" id="loginEmail" aria-describedby="emailHelp" placeholder="Username or Email" required>
+                        <input type="text" class="form-control form-control-sm" id="loginEmail" name="loginEmail" aria-describedby="emailHelp" placeholder="Username or Email" required>
                     </div>
                     <div class="form-group inputLbl">
                         <span>
                             <i class="fa fa-lock"></i>
                         </span>
-                        <input type="password" class="form-control form-control-sm" id="loginPassword" placeholder="Password" required>
+                        <input type="password" class="form-control form-control-sm" id="loginPassword" name="loginPassword" placeholder="Password" required>
+                        <small id="emailHelp" class="form-text text-muted text-center" style="color: red !important;">@TempData["error"]</small>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary loginBtn">Log in</button>
                 </form>

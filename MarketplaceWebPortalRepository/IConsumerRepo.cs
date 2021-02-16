@@ -46,9 +46,9 @@ namespace MarketplaceWebPortalRepository
         {
             return Context.Database.SqlQuery<tblConsumer>(
 
-    "sp_UserValidation @param1, @param2",
-    new SqlParameter("param1", input),
-    new SqlParameter("param2", password)).FirstOrDefault();
+            "sp_UserValidation @param1, @param2",
+            new SqlParameter("param1", input),
+            new SqlParameter("param2", password)).FirstOrDefault();
 
         }
     }
