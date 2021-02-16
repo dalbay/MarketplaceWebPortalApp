@@ -21,26 +21,8 @@ namespace MarketplaceWebPortalApp.Controllers
             ViewData["consumer"] = valitConsumer.Email + " - " + valitConsumer.Password;
             return View();
         }
-
         public ActionResult Index()
         {
-            if (Request.IsAjaxRequest())
-            {
-                var param = Request.QueryString["id"] ?? "2" ;
-                int num = 2;
-                try
-                {
-                    num = Int32.Parse(param);
-                }
-                catch (FormatException)
-                {
-                    num = 2;
-                }
-
-                ProductsByCategory products_category = new ProductsByCategory(num);
-                List<Product> returning_List= products_category.ByCategory();
-                return Json(returning_List, JsonRequestBehavior.AllowGet);
-            }
             return View();
         }
 
