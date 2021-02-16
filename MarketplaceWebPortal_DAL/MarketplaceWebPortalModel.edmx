@@ -418,22 +418,16 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minHeight" Type="float" Mode="In" />
           <Parameter Name="maxHeight" Type="float" Mode="In" />
-          <Parameter Name="minDate" Type="smallint" Mode="In" />
-          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_FanPoweFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minPower" Type="float" Mode="In" />
           <Parameter Name="maxPower" Type="float" Mode="In" />
-          <Parameter Name="minDate" Type="smallint" Mode="In" />
-          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_FanSpeedFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minSpeed" Type="float" Mode="In" />
           <Parameter Name="maxSpeed" Type="float" Mode="In" />
-          <Parameter Name="minDate" Type="smallint" Mode="In" />
-          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_FanSubCategorySetFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModelYearMin" Type="smallint" Mode="In" />
@@ -443,8 +437,6 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minVoltage" Type="float" Mode="In" />
           <Parameter Name="maxVoltage" Type="float" Mode="In" />
-          <Parameter Name="minDate" Type="smallint" Mode="In" />
-          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_GetAllCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetAllCategoryNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -960,22 +952,16 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minHeight" Mode="In" Type="Double" />
             <Parameter Name="maxHeight" Mode="In" Type="Double" />
-            <Parameter Name="minDate" Mode="In" Type="Int16" />
-            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_FanPoweFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanPoweFilter_Result)">
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minPower" Mode="In" Type="Double" />
             <Parameter Name="maxPower" Mode="In" Type="Double" />
-            <Parameter Name="minDate" Mode="In" Type="Int16" />
-            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_FanSpeedFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSpeedFilter_Result)">
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minSpeed" Mode="In" Type="Double" />
             <Parameter Name="maxSpeed" Mode="In" Type="Double" />
-            <Parameter Name="minDate" Mode="In" Type="Int16" />
-            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_FanSubCategorySetFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSubCategorySetFilter_Result)">
             <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
@@ -985,8 +971,6 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minVoltage" Mode="In" Type="Double" />
             <Parameter Name="maxVoltage" Mode="In" Type="Double" />
-            <Parameter Name="minDate" Mode="In" Type="Int16" />
-            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <EntitySet Name="tblTechnicalSpecifiactionNonValues" EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue" />
           <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct">
