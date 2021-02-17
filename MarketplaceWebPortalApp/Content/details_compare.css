@@ -1,35 +1,27 @@
-#navigation{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #e9eef0d0;
+#navigation {
+    margin-left: 25px;
 }
 
-.navbar-brand{
-    margin-right: 0px;
-    margin-left: 5px;
-}
+    #navigation a {
+        color: #0077CC;
+        margin-left: 25px;
+    }
 
-.desc{
+
+.desc {
     background-color: rgba(187, 193, 199, 0.815);
     font-weight: bold;
 }
 
-.border-top{
+.border-top {
     border-top: 2px solid silver;
 }
 
 
-.bg-transparent{
+.bg-transparent {
     background-color: white;
 }
 
-.navbar {
-    position: relative;
-    min-height: 30px;
-    margin-bottom: 0px;
-    border: 1px solid transparent;
-}
-
-.equal td{
+.equal td {
     width: 25%;
 }
