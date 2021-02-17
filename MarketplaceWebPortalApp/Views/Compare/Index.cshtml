@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Compare";
+}
+@section styles{
+    <link rel="stylesheet" href="~/Content/compare.css"/>
+}
+@section scripts{
+    <script src="~/Scripts/compare.js"></script>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1 col-lg-1">
+        </div>
+        <div class="col-10 col-lg-10">
+            <nav class="navbar row">
+                <a class="nav-link" href="detail.html">Category</a>
+                <span class="nav-link">></span>
+                <a class="nav-link" href="#">SubCategory</a>
+                <span class="nav-link">></span>
+                <a class="nav-link" href="#">Compare</a>
+            </nav>
+
+            <div class="row" hidden>
+                @{ int length = Int32.Parse(ViewData["length"].ToString()); } 
+                @if (length != 0)
+                {
+                    for(int i = 0; i < length; i++)
+                    {
+                        <div class="ids">@ViewData["id"+i.ToString()]</div>
+                    }
+                }
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <Table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="4" rowspan="5" width="25%">  </th>
+                                <th colspan="4" rowspan="5" width="25%" id="image1" class="product1"><img src="~/Images/Fan1.jpg"></th>
+                                <th colspan="4" rowspan="5" width="25%" id="image2" hidden class="product2">product[1].image</th>
+                                <th colspan="4" rowspan="5" width="25%" id="image3" hidden class="product3">product[2].image</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--Description-->
+                            <tr>
+                                <td colspan="16" class="desc">Description</td>
+                            </tr>
+
+                            <tr>
+                                <td class="desc" colspan="4">Manfacture</td>
+                                <td colspan="4" id="manfacture1" class="product1">p1.manfacture</td>
+                                <td colspan="4" id="manfacture2" class="product2" hidden>Product[1].Manfacture</td>
+                                <td colspan="4" id="manfacture3" hidden class="product3">Product[2].Manfacture</td>
+                            </tr>
+                            <tr>
+                                <td class="desc" colspan="4">Series</td>
+                                <td colspan="4" id="series1" class="product1">Product[0].Series</td>
+                                <td colspan="4" id="series2" class="product2" hidden>Product[1].Series</td>
+                                <td colspan="4" id="series3" class="product3" hidden>Product[2].Series</td>
+                            </tr>
+                            <tr>
+                                <td class="desc" colspan="4">Model</td>
+                                <td colspan="4" id="model1" class="product1">Product[0].Model</td>
+                                <td colspan="4" id="model2" class="product2" hidden>Product[1].Model</td>
+                                <td colspan="4" id="model3" class="product3" hidden>Product[2].Model</td>
+                            </tr>
+
+                            <!--Type-->
+                            <tr>
+                                <td colspan="16" class="desc">TYPE</td>
+                            </tr>
+
+                            <tr>
+                                <td class="desc" colspan="4">Use Type</td>
+                                <td colspan="4" id="type1" class="product1">Product[0].useType</td>
+                                <td colspan="4" id="type2" class="product2" hidden>Product[1].useType</td>
+                                <td colspan="4" id="type3" class="product3" hidden>Product[2].useType</td>
+
+                            </tr>
+                            <tr>
+                                <td class="desc" colspan="4">Application</td>
+                                <td colspan="4" id="application1" class="product1">Product[0].Application</td>
+                                <td colspan="4" id="application2" class="product2" hidden>Product[1].Application</td>
+                                <td colspan="4" id="application3" class="product3" hidden>Product[2].Application</td>
+                            </tr>
+                            <tr>
+                                <td class="desc" colspan="4">Mounting Location</td>
+                                <td colspan="4" id="mounting1" class="product1">Product[0].MountingLocation</td>
+                                <td colspan="4" id="mounting2" class="product2" hidden>Product[1].MountingLocation</td>
+                                <td colspan="4" id="mounting3" class="product3" hidden>Product[2].MountingLocation</td>
+
+                            </tr>
+                            <tr>
+                                <td class="desc" colspan="4" >Accessories</td>
+                                <td colspan="4" id="accesories1" class="product1">Product[0].Accessories</td>
+                                <td colspan="4" id="accesories2" class="product2" hidden>Product[1].Accessories</td>
+                                <td colspan="4" id="accesories3" class="product3" hidden>Product[2].Accessories</td>
+
+                            </tr>
+                            <tr>
+                                <td class="desc" colspan="4">Model Year</td>
+                                <td colspan="4" id="year1" class="product1">Product[0].ModelYear</td>
+                                <td colspan="4" id="year2" class="product2" hidden>Product[1].ModelYear</td>
+                                <td colspan="4" id="year3" class="product3" hidden>Product[2].ModelYear</td>
+
+                            </tr>
+
+                            <tr>
+                                <td colspan="16" class="desc">Technical Specification</td>
+                            </tr>
+                        </tbody>
+                        <tbody id="toAppend">
+
+                        </tbody>
+                    </Table>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="col-1 col-lg-1">
+        </div>
+    </div>
+
+
+</div>
+
