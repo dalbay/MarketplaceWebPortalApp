@@ -46,12 +46,16 @@ namespace MarketplaceWebPortal_BLL
             return fanFilter;            
         }
 
-        //public MarketplaceWebPortal_BLL.Category GetCategory()
-        //{
-        //    MarketplaceWebPortal_BLL.Category category = new MarketplaceWebPortal_BLL.Category();
-        //    var getAllCategories = ufw.category.Sp_GetAllCategories();
-            
-        //}
+        public List<MarketplaceWebPortal_BLL.Category> GetCategory()
+        {
+            List<Category> abc = new List<Category>();
+            var getAllCategories = ufw.category.Sp_GetAllCategories();
+            foreach(var i in getAllCategories)
+            {
+                abc.Add(new Category { Category_ID = i.Category_ID, Category_Name = i.Category_Name });
+            }
+            return abc;
+        }
 
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)
         {
