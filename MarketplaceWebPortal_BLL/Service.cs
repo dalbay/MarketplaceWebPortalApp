@@ -30,6 +30,13 @@ namespace MarketplaceWebPortal_BLL
             return fanFilter;            
         }
 
+        public MarketplaceWebPortal_BLL.Category GetCategory()
+        {
+            MarketplaceWebPortal_BLL.Category category = new MarketplaceWebPortal_BLL.Category();
+            var getAllCategories = ufw.category.Sp_GetAllCategories();
+            
+        }
+
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)
         {
             MarketplaceWebPortal_BLL.Consumer consumer = new MarketplaceWebPortal_BLL.Consumer();

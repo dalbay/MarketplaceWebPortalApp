@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
     <Compile Include="asa.cs" />
     <Compile Include="Consumer.cs" />
     <Compile Include="FanFilter.cs" />

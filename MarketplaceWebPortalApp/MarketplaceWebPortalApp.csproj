@@ -304,7 +304,6 @@
     <Content Include="Views\Search\SearchPage.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Details\Index.cshtml" />
-    <Content Include="Views\Home\AuthorizeUser.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Compare\Index.cshtml" />
   </ItemGroup>
