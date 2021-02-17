@@ -55,6 +55,8 @@ namespace MarketplaceWebPortalApp.Controllers
             var initialSofaFilter = service.InitializeSofaFilter(2010, 2021);
             sofaFilter.minLength = initialSofaFilter.minLength;
             sofaFilter.maxLength = initialSofaFilter.maxLength;
+
+            
             if (Request.IsAjaxRequest())
             {
                 var param = id ?? "2" ;
@@ -74,7 +76,7 @@ namespace MarketplaceWebPortalApp.Controllers
                 return Json(returning_List, JsonRequestBehavior.AllowGet);
             }
             TempData["sub_id_from_search"] = id;
-            return View(fanFilter);
+            return View();
 
         }
 
