@@ -5,148 +5,114 @@
 
 @section styles{
     <link rel="stylesheet" href="~/Content/details_compare.css" />
-    }
-<h2>Index</h2>
-    <div class="container">
-
-        <div class="row">
-            <div class="col-12 bg-primary">
-                <img src="~/Content/header.jpg" style="width:100%;"/>
-            </div>
+}
+@section scripts{
+    <script src="~/Scripts/details.js??version=1"></script>
+}
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" id="navigation">
+                <li class="nav-item active">
+                    <a class="navbar-item" href="#">Product Summary <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="#">Product Detail</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="#">Product Documentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="#">Contact</a>
+                </li>
+            </ul>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light row" id="navigation">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Product Summary</a>
-                <a class="navbar-brand" href="#">Product Details</a>
-                <a class="navbar-brand" href="#">Product Documentation</a>
-                <a class="navbar-brand" href="#">Contact</a>
-                <a class="navbar-brand" href="compare.html">Compare</a>
-            </div>
-        </nav>
-        <div class="row">
+    </nav>
+    <div class="row">
 
-            <div class="col-lg-1 col-1">
+        <div class="col-lg-1 col-1">
+            <div id="pid" hidden>@TempData["pid"]</div>
+        </div>
 
-            </div>
-            <div class="col-10 col-lg-10 bg-secondary">
-                <h2 class="text-primary">Product Description</h2>
-                <div class="row">
-                    <div class="col-lg-6 col-6">
+        <div class="col-10 col-lg-10">
+            <h2 class="text-primary">Product Description</h2>
+            <div class="row">
+                <div class="col-lg-6 col-6">
+                    <div class="row">
                         <Table class="table border-top">
                             <thead>
                                 <tr>
-                                    <th colspan="2">Produt Description</th>
+                                    <th colspan="4">Produt Description</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="desc">Manfacture</td>
-                                    <td>Product.Manfacture</td>
+                                    <td class="desc" colspan="2">Manfacture</td>
+                                    <td id="Manfacture">Product.Manfacture</td>
                                 </tr>
                                 <tr>
-                                    <td class="desc">Series</td>
-                                    <td>Product.Series</td>
+                                    <td class="desc" colspan="2">Series</td>
+                                    <td id="Series">Product.Series</td>
                                 </tr>
                                 <tr>
-                                    <td class="desc">Model</td>
-                                    <td>Product.Model</td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                        <Table class="table border-top">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Type</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="desc">Use Type</td>
-                                    <td>Product.useType</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc">Application</td>
-                                    <td>Product.Application</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc">Mounting Location</td>
-                                    <td>Product.MountingLocation</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc">Accessories</td>
-                                    <td>Product.Accessories</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc">Model Year</td>
-                                    <td>Product.ModelYear</td>
+                                    <td class="desc" colspan="2">Model</td>
+                                    <td id="Model">Product.Model</td>
                                 </tr>
                             </tbody>
                         </Table>
                     </div>
-                    <div class="col-lg-6 col-6">
+                    <div class="row">
                         <Table class="table border-top">
                             <thead>
                                 <tr>
-                                    <th colspan="6">Techical Specification</th>
+                                    <th colspan="4">Type</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="desc" colspan="2">Air Flow (CFM)</td>
-                                    <td colspan="4">Product.CFM</td>
+                                    <td class="desc" colspan="1">Use Type</td>
+                                    <td id="UseType">Product.useType</td>
                                 </tr>
                                 <tr>
-                                    <td class="desc" colspan="2">Power</td>
-                                    <td class="desc" colspan="1">Min</td>
-                                    <td>Power.Min</td>
-                                    <td class="desc" colspan="1">Max</td>
-                                    <td>Power.Max</td>
+                                    <td class="desc" colspan="1">Application</td>
+                                    <td id="Application">Product.Application</td>
                                 </tr>
                                 <tr>
-                                    <td class="desc" colspan="2">Operating Voltage(VAC)</td>
-                                    <td class="desc" colspan="1">Min</td>
-                                    <td colspan="1">VAC.Min</td>
-                                    <td class="desc" colspan="1">Max</td>
-                                    <td colspan="1">VAC.Max</td>
+                                    <td class="desc" colspan="1">Mounting Location</td>
+                                    <td id="MountingLocation">Product.MountingLocation</td>
                                 </tr>
                                 <tr>
-                                    <td class="desc" colspan="2">Fan Speed (RPM)</td>
-                                    <td class="desc" colspan="1">Min</td>
-                                    <td colspan="1">PM.Min</td>
-                                    <td class="desc" colspan="1">Max</td>
-                                    <td colspan="1">RPM.Max</td>
+                                    <td class="desc" colspan="1">Accessories</td>
+                                    <td id="Accessories" colspan="3">Product.Accessories</td>
                                 </tr>
                                 <tr>
-                                    <td class="desc" colspan="2">No. Of Fan Speeds</td>
-                                    <td colspan="4">Product.fan.number</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc" colspan="2">Sound at Max Speed(dba)</td>
-                                    <td colspan="4">Product.fan.sound</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc" colspan="2">Fan Sweep Diameter (in)</td>
-                                    <td colspan="4">Product.fan.Sweep</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc" colspan="2">Height(in)</td>
-                                    <td class="desc" colspan="1">Min</td>
-                                    <td colspan="1">Height.Min</td>
-                                    <td class="desc" colspan="1">Max</td>
-                                    <td colspan="1">Height.Max</td>
-                                </tr>
-                                <tr>
-                                    <td class="desc" colspan="2">Weight(lbs)</td>
-                                    <td colspan="4">Product.Weight</td>
+                                    <td class="desc" colspan="1">Model Year</td>
+                                    <td id="ModelYear">Product.ModelYear</td>
                                 </tr>
                             </tbody>
                         </Table>
                     </div>
                 </div>
-
+                <div class="col-lg-6 col-6">
+                    <Table class="table border-top">
+                        <thead>
+                            <tr>
+                                <th colspan="6">Techical Specification</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ToAppend">
+                        </tbody>
+                    </Table>
+                </div>
             </div>
-            <div class="col-1 col-lg-1">
 
-            </div>
+        </div>
+
+        <div class="col-1 col-lg-1">
+
         </div>
     </div>
+</div>
