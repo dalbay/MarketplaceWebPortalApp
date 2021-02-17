@@ -34,12 +34,12 @@ namespace MarketplaceWebPortalRepository
         //}
         public void Sp_RegisterUser(string username, string email, string password, string image)
         {
-            Context.Database.SqlQuery<tblConsumer>("sp_RegisterUser @ param1, @param2, @param3, @param4",
-                new SqlParameter("@param1", username),
-                new SqlParameter("@param2", email),
-                new SqlParameter("@param3", password),
-                new SqlParameter("@param4", image)
-                );
+            Context.Database.SqlQuery<tblConsumer>("sp_RegisterUser @param1, @param2, @param3, @param4",
+                new SqlParameter("param1", username),
+                new SqlParameter("param2", email),
+                new SqlParameter("param3", password),
+                new SqlParameter("param4", image)
+                ).ToList();
         }
 
         public tblConsumer Sp_UserValidation(string input, string password)
