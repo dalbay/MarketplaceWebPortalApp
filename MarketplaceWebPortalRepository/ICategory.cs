@@ -12,7 +12,7 @@ namespace MarketplaceWebPortalRepository
     
     public interface ICategory : IRepository<sp_GetAllCategories_Result>
     {
-       // List<sp_GetAllCategories_Result> Sp_GetAllCategories();
+        List<sp_GetAllCategories_Result> Sp_GetAllCategories();
 
     }
     public class Category : Repository<sp_GetAllCategories_Result>, ICategory
@@ -23,13 +23,11 @@ namespace MarketplaceWebPortalRepository
         {
             throw new NotImplementedException();
         }
-        //public sp_GetAllCategories_Result Sp_GetAllCategories()
-        //{
-        //    Context.Database.SqlQuery<sp_GetAllCategories_Result>("sp_GetAllCategories");
-        //}
-        //sp_GetAllCategories_Result IRepository<sp_GetAllCategories>.GetByID(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public List<sp_GetAllCategories_Result> Sp_GetAllCategories()
+        {
+          
+            return Context.Database.SqlQuery<sp_GetAllCategories_Result>("sp_GetAllCategories").ToList();
+            
+        }
     }
 }
