@@ -1,6 +1,7 @@
 ﻿var sub_id = 2;
 $(document).ready(function () {
-    $.getJSON("/home/index", null, iterating);
+    sub_cat = $("#sending_param").text() ?? sub_id;
+    $.getJSON("/home/index?ajax=true&id=" + sub_cat, null, iterating);
 
 });
 var divToAdd;
@@ -14,16 +15,17 @@ iterating = function iterating(datas) {
     for (let product in datas) {
         specs = datas[product].Specs;
         divToAdd = "" +
-            "<div class='col-md-3 productBox'>\n"+
-            "   <div id = '" + datas[product].id+ "'>\n" +
-            "       <a href='/details/index/?pid=" + datas[product].id+"'><img src='" + datas[product].Image+ "' class='img-fluid' alt='Fan for product 1'></a>\n" +
-            "       <div class='productItem'>\n"+
+            "<div class='col-md-3 productBox'>\n" +
+            "   <div id = '" + datas[product].id + "'>\n" +
+            "       <a href='/details/index/?pid=" + datas[product].id + "'><img src='" + datas[product].Image + "' class='img-fluid' alt='Fan for product 1'></a>\n" +
+            "       <div class='productItem'>\n" +
             "           <label class='ManfactureName'>" + datas[product].name + "</label>\n" +
-            "           <label id='Series'>"+datas[product].Series+"</label>\n" +
-            "           <label id='ModelNumber'>"+datas[product].Model+"</label>\n" +
+            "           <label id='Series'>" + datas[product].Series + "</label>\n" +
+            "           <label id='ModelNumber'>" + datas[product].Model + "</label>\n" +
             "       </div>\n" +
-            "       <div>\n"
-        if (datas[0].SubCategory == 'Fan') {
+            "       <div>\n";
+        if (datas[0].SubCategory == 'Fan')
+        {
             divToAdd += "           <label id='airflow'>" + specs['Airflow'][1] + " CFM </label>\n" +
                 "           <label id='wMax'>" + specs['Power(W)'][3] + " W at Max Speed</label>\n" +
                 "           <label id='dbA'>" + specs['Sound at Max Speed'][2] + " dBA at Max Speed</label>\n" +
@@ -38,16 +40,16 @@ iterating = function iterating(datas) {
 
         divToAdd+=  "       </div>" +
                     "       <div class='row' style='margin-top:10px'>\n" +
-                    "           <div class='col-md-6 custom-control custom-checkbox'>\n" +
-                    "               <input type='checkbox' class='custom-control-input' class='defaultIndeterminate2'>\n" +
-                    "               <label st class='custom-control-label' for='defaultIndeterminate2'>Compare</label>\n" +
+            "           <div class='col-md-6 custom-control custom-checkbox'>\n" +
+            "               <input type='checkbox' class='custom-control-inpuut' value='" + datas[product].id + "'>\n" +
+                    "               <label for='defaultIndeterminate2'>Compare</label>\n" +
                     "           </div>\n" +
                     "           <div class='col-md-5 custombutton'>\n" +
-                    "               <button type='button' class='btn btn-primary'>Primary</button>\n" +
+                    "             <a href='/details/index/?pid=" + datas[product].id + "'>  <button type='button' class='btn btn-primary'>Get Details</button></a>\n" +
                     "           </div>\n" +
                     "       </div>\n" +
                     "   </div>\n" +
-                    "</div>";
+                    "</div> \n ";
 
         $("#loading").hide();
         $("#iterating").append(divToAdd);

@@ -55,7 +55,25 @@ namespace MarketplaceWebPortalApp.Controllers
             var initialSofaFilter = service.InitializeSofaFilter(2010, 2021);
             sofaFilter.minLength = initialSofaFilter.minLength;
             sofaFilter.maxLength = initialSofaFilter.maxLength;
-            
+            if (Request.IsAjaxRequest())
+            {
+                var param = id ?? "2" ;
+                TempData["sub_id"] = id;
+                int num;
+                try
+                {
+                    num = Int32.Parse(param);
+                }
+                catch (FormatException)
+                {
+                    num = 2;
+                }
+
+                ProductsByCategory products_category = new ProductsByCategory(num);
+                List<Product> returning_List= products_category.ByCategory();
+                return Json(returning_List, JsonRequestBehavior.AllowGet);
+            }
+            TempData["sub_id_from_search"] = id;
             return View(fanFilter);
 
         }
