@@ -27,9 +27,9 @@ namespace MarketplaceWebPortalApp.Controllers
             
             if (Request.IsAjaxRequest())
             {
-                var param = Request.QueryString["id"] ?? "2" ;
+                var param = id ?? "2" ;
                 TempData["sub_id"] = id;
-                int num = 2;
+                int num;
                 try
                 {
                     num = Int32.Parse(param);
@@ -43,6 +43,7 @@ namespace MarketplaceWebPortalApp.Controllers
                 List<Product> returning_List= products_category.ByCategory();
                 return Json(returning_List, JsonRequestBehavior.AllowGet);
             }
+            TempData["sub_id_from_search"] = id;
             return View();
         }
 
