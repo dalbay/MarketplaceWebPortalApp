@@ -9,18 +9,6 @@ namespace MarketplaceWebPortalApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult AuthorizeUser()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AuthorizeUser(Consumer consumer)
-        {
-            Service service = new Service();
-            var valitConsumer = service.GetValidatedConsumer(consumer.Email, consumer.Password);
-            ViewData["consumer"] = valitConsumer.Email + " - " + valitConsumer.Password;
-            return View();
-        }
         public ActionResult Index()
         {
             return View();

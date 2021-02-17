@@ -28,10 +28,6 @@ namespace MarketplaceWebPortalRepository
             throw new NotImplementedException();
         }
 
-        //public void InsertConsumer(tblConsumer entity)
-        //{
-        //    //Context.Set<tblConsumer>().Add(entity);
-        //}
         public void Sp_RegisterUser(string username, string email, string password, string image)
         {
             Context.Database.SqlQuery<tblConsumer>("sp_RegisterUser @param1, @param2, @param3, @param4",
