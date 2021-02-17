@@ -58,6 +58,8 @@
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
+    <Compile Include="SofaFilter.cs" />
+    <Compile Include="TabletFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MarketplaceWebPortalRepository\MarketplaceWebPortalRepository.csproj">
@@ -70,7 +72,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

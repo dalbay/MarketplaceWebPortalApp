@@ -13,12 +13,40 @@ namespace MarketplaceWebPortal_BLL
     {    
         public static readonly MarketplaceWebPortalDataEntities context = new MarketplaceWebPortalDataEntities();
         UnitOfWork ufw = new UnitOfWork(context);
+        
         public Service() { }
 
+
+        //Get all the technical Specifications and values for the SOFA SubCategory
+        public MarketplaceWebPortal_BLL.SofaFilter InitializeSofaFilter(Int16 minimumDate, Int16 maximumDate)
+        {
+            SofaFilter sofaFilter = new SofaFilter();
+            var filter = ufw.sofaSubCategory.Sp_SetSofaTechSpec(minimumDate, maximumDate);
+            sofaFilter.minLength = filter.minLength;
+            sofaFilter.maxLength = filter.maxLength;
+
+            return sofaFilter;
+        }
+
+        //Get all the technical Specifications and values for the TABLET SubCategory
+        public MarketplaceWebPortal_BLL.TabletFilter InitializeTabletFilter(Int16 minimumDate, Int16 maximumDate)
+        {
+            TabletFilter tabletFilter = new TabletFilter();
+            var filter = ufw.tabletSubCategory.Sp_SetTabletTechSpec(minimumDate, maximumDate);
+            tabletFilter.minRAM = filter.minRAM;
+            tabletFilter.maxRAM = filter.maxRAM;
+            tabletFilter.minScreen = filter.minScreen;
+            tabletFilter.maxScreen = filter.maxScreen;
+            tabletFilter.minStorage = filter.minStorage;
+            tabletFilter.maxStorage = filter.maxStorage;
+            return tabletFilter;
+        }
+
+        //Get all the technical Specifications and values for the FAN SubCategory
         public MarketplaceWebPortal_BLL.FanFilter InitializeFanFilter(Int16 minimumDate, Int16 maximumDate)
         {
             MarketplaceWebPortal_BLL.FanFilter fanFilter = new MarketplaceWebPortal_BLL.FanFilter();
-            var filter = ufw.subCategory.Sp_SetFanFilterTechSpec(minimumDate, maximumDate);
+            var filter = ufw.fanSubCategory.Sp_SetFanFilterTechSpec(minimumDate, maximumDate);
             fanFilter.minHeight = filter.minHeight;
             fanFilter.maxHeight = filter.maxHeight;
             fanFilter.minVoltage = filter.minVoltage;
@@ -30,16 +58,16 @@ namespace MarketplaceWebPortal_BLL
             return fanFilter;            
         }
 
-        public List<MarketplaceWebPortal_BLL.Category> GetCategory()
-        {
-            List<Category> abc = new List<Category>();
-            var getAllCategories = ufw.category.Sp_GetAllCategories();
-            foreach(var i in getAllCategories)
-            {
-                abc.Add(new Category { Category_ID = i.Category_ID, Category_Name = i.Category_Name });
-            }
-            return abc;
-        }
+        //public List<MarketplaceWebPortal_BLL.Category> GetCategory()
+        //{
+        //    List<Category> abc = new List<Category>();
+        //    //var getAllCategories = ufw.category.Sp_GetAllCategories();
+        //    foreach(var i in getAllCategories)
+        //    {
+        //        abc.Add(new Category { Category_ID = i.Category_ID, Category_Name = i.Category_Name });
+        //    }
+        //    return abc;
+        //}
 
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)
         {
