@@ -12,7 +12,7 @@ namespace MarketplaceWebPortalRepository
     
     public interface ICategory : IRepository<sp_GetAllCategories_Result>
     {
-        List<sp_GetAllCategories_Result> Sp_GetAllCategories();
+       // List<sp_GetAllCategories_Result> Sp_GetAllCategories();
 
     }
     public class Category : Repository<sp_GetAllCategories_Result>, ICategory

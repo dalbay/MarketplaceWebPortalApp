@@ -25,6 +25,7 @@ namespace MarketplaceWebPortalApp.Controllers
         public ActionResult Index(string id)
         {
             Service service = new Service();
+            //FAN subCategory filtering values.
             MarketplaceWebPortalApp.Models.FanFilter fanFilter = new Models.FanFilter();
             var initialFanFilter = service.InitializeFanFilter(2010, 2020);
             fanFilter.minHeight = initialFanFilter.minHeight;
@@ -37,7 +38,7 @@ namespace MarketplaceWebPortalApp.Controllers
             fanFilter.maxSpeed = initialFanFilter.maxPower;
             ViewData["minHeight"] = "Minimum Height = " + fanFilter.minHeight;
 
-            //TABLET subCategory testing
+            //TABLET subCategory filtering values.
             MarketplaceWebPortalApp.Models.TabletFilter tabletFilter = new Models.TabletFilter();
             var initialTabletFilter = service.InitializeTabletFilter(2010, 2020);
             tabletFilter.minRAM = initialTabletFilter.minRAM;
@@ -47,7 +48,16 @@ namespace MarketplaceWebPortalApp.Controllers
             tabletFilter.minStorage = initialTabletFilter.minStorage;
             tabletFilter.maxStorage = initialTabletFilter.maxStorage;
             ViewData["tabletFilterMinScreen"] = "Minimum Height = " + tabletFilter.minScreen;
+
+
+            //SOFA subCategory filtering values.
+            MarketplaceWebPortalApp.Models.SofaFilter sofaFilter = new Models.SofaFilter();
+            var initialSofaFilter = service.InitializeSofaFilter(2010, 2021);
+            sofaFilter.minLength = initialSofaFilter.minLength;
+            sofaFilter.maxLength = initialSofaFilter.maxLength;
+            
             return View(fanFilter);
+
         }
 
         public ActionResult About()

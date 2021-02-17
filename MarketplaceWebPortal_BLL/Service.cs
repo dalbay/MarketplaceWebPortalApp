@@ -16,6 +16,18 @@ namespace MarketplaceWebPortal_BLL
         
         public Service() { }
 
+
+        //Get all the technical Specifications and values for the SOFA SubCategory
+        public MarketplaceWebPortal_BLL.SofaFilter InitializeSofaFilter(Int16 minimumDate, Int16 maximumDate)
+        {
+            SofaFilter sofaFilter = new SofaFilter();
+            var filter = ufw.sofaSubCategory.Sp_SetSofaTechSpec(minimumDate, maximumDate);
+            sofaFilter.minLength = filter.minLength;
+            sofaFilter.maxLength = filter.maxLength;
+
+            return sofaFilter;
+        }
+
         //Get all the technical Specifications and values for the TABLET SubCategory
         public MarketplaceWebPortal_BLL.TabletFilter InitializeTabletFilter(Int16 minimumDate, Int16 maximumDate)
         {
@@ -46,16 +58,16 @@ namespace MarketplaceWebPortal_BLL
             return fanFilter;            
         }
 
-        public List<MarketplaceWebPortal_BLL.Category> GetCategory()
-        {
-            List<Category> abc = new List<Category>();
-            var getAllCategories = ufw.category.Sp_GetAllCategories();
-            foreach(var i in getAllCategories)
-            {
-                abc.Add(new Category { Category_ID = i.Category_ID, Category_Name = i.Category_Name });
-            }
-            return abc;
-        }
+        //public List<MarketplaceWebPortal_BLL.Category> GetCategory()
+        //{
+        //    List<Category> abc = new List<Category>();
+        //    //var getAllCategories = ufw.category.Sp_GetAllCategories();
+        //    foreach(var i in getAllCategories)
+        //    {
+        //        abc.Add(new Category { Category_ID = i.Category_ID, Category_Name = i.Category_Name });
+        //    }
+        //    return abc;
+        //}
 
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)
         {
