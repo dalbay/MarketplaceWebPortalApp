@@ -28,7 +28,7 @@ namespace MarketplaceWebPortal_BLL
 
                 var products = (from product in context.tblProducts
                                    where product.SubCategory_ID == this.SubCategoryId
-                                   select new Product
+                                select new Product
                                    {
                                        id = product.Product_ID.ToString(),
                                        name = product.Product_Name,
@@ -45,6 +45,8 @@ namespace MarketplaceWebPortal_BLL
                                        Series_info = product.Series_Info,
                                        Image = product.Image
                                    }).ToList();
+
+
                 foreach (Product p in products)
                 {
                     var specs = (from filters in context.tblTechSpecFilters
@@ -87,11 +89,12 @@ namespace MarketplaceWebPortal_BLL
 
     public class ProductsById
     {
-        int ProductId { get; set; }
-        public ProductsById(int ProductId)
+        int[] ProductId { get; set; }
+        public ProductsById(params int[] list)
         {
-            this.ProductId = ProductId;
+            ProductId = list;
         }
+
 
         public List<Product> ByID()
         {
@@ -100,9 +103,8 @@ namespace MarketplaceWebPortal_BLL
             using (var context = new MarketplaceWebPortalDataEntities())
             {
                 UnitOfWork ufw = new UnitOfWork(context);
-
                 var products = (from product in context.tblProducts
-                                where product.Product_ID == this.ProductId
+                                where (this.ProductId.Contains(product.Product_ID))   
                                 select new Product
                                 {
                                     id = product.Product_ID.ToString(),
@@ -156,6 +158,9 @@ namespace MarketplaceWebPortal_BLL
                 return products;
             }
         }
+        
+
+
     }
 
 

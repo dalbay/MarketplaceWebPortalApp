@@ -10,22 +10,28 @@ SaveToLocal = function SaveToLocal(datas) {
     $("#Accessories").text(datas.Accessories);
     $("#ModelYear").text(datas.ModelYear);
 
-    a = datas.specs['TechSpec'];
+    a = datas.Specs;
 
     for (key in a) {
         if (a.hasOwnProperty(key)) {
             var tbody = $("#ToAppend");
-            let tr = '<tr>\n' +
-                ' < td colspan="2"> HEllo </td> ' +
-                '< td colspan="4">Hi </td> ' +
-                '</tr>';
+            var tr = "<tr>" +
+                " <td colspan='2' class='desc'>" + key + "</td> ";
+                
+            if (a[key].length == 2) {
+                tr += "<td colspan='4'>" + a[key][1] + "</td> " +
+                    "</tr>";
+            }
+            else {
+                tr += "<td class='desc'>" + a[key][0] + "</td> <td>" + a[key][1] + "</td class='desc'> <td>" + a[key][2] + "</td> <td>" + a[key][3] + "</td> </tr>";
+            }
             tbody.append(tr);
             console.log(key + " = " + a[key]);
         }
     }
 }
 pid = $("#pid").text();
-$.get("?pid="+pid, null, SaveToLocal);
+$.get("??ajax=true&pid="+pid, null, SaveToLocal);
 
 
 

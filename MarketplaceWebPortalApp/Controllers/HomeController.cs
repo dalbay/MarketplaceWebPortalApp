@@ -22,11 +22,13 @@ namespace MarketplaceWebPortalApp.Controllers
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
+            
             if (Request.IsAjaxRequest())
             {
                 var param = Request.QueryString["id"] ?? "2" ;
+                TempData["sub_id"] = id;
                 int num = 2;
                 try
                 {

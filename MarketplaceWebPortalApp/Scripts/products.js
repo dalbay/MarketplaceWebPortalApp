@@ -49,7 +49,7 @@ iterating = function iterating(datas) {
                     "   </div>\n" +
                     "</div>";
 
-
+        $("#loading").hide();
         $("#iterating").append(divToAdd);
         
     }
