@@ -6,17 +6,17 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e7e1c6f9864241cfb43dad3302df190c" Name="Diagram1">
         <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblApplication" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblApplication" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblCategory" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblConsumer" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblFilter" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblManufacturer" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblMountingLocation" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblConsumer" Width="1.5" PointX="3.375" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblFilter" Width="1.5" PointX="7.625" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblManufacturer" Width="1.5" PointX="1" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblMountingLocation" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblProduct" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblSubCategory" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblTechSpec" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblTechSpec" Width="1.5" PointX="5.375" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblTechSpecFilter" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblUseType" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblUseType" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblProduct_tblApplication" ManuallyRouted="false" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblSubCategory_tblCategory1" ManuallyRouted="false" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechSpechFilter_tblFilter" ManuallyRouted="false" />
@@ -27,7 +27,10 @@
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechSpecFilter_tblProduct" ManuallyRouted="false" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechSpechFilter_tblTechSpec" ManuallyRouted="false" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.tblTechSpecSubCategory" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.view_FilterTable" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.view_FilterTable" Width="1.5" PointX="8.25" PointY="9.875" />
+        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue" Width="2.75" PointX="9.875" PointY="6.5" />
+        <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct" />
+        <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -133,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Consumer.cs" />
+    <Compile Include="Models\FanFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +300,7 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Details\Index.cshtml" />
     <Content Include="Views\Home\AuthorizeUser.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
