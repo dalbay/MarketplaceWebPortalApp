@@ -28,27 +28,23 @@ namespace MarketplaceWebPortalRepository
             throw new NotImplementedException();
         }
 
-        //public void InsertConsumer(tblConsumer entity)
-        //{
-        //    //Context.Set<tblConsumer>().Add(entity);
-        //}
         public void Sp_RegisterUser(string username, string email, string password, string image)
         {
-            Context.Database.SqlQuery<tblConsumer>("sp_RegisterUser @ param1, @param2, @param3, @param4",
-                new SqlParameter("@param1", username),
-                new SqlParameter("@param2", email),
-                new SqlParameter("@param3", password),
-                new SqlParameter("@param4", image)
-                );
+            Context.Database.SqlQuery<tblConsumer>("sp_RegisterUser @param1, @param2, @param3, @param4",
+                new SqlParameter("param1", username),
+                new SqlParameter("param2", email),
+                new SqlParameter("param3", password),
+                new SqlParameter("param4", image)
+                ).ToList();
         }
 
         public tblConsumer Sp_UserValidation(string input, string password)
         {
             return Context.Database.SqlQuery<tblConsumer>(
 
-    "sp_UserValidation @param1, @param2",
-    new SqlParameter("param1", input),
-    new SqlParameter("param2", password)).FirstOrDefault();
+            "sp_UserValidation @param1, @param2",
+            new SqlParameter("param1", input),
+            new SqlParameter("param2", password)).FirstOrDefault();
 
         }
     }

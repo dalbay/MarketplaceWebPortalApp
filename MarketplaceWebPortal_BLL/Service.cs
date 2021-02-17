@@ -15,6 +15,28 @@ namespace MarketplaceWebPortal_BLL
         UnitOfWork ufw = new UnitOfWork(context);
         public Service() { }
 
+        public MarketplaceWebPortal_BLL.FanFilter InitializeFanFilter(Int16 minimumDate, Int16 maximumDate)
+        {
+            MarketplaceWebPortal_BLL.FanFilter fanFilter = new MarketplaceWebPortal_BLL.FanFilter();
+            var filter = ufw.subCategory.Sp_SetFanFilterTechSpec(minimumDate, maximumDate);
+            fanFilter.minHeight = filter.minHeight;
+            fanFilter.maxHeight = filter.maxHeight;
+            fanFilter.minVoltage = filter.minVoltage;
+            fanFilter.maxVoltage = filter.maxVoltage;
+            fanFilter.minPower = filter.minPower;
+            fanFilter.maxPower = filter.maxPower;
+            fanFilter.minSpeed = filter.minSpeed;
+            fanFilter.maxSpeed = filter.maxSpeed;
+            return fanFilter;            
+        }
+
+        public MarketplaceWebPortal_BLL.Category GetCategory()
+        {
+            MarketplaceWebPortal_BLL.Category category = new MarketplaceWebPortal_BLL.Category();
+            var getAllCategories = ufw.category.Sp_GetAllCategories();
+            
+        }
+
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)
         {
             MarketplaceWebPortal_BLL.Consumer consumer = new MarketplaceWebPortal_BLL.Consumer();

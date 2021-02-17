@@ -27,24 +27,24 @@ namespace MarketplaceWebPortal_BLL
                 UnitOfWork ufw = new UnitOfWork(context);
 
                 var products = (from product in context.tblProducts
-                                   where product.SubCategory_ID == this.SubCategoryId
+                                where product.SubCategory_ID == this.SubCategoryId
                                 select new Product
-                                   {
-                                       id = product.Product_ID.ToString(),
-                                       name = product.Product_Name,
-                                       Category = product.tblSubCategory.tblCategory.Category_Name,
-                                       SubCategory = product.tblSubCategory.SubCategory_Name,
-                                       Manfacture = product.tblManufacturer.Manufacturer_Name,
-                                       Series = product.Series,
-                                       Model = product.Model,
-                                       UseType = product.tblUseType.Type_Name,
-                                       Application = product.tblApplication.Application_Name,
-                                       MountingLocation = product.tblMountingLocation.Location,
-                                       Accessories = product.Accessories,
-                                       ModelYear = product.Model_Year.ToString(),
-                                       Series_info = product.Series_Info,
-                                       Image = product.Image
-                                   }).ToList();
+                                {
+                                    id = product.Product_ID.ToString(),
+                                    name = product.Product_Name,
+                                    Category = product.tblSubCategory.tblCategory.Category_Name,
+                                    SubCategory = product.tblSubCategory.SubCategory_Name,
+                                    Manfacture = product.tblManufacturer.Manufacturer_Name,
+                                    Series = product.Series,
+                                    Model = product.Model,
+                                    UseType = product.tblUseType.Type_Name,
+                                    Application = product.tblApplication.Application_Name,
+                                    MountingLocation = product.tblMountingLocation.Location,
+                                    Accessories = product.Accessories,
+                                    ModelYear = product.Model_Year.ToString(),
+                                    Series_info = product.Series_Info,
+                                    Image = product.Image
+                                }).ToList();
 
 
                 foreach (Product p in products)
@@ -53,21 +53,21 @@ namespace MarketplaceWebPortal_BLL
                                  where filters.Product_ID.ToString() == p.id
                                  select new Filters
                                  {
-                                     Product_id= filters.Product_ID.ToString(),
+                                     Product_id = filters.Product_ID.ToString(),
                                      Name = filters.tblTechSpec.TechSpec_Name,
                                      Amount = filters.Amount.ToString(),
                                      Filter = filters.tblFilter.Filter_Name
                                  }
                                  ).ToList();
 
-                     
-                    Hashtable  hash = new Hashtable();
-                    foreach(Filters f in specs)
+
+                    Hashtable hash = new Hashtable();
+                    foreach (Filters f in specs)
                     {
                         if (hash.ContainsKey(f.Name))
                         {
                             List<string> abc = (List<string>)hash[f.Name];
-                            hash[f.Name]= new List<string> { abc[0].ToString(),abc[1].ToString(), f.Filter,f.Amount  };
+                            hash[f.Name] = new List<string> { abc[0].ToString(), abc[1].ToString(), f.Filter, f.Amount };
                         }
                         else
                         {
@@ -76,7 +76,7 @@ namespace MarketplaceWebPortal_BLL
                     }
 
                     p.Specs = hash;
-                    
+
 
                 }
 
@@ -104,7 +104,7 @@ namespace MarketplaceWebPortal_BLL
             {
                 UnitOfWork ufw = new UnitOfWork(context);
                 var products = (from product in context.tblProducts
-                                where (this.ProductId.Contains(product.Product_ID))   
+                                where (this.ProductId.Contains(product.Product_ID))
                                 select new Product
                                 {
                                     id = product.Product_ID.ToString(),
@@ -158,7 +158,7 @@ namespace MarketplaceWebPortal_BLL
                 return products;
             }
         }
-        
+
 
 
     }
@@ -172,7 +172,7 @@ namespace MarketplaceWebPortal_BLL
         public string Filter;
     }
 
-   
+
 
     public class Product
     {
