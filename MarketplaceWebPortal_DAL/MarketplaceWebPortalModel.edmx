@@ -428,6 +428,10 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Parameter Name="minDate" Type="smallint" Mode="In" />
           <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
+        <Function Name="sp_FanSetFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ModelYearMin" Type="smallint" Mode="In" />
+          <Parameter Name="ModelYearMax" Type="smallint" Mode="In" />
+        </Function>
         <Function Name="sp_FanSpeedFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minSpeed" Type="float" Mode="In" />
@@ -457,6 +461,9 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
         </Function>
         <Function Name="sp_GetProductSummaryTechSpec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Product_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetSubCategoryByCategoryName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -1033,6 +1040,13 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
             <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetSubCategoryByCategoryName" ReturnType="Collection(String)">
+          <Parameter Name="CategoryName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FanSetFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSetFilter_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_FanSubCategoryFilter_Result">
           <Property Type="Double" Name="minAirFlow" Nullable="true" />
@@ -1184,6 +1198,16 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Property Type="Double" Name="maxStorage" Nullable="true" />
           <Property Type="Double" Name="minRAM" Nullable="true" />
           <Property Type="Double" Name="maxRAM" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FanSetFilter_Result">
+          <Property Type="Double" Name="minVoltage" Nullable="true" />
+          <Property Type="Double" Name="maxVoltage" Nullable="true" />
+          <Property Type="Double" Name="minPower" Nullable="true" />
+          <Property Type="Double" Name="maxPower" Nullable="true" />
+          <Property Type="Double" Name="minSpeed" Nullable="true" />
+          <Property Type="Double" Name="maxSpeed" Nullable="true" />
+          <Property Type="Double" Name="minHeight" Nullable="true" />
+          <Property Type="Double" Name="maxHeight" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1509,6 +1533,21 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
                 <ScalarProperty Name="maxStorage" ColumnName="maxStorage" />
                 <ScalarProperty Name="minRAM" ColumnName="minRAM" />
                 <ScalarProperty Name="maxRAM" ColumnName="maxRAM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetSubCategoryByCategoryName" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetSubCategoryByCategoryName" />
+          <FunctionImportMapping FunctionImportName="sp_FanSetFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanSetFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanSetFilter_Result">
+                <ScalarProperty Name="minVoltage" ColumnName="minVoltage" />
+                <ScalarProperty Name="maxVoltage" ColumnName="maxVoltage" />
+                <ScalarProperty Name="minPower" ColumnName="minPower" />
+                <ScalarProperty Name="maxPower" ColumnName="maxPower" />
+                <ScalarProperty Name="minSpeed" ColumnName="minSpeed" />
+                <ScalarProperty Name="maxSpeed" ColumnName="maxSpeed" />
+                <ScalarProperty Name="minHeight" ColumnName="minHeight" />
+                <ScalarProperty Name="maxHeight" ColumnName="maxHeight" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -11,11 +11,13 @@ namespace MarketplaceWebPortalRepository
     {
         DbContext Context;
         public IConsumerRepo consumer;
+        public ISubCategory subCategory;
 
         public UnitOfWork(DbContext dbContext)
         {
             Context = dbContext;
             consumer = new ConsumerRepo(dbContext);
+            subCategory = new SubCategory(dbContext);
         }
     }
 }

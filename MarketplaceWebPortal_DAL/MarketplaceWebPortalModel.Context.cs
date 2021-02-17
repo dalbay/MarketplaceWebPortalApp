@@ -489,5 +489,27 @@ namespace MarketplaceWebPortal_DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletSubCategorySetFilter_Result>("sp_TabletSubCategorySetFilter", modelYearMinParameter, modelYearMaxParameter);
         }
+    
+        public virtual ObjectResult<string> sp_GetSubCategoryByCategoryName(string categoryName)
+        {
+            var categoryNameParameter = categoryName != null ?
+                new ObjectParameter("CategoryName", categoryName) :
+                new ObjectParameter("CategoryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetSubCategoryByCategoryName", categoryNameParameter);
+        }
+    
+        public virtual ObjectResult<sp_FanSetFilter_Result> sp_FanSetFilter(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSetFilter_Result>("sp_FanSetFilter", modelYearMinParameter, modelYearMaxParameter);
+        }
     }
 }
