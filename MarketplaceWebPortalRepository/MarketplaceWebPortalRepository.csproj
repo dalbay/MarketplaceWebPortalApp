@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICategory.cs" />
     <Compile Include="IConsumerRepo.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISofaSubCategory.cs" />

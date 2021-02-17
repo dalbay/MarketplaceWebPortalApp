@@ -15,6 +15,24 @@
 </head>
 
 <body class="loginPage container">
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong>Congratulations!</strong> You have successfully created your account. Please sign in now!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            Oops we are sorry, something went wrong! Please try again!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
     <div class="signupHeader">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-sm loginBtn" data-toggle="modal" data-target="#registerModal">
@@ -24,7 +42,7 @@
     <div class="loginForm">
         <div class="d-flex justify-content-center">
             <div>
-                <form>
+                <form action="@Url.Action("AuthUser", "UserLogin")" method="post">
                     <div class="displayLogo">
                         <img height="100" width="200" src="@Url.Content("~/Images/Joole.png")" />
 
@@ -36,13 +54,14 @@
                         <span>
                             <i class="fa fa-user"></i>
                         </span>
-                        <input type="text" class="form-control form-control-sm" id="loginEmail" aria-describedby="emailHelp" placeholder="Username or Email" required>
+                        <input type="text" class="form-control form-control-sm" id="loginEmail" name="loginEmail" aria-describedby="emailHelp" placeholder="Username or Email" required>
                     </div>
                     <div class="form-group inputLbl">
                         <span>
                             <i class="fa fa-lock"></i>
                         </span>
-                        <input type="password" class="form-control form-control-sm" id="loginPassword" placeholder="Password" required>
+                        <input type="password" class="form-control form-control-sm" id="loginPassword" name="loginPassword" placeholder="Password" required>
+                        <small id="emailHelp" class="form-text text-muted text-center" style="color: red !important;">@TempData["wrongUsername"]</small>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary loginBtn">Log in</button>
                 </form>
@@ -59,7 +78,7 @@
                         <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
                     </button>
                 </div>
-                <form>
+                <form action="@Url.Action("Register", "UserLogin")" method="post">
                     <div class="modal-body">
 
                         <div class="row">
@@ -76,23 +95,23 @@
                         </div>
                         <div class="form-group row">
                             <label for="userNameReg" class="col-sm-4 col-form-label regLbl"></label>
-                            <input type="file" name="yourImage" onchange="loadImage(event)" required>
+                            <input type="file" name="yourImage" id="yourImage" onchange="loadImage(event)">
                         </div>
                         <div class="form-group row">
                             <label for="userNameReg" class="col-sm-4 col-form-label regLbl">UserName:</label>
-                            <input type="text" class="form-control form-control-sm" id="userNameReg" aria-describedby="" placeholder="User Name" required>
+                            <input type="text" class="form-control form-control-sm" id="userNameReg" name="userNameReg" aria-describedby="" placeholder="User Name" required>
                         </div>
                         <div class="form-group row">
                             <label for="emailReg" class="col-sm-4 col-form-label regLbl">Email Address:</label>
-                            <input type="email" class="form-control form-control-sm" id="emailReg" aria-describedby="" placeholder="Email Id" required>
+                            <input type="email" class="form-control form-control-sm" id="emailReg" name="emailReg" aria-describedby="" placeholder="Email Id" required>
                         </div>
                         <div class="form-group row">
                             <label for="passwordReg" class="col-sm-4 col-form-label regLbl">Password:</label>
-                            <input type="password" class="form-control form-control-sm" id="passwordReg" aria-describedby="" placeholder="Password" required>
+                            <input type="password" class="form-control form-control-sm" id="passwordReg" name="passwordReg" aria-describedby="" placeholder="Password" required>
                         </div>
                         <div class="form-group row">
                             <label for="confirmPasswordReg" class="col-sm-4 col-form-label regLbl">Confirm Password:</label>
-                            <input type="password" class="form-control form-control-sm" id="confirmPasswordReg" aria-describedby="" placeholder="Confirm Password" required>
+                            <input type="password" class="form-control form-control-sm" id="confirmPasswordReg" name="confirmPasswordReg" aria-describedby="" placeholder="Confirm Password" required>
 
                         </div>
                         <div class="row">
