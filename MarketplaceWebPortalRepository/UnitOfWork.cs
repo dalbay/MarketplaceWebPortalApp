@@ -19,7 +19,7 @@ namespace MarketplaceWebPortalRepository
             Context = dbContext;
             consumer = new ConsumerRepo(dbContext);
             subCategory = new SubCategory(dbContext);
-            
+            category = new Category(dbContext);
 
         }
     }
