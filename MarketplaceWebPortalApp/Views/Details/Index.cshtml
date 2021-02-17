@@ -5,27 +5,37 @@
 
 @section styles{
     <link rel="stylesheet" href="~/Content/details_compare.css" />
-    }
-<h2>Index</h2>
-    <div class="container">
-
-        <div class="row">
-            <div class="col-12 bg-primary">
-                <img src="~/Content/header.jpg" style="width:100%;"/>
-            </div>
+}
+@section scripts{
+    <script src="~/Scripts/details.js??version=1"></script>
+}
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" id="navigation">
+                <li class="nav-item active">
+                    <a class="navbar-item" href="#">Product Summary <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="#">Product Detail</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="#">Product Documentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-item" href="#">Contact</a>
+                </li>
+            </ul>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light row" id="navigation">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Product Summary</a>
-                <a class="navbar-brand" href="#">Product Details</a>
-                <a class="navbar-brand" href="#">Product Documentation</a>
-                <a class="navbar-brand" href="#">Contact</a>
-                <a class="navbar-brand" href="compare.html">Compare</a>
-            </div>
-        </nav>
-        <div class="row">
+    </nav>
+    <div class="row">
 
-            <div class="col-lg-1 col-1">
+        <div class="col-lg-1 col-1">
+            <div id="pid" hidden>@TempData["pid"]</div>
+        </div>
 
         <div class="col-10 col-lg-10">
             <h2 class="text-primary">Product Description</h2>
@@ -99,9 +109,10 @@
                 </div>
             </div>
 
-            </div>
-            <div class="col-1 col-lg-1">
+        </div>
 
-            </div>
+        <div class="col-1 col-lg-1">
+
         </div>
     </div>
+</div>
