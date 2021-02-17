@@ -21,13 +21,13 @@ namespace MarketplaceWebPortalRepository
         {
             throw new NotImplementedException();
         }
-        public sp_GetAllCategories_Result Sp_GetAllCategories()
-        {
-            Context.Database.SqlQuery<sp_GetAllCategories_Result>("sp_GetAllCategories");
-        }
-        sp_GetAllCategories_Result IRepository<sp_GetAllCategories>.GetByID(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //public sp_GetAllCategories_Result Sp_GetAllCategories()
+        //{
+        //    Context.Database.SqlQuery<sp_GetAllCategories_Result>("sp_GetAllCategories");
+        //}
+        //sp_GetAllCategories_Result IRepository<sp_GetAllCategories>.GetByID(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
