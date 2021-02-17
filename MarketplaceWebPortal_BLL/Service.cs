@@ -13,12 +13,28 @@ namespace MarketplaceWebPortal_BLL
     {    
         public static readonly MarketplaceWebPortalDataEntities context = new MarketplaceWebPortalDataEntities();
         UnitOfWork ufw = new UnitOfWork(context);
+        
         public Service() { }
 
+        //Get all the technical Specifications and values for the TABLET SubCategory
+        public MarketplaceWebPortal_BLL.TabletFilter InitializeTabletFilter(Int16 minimumDate, Int16 maximumDate)
+        {
+            TabletFilter tabletFilter = new TabletFilter();
+            var filter = ufw.tabletSubCategory.Sp_SetTabletTechSpec(minimumDate, maximumDate);
+            tabletFilter.minRAM = filter.minRAM;
+            tabletFilter.maxRAM = filter.maxRAM;
+            tabletFilter.minScreen = filter.minScreen;
+            tabletFilter.maxScreen = filter.maxScreen;
+            tabletFilter.minStorage = filter.minStorage;
+            tabletFilter.maxStorage = filter.maxStorage;
+            return tabletFilter;
+        }
+
+        //Get all the technical Specifications and values for the FAN SubCategory
         public MarketplaceWebPortal_BLL.FanFilter InitializeFanFilter(Int16 minimumDate, Int16 maximumDate)
         {
             MarketplaceWebPortal_BLL.FanFilter fanFilter = new MarketplaceWebPortal_BLL.FanFilter();
-            var filter = ufw.subCategory.Sp_SetFanFilterTechSpec(minimumDate, maximumDate);
+            var filter = ufw.fanSubCategory.Sp_SetFanFilterTechSpec(minimumDate, maximumDate);
             fanFilter.minHeight = filter.minHeight;
             fanFilter.maxHeight = filter.maxHeight;
             fanFilter.minVoltage = filter.minVoltage;

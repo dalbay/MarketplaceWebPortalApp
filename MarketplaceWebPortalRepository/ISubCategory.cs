@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace MarketplaceWebPortalRepository
 {
-    public interface ISubCategory : IRepository<sp_FanSetFilter_Result>
+    public interface IFanSubCategory : IRepository<sp_FanSetFilter_Result>
     {
         sp_FanSetFilter_Result Sp_SetFanFilterTechSpec(Int16 minDate, Int16 maxDate);
     }
 
-    public class SubCategory : Repository<sp_FanSetFilter_Result>, ISubCategory
+    public class FanSubCategory : Repository<sp_FanSetFilter_Result>, IFanSubCategory
     {
-        public SubCategory(DbContext context) : base(context) { }
+        public FanSubCategory(DbContext context) : base(context) { }
 
         public void Insert(sp_FanSetFilter_Result entity)
         {
@@ -29,12 +29,5 @@ namespace MarketplaceWebPortalRepository
                new SqlParameter("@param1", minDate),
                new SqlParameter("@param2", maxDate)).FirstOrDefault();
         }
-
-        sp_FanSetFilter_Result IRepository<sp_FanSetFilter_Result>.GetByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-
     }
 }

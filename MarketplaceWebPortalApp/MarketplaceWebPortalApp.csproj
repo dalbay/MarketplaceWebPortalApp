@@ -134,6 +134,8 @@
     </Compile>
     <Compile Include="Models\Consumer.cs" />
     <Compile Include="Models\FanFilter.cs" />
+    <Compile Include="Models\SofaFilter.cs" />
+    <Compile Include="Models\TabletFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

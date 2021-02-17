@@ -11,13 +11,17 @@ namespace MarketplaceWebPortalRepository
     {
         DbContext Context;
         public IConsumerRepo consumer;
-        public ISubCategory subCategory;
+        public IFanSubCategory fanSubCategory;
+        public ITabletSubCategory tabletSubCategory;
+        public ISofaSubCategory sofaSubCategory;
 
         public UnitOfWork(DbContext dbContext)
         {
             Context = dbContext;
             consumer = new ConsumerRepo(dbContext);
-            subCategory = new SubCategory(dbContext);
+            fanSubCategory = new FanSubCategory(dbContext);
+            tabletSubCategory = new TabletSubCategory(dbContext);
+            sofaSubCategory = new SofaSubCategory(dbContext);
         }
     }
 }
