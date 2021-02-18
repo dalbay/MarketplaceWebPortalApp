@@ -30,10 +30,6 @@ namespace MarketplaceWebPortalApp.Controllers
         public ActionResult SearchPage()
         {
             Service service = new Service();
-            List<Category> a = service.GetCategory();
-
-
-            
             return View();
         }
         public ActionResult Search()
