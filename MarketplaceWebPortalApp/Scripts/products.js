@@ -1,5 +1,6 @@
 ﻿var sub_id = 2;
 $(document).ready(function () {
+    $("#takeToCompare").hide();
     sub_cat = $("#sending_param").text() ?? sub_id;
     $.getJSON("/home/index?ajax=true&id=" + sub_cat, null, iterating);
 
@@ -11,6 +12,7 @@ var jsonFile;
 iterating = function iterating(datas) {
     jsonFile = datas;
     $("#SubCategory").text(datas[0].SubCategory);
+    $("SubCategory").attr("href", window.location.href);
     $("#Category").text(datas[0].Category);
     for (let product in datas) {
         specs = datas[product].Specs;
@@ -41,7 +43,7 @@ iterating = function iterating(datas) {
         divToAdd+=  "       </div>" +
                     "       <div class='row' style='margin-top:10px'>\n" +
             "           <div class='col-md-6 custom-control custom-checkbox'>\n" +
-            "               <input type='checkbox' class='custom-control-inpuut' value='" + datas[product].id + "'>\n" +
+            "               <input type='checkbox' class='custom-control-inpuut' value='" + datas[product].id + "' onchange='changing_val(this)'>\n" +
                     "               <label for='defaultIndeterminate2'>Compare</label>\n" +
                     "           </div>\n" +
                     "           <div class='col-md-5 custombutton'>\n" +
@@ -56,4 +58,98 @@ iterating = function iterating(datas) {
         
     }
 
+}
+
+
+$(function () {
+    $("#slider-range-power").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [0, 500],
+        slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        }
+    });
+    $("#amountMinPower").val("$" + $("#slider-range-power").slider("values", 0)),
+        $("#amountMaxPower").val("$" + $("#slider-range-power").slider("values", 1));
+});
+
+$(function () {
+    $("#slider-range-diameter").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [0, 500],
+        slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        }
+    });
+    $("#amountMinDiameter").val("$" + $("#slider-range-diameter").slider("values", 0)),
+        $("#amountMaxDiameter").val("$" + $("#slider-range-diameter").slider("values", 1));
+});
+
+$(function () {
+    $("#slider-range-sound").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [0, 500],
+        slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        }
+    });
+    $("#amountMinSound").val("$" + $("#slider-range-sound").slider("values", 0)),
+        $("#amountMaxSound").val("$" + $("#slider-range-sound").slider("values", 1));
+});
+
+$(function () {
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 350,
+        values: [60, 200],
+        slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            $("#amountMinAir").val("$" + ui.values[0]);
+            $("#amountMaxAir").val("$" + ui.values[1]);
+        }
+    });
+    $("#amountMinAir").val("$" + $("#slider-ranger").slider("values", 0));
+    $("#amountMaxAir").val("$" + $("#slider-range").slider("values", 1));
+});
+var gef = [];
+var gefAttr ="../../compare/index/"
+var changing_val = function (id) {
+    if (id.checked) {
+        if (gef.length == 3) {
+            id.checked = false;
+            alert('Only three value allowed to compare')
+        }
+        else if (gef.length==0) {
+            gef.push(id.value);
+            gefAttr += "?list=" + id.value;
+        }
+        else {
+            gef.push(id.value);
+            gefAttr += "&list=" + id.value;
+        }
+        $("#takeToCompare").attr("href", gefAttr);
+        $("#takeToCompare").show();
+        
+    }
+    else {
+        gef = gef.filter(item => item !== id.value);
+        gefAttr = "../../compare/index/"
+        if (gef.length == 0) {
+            $("#takeToCompare").hide();
+        }
+        else {
+            for (let i in gef) {
+                if (i == 0) { gefAttr += "?list="+gef[i]; }
+                else { gefAttr += "&list="+gef[i];}
+            }
+        }
+        $("#takeToCompare").attr("href", gefAttr);
+    }
 }

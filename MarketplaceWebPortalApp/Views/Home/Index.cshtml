@@ -1,19 +1,17 @@
-﻿@model MarketplaceWebPortalApp.Models.FanFilter
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 @section styles{
     <link rel="stylesheet" href="~/Content/productpagestyle.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 }
 
 
 <div class="container-fluid">
     <div class="row" hidden id="sending_param" name="@TempData["sub_id_from_search"]">@TempData["sub_id_from_search"]</div>
-
+    <div id="button"></div>
     <div class="row">
         <div class="col-md-3 col-12">
             <table class="table table-bordered">
@@ -43,228 +41,110 @@
                         <td colspan="2">
                             <nav id="sidebar">
                                 <ul class="list-unstyled components">
-                    <td colspan="2">
-                        @*<div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div>*@
-                        <nav id="sidebar">
-                            <ul class="list-unstyled components">
-                    <td colspan="2">
-                        @*<div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div>*@
-                        <nav id="sidebar">
-                            <ul class="list-unstyled components">
-                    <td colspan="2">
-                        @*<div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div>*@
-                        <nav id="sidebar">
-                            <ul class="list-unstyled components">
-                    <td colspan="2">
-                        @*<div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div><br />
-                            <div>Airflow</div>*@
-                        <nav id="sidebar">
-                            <ul class="list-unstyled components">
 
                                     <li class="active">
                                         <span style="margin-right:30px;">Technical Specifications</span>
 
-                                    <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> </a> <hr />
-                                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                                        <li class="filterItem" style="margin-bottom: 20px;">
-                                            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-                                            <link rel="stylesheet" href="/resources/demos/style.css">
-                                            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-                                            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-                                            <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-                                            <script>
-                                                $(function () {
-                                                    $("#slider-range").slider({
-                                                        range: true,
-                                                        min: 0,
-                                                        max: 500,
-                                                        values: [0, 500],
-                                                        slide: function (event, ui) {
-                                                            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                                                        }
-                                                    });
-                                                    $("#amountMin").val("$" + $("#slider-range").slider("values", 0)),
-                                                        $("#amountMax").val("$" + $("#slider-range").slider("values", 1));
-                                                });
-                                            </script>
+                                        <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> </a> <hr />
+                                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                                            <li class="filterItem" style="margin-bottom: 20px;" hidden>
+                                                <p>
+                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                    <label for="amount">Airflow(CFM)</label>
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <input type="hidden" class="sliderValue" id="amount" readonly />
+                                                        <input type="text" style="" class="sliderValue" id="amountMinAir" readonly />
+                                                    </div>
+                                                    <div id="slider-range" class="col-md-6  sliderBox"></div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="sliderValue" id="amountMaxAir" readonly>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            @*Power slide bar*@
+                                            <li style="margin-bottom: 20px;" hidden>
 
-                                            <p>
-                                                <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                <label for="amount">
-                                                    Airflow(CFM)
-                                                </label>
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <input type="text" class="sliderValue" id="amountMin" readonly />
-                                                </div>
-                                                <div id="slider-range" class="col-md-6  sliderBox"></div>
-                                                <div class="col-md-2">
-                                                    <input type="text" class="sliderValue" id="amountMax" readonly>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        @*Power slide bar*@
-                                        <li style="margin-bottom: 20px;">
-                                            <script>
-                                                $(function () {
-                                                    $("#slider-range-power").slider({
-                                                        range: true,
-                                                        min: 0,
-                                                        max: 500,
-                                                        values: [0, 500],
-                                                        slide: function (event, ui) {
-                                                            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                                                        }
-                                                    });
-                                                    $("#amountMinPower").val("$" + $("#slider-range-power").slider("values", 0)),
-                                                        $("#amountMaxPower").val("$" + $("#slider-range-power").slider("values", 1));
-                                                });
-                                            </script>
 
-                                            <p>
-                                                <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                <label for="amount">
-                                                    Max Power (W)
-                                                </label>
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <input type="text" class="sliderValue" id="amountMinPower" readonly />
+                                                <p>
+                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                    <label for="amount">Max Power (W)</label>
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="sliderValue" id="amountMinPower" readonly />
+                                                    </div>
+                                                    <div id="slider-range-power" class="col-md-6  sliderBox"></div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="sliderValue" id="amountMaxPower" readonly>
+                                                    </div>
                                                 </div>
-                                                <div id="slider-range-power" class="col-md-6  sliderBox"></div>
-                                                <div class="col-md-2">
-                                                    <input type="text" class="sliderValue" id="amountMaxPower" readonly>
+                                            </li>
+                                            @*Sound slide bar*@
+                                            <li style="margin-bottom: 20px;" hidden>
+                                                <p>
+                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                    <label for="amount">Sound at max speed (dBA)</label>
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="sliderValue" id="amountMinSound" readonly />
+                                                    </div>
+                                                    <div id="slider-range-sound" class="col-md-6  sliderBox"></div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="sliderValue" id="amountMaxSound" readonly>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        @*Sound slide bar*@
-                                        <li style="margin-bottom: 20px;">
-                                            <script>
-                                                $(function () {
-                                                    $("#slider-range-sound").slider({
-                                                        range: true,
-                                                        min: 0,
-                                                        max: 500,
-                                                        values: [0, 500],
-                                                        slide: function (event, ui) {
-                                                            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                                                        }
-                                                    });
-                                                    $("#amountMinSound").val("$" + $("#slider-range-sound").slider("values", 0)),
-                                                        $("#amountMaxSound").val("$" + $("#slider-range-sound").slider("values", 1));
-                                                });
-                                            </script>
+                                            </li>
+                                            @*Diameter slide bar*@
+                                            <li style="margin-bottom: 20px;" hidden>
+                                                <p>
+                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                    <label for="amount">Fan sweep diameter(in)</label>
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="sliderValue" id="amountMinDiameter" readonly />
+                                                    </div>
+                                                    <div id="slider-range-diameter" class="col-md-6  sliderBox"></div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="sliderValue" id="amountMaxDiameter" readonly>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-                                            <p>
-                                                <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                <label for="amount">
-                                                    Sound at max speed (dBA)
-                                                </label>
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <input type="text" class="sliderValue" id="amountMinSound" readonly />
-                                                </div>
-                                                <div id="slider-range-sound" class="col-md-6  sliderBox"></div>
-                                                <div class="col-md-2">
-                                                    <input type="text" class="sliderValue" id="amountMaxSound" readonly>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        @*Diameter slide bar*@
-                                        <li style="margin-bottom: 20px;">
-                                            <script>
-                                                $(function () {
-                                                    $("#slider-range-diameter").slider({
-                                                        range: true,
-                                                        min: 0,
-                                                        max: 500,
-                                                        values: [0, 500],
-                                                        slide: function (event, ui) {
-                                                            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                                                        }
-                                                    });
-                                                    $("#amountMinDiameter").val("$" + $("#slider-range-diameter").slider("values", 0)),
-                                                        $("#amountMaxDiameter").val("$" + $("#slider-range-diameter").slider("values", 1));
-                                                });
-                                            </script>
 
-                                            <p>
-                                                <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                <label for="amount">
-                                                    Fan sweep diameter(in)
-                                                </label>
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <input type="text" class="sliderValue" id="amountMinDiameter" readonly />
-                                                </div>
-                                                <div id="slider-range-diameter" class="col-md-6  sliderBox"></div>
-                                                <div class="col-md-2">
-                                                    <input type="text" class="sliderValue" id="amountMaxDiameter" readonly>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-9">
-        <div class="row">
-            <div class="col-md-12">
-                @*<nav aria-label="breadcrumb">*@
-                <ul id="breadcrumbb">
-                    <li class="breadcrumb-item"><a href="#" style="font-weight:bold">Electronics</a></li>
-                    <li class="breadcrumb-item"><a href="#">Fans</a></li>
-                </ul>
-                @*</nav>*@
-            </div>
-            <div class="col-md-3 productBox">
-                <div>
-                    <img src="~/Images/Fan1.jpg" class="img-fluid" alt="Fan for product 1">
-                    <div class="productItem">
-                        <label>Manufacturer Name</label>
-                        <label>Product Series</label>
-                        <label>Model Number</label>
-                    </div>
-                    <div>
-                        <label>Airflow</label>
-                        <label>W at max speed</label>
-                        <label>dBA at max speed</label>
-                        <label>Fan sweep diameter</label>
-                    </div>
+                            </nav>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-                    <div class="row" style="margin-top:10px">
 
-                        <div class="col-md-6 custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultIndeterminate2">
-                            <label st class="custom-control-label" for="defaultIndeterminate2">Compare</label>
-                        </div>
-                        <div class="col-md-5 custombutton">
-                            <button type="button" class="btn btn-primary">Primary</button>
-                        </div>
-
-                    </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    @*<nav aria-label="breadcrumb">*@
+                    <ul id="breadcrumbb">
+                        <li class="breadcrumb-item"><a href="#" style="font-weight:bold" id="Category">Category</a></li>
+                        <li class="breadcrumb-item"><a href="#" id="SubCategory">Subcategory</a></li>
+                    </ul>
+                    @*</nav>*@
                 </div>
             </div>
+            <div class="row" id="loading"><h1>Loading...</h1></div>
+            <div class="row" id="iterating">
+
+            </div>
+            <a href="../../compare/index/?list=62&list=63&list=65" id="takeToCompare">Compare</a> 
         </div>
     </div>
 </div>
-</div>
+@section scripts{
+    <script src="~/Scripts/products.js??version=7"></script>
+}

@@ -8,7 +8,8 @@
     border-radius: 0px;
     
 }
-#breadcrumbb a{
+
+#breadcrumbb a {
     color:black;
 }
 
@@ -18,27 +19,30 @@
     text-align: center;
     font-size: 14px;
 }
-.productBox label{
+
+.productBox label {
         display: block;
         margin-bottom: 0px;
 }
-    .productItem {
-        margin-bottom:15px;
-        font-weight: bold;
-        font-size: 14px;
-    }
-    .custom-checkbox{
-        margin-left:10px;
-   
-font-weight:bold;
-    }
-    .custombutton{
-        margin-bottom:3px;
-        
-    }
-    .table{
-        background-color:#fbf9f9;
-    }
+
+.productItem {
+    margin-bottom:15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.custom-checkbox {
+    margin-left: 10px;
+    font-weight:bold;
+
+}
+
+.custombutton {
+    margin-bottom:3px;    
+}
+.table {
+    background-color:#fbf9f9;
+}
 
 .sliderValue {
     background-color:white;
@@ -46,6 +50,26 @@ font-weight:bold;
     border-radius: 4px;
     width: 45px;
 }
-.sliderBox{
+.sliderBox {
     margin-top:7px;
+}
+
+
+#takeToCompare {
+    background-color: lightskyblue;
+    border-radius: 25px;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: absolute;
+    min-width: 125px;
+    width: 200px;
+    font-weight: bold;
+    text-align: center;
+    top: 40em;
+    right: 25px;
+    margin: 15px 0;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    text-align: center;
 }
