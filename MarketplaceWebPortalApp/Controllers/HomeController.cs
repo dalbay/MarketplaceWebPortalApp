@@ -62,7 +62,7 @@ namespace MarketplaceWebPortalApp.Controllers
                 fanFilter.maxSpeed = initialFanFilter.maxSpeed;
                 string json = new JavaScriptSerializer().Serialize(fanFilter);
                 ViewData["jsonStr"] = json;
-                ViewData["Fields"] = "['Height','Voltage','Power','Speed']";
+                ViewData["Fields"] = "['Voltage','Power','Speed','Height']";
             }
 
             else if (num == 4)
@@ -78,7 +78,7 @@ namespace MarketplaceWebPortalApp.Controllers
                 tabletFilter.maxStorage = initialTabletFilter.maxStorage;
                 string json = new JavaScriptSerializer().Serialize(tabletFilter);
                 ViewData["jsonStr"] = json;
-                ViewData["Fields"] = "['RAM','Screen','Storage']";
+                ViewData["Fields"] = "['Screen','Storage','RAM']";
             }
 
             else if(num==10)
