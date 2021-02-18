@@ -5,14 +5,13 @@
     <link rel="stylesheet" href="~/Content/productpagestyle.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 }
 
 
 <div class="container-fluid">
     <div class="row" hidden id="sending_param" name="@TempData["sub_id_from_search"]">@TempData["sub_id_from_search"]</div>
-
+    <div id="button"></div>
     <div class="row">
         <div class="col-md-3 col-12">
             <table class="table table-bordered">
@@ -48,13 +47,10 @@
 
                                         <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> </a> <hr />
                                         <ul class="collapse list-unstyled" id="homeSubmenu">
-                                            <li class="filterItem" style="margin-bottom: 20px;">
-                                                s
+                                            <li class="filterItem" style="margin-bottom: 20px;" hidden>
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">
-                                                        Airflow(CFM)
-                                                    </label>
+                                                    <label for="amount">Airflow(CFM)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -68,14 +64,12 @@
                                                 </div>
                                             </li>
                                             @*Power slide bar*@
-                                            <li style="margin-bottom: 20px;">
+                                            <li style="margin-bottom: 20px;" hidden>
 
 
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">
-                                                        Max Power (W)
-                                                    </label>
+                                                    <label for="amount">Max Power (W)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -88,12 +82,10 @@
                                                 </div>
                                             </li>
                                             @*Sound slide bar*@
-                                            <li style="margin-bottom: 20px;">
+                                            <li style="margin-bottom: 20px;" hidden>
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">
-                                                        Sound at max speed (dBA)
-                                                    </label>
+                                                    <label for="amount">Sound at max speed (dBA)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -106,14 +98,10 @@
                                                 </div>
                                             </li>
                                             @*Diameter slide bar*@
-                                            <li style="margin-bottom: 20px;">
-
-
+                                            <li style="margin-bottom: 20px;" hidden>
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">
-                                                        Fan sweep diameter(in)
-                                                    </label>
+                                                    <label for="amount">Fan sweep diameter(in)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -128,6 +116,8 @@
                                         </ul>
                                     </li>
                                 </ul>
+
+
                             </nav>
                         </td>
                     </tr>
@@ -151,74 +141,10 @@
             <div class="row" id="iterating">
 
             </div>
+            <a href="../../compare/index/?list=62&list=63&list=65" id="takeToCompare">Compare</a> 
         </div>
     </div>
 </div>
 @section scripts{
-
-
-    <script>
-        $(function () {
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 350,
-                values: [60, 200],
-                slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                    $("#amountMinAir").val("$" + ui.values[0]);
-                    $("#amountMaxAir").val("$" + ui.values[1]);
-                }
-            });
-            $("#amountMinAir").val("$" + $("#slider-ranger").slider("values", 0));
-            $("#amountMaxAir").val("$" + $("#slider-range").slider("values", 1));
-        });
-    </script>
-
-    <script>
-        $(function () {
-            $("#slider-range-sound").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [0, 500],
-                slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                }
-            });
-            $("#amountMinSound").val("$" + $("#slider-range-sound").slider("values", 0)),
-                $("#amountMaxSound").val("$" + $("#slider-range-sound").slider("values", 1));
-        });
-    </script>
-    <script>
-        $(function () {
-            $("#slider-range-diameter").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [0, 500],
-                slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                }
-            });
-            $("#amountMinDiameter").val("$" + $("#slider-range-diameter").slider("values", 0)),
-                $("#amountMaxDiameter").val("$" + $("#slider-range-diameter").slider("values", 1));
-        });
-    </script>
-    <script>
-        $(function () {
-            $("#slider-range-power").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [0, 500],
-                slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                }
-            });
-            $("#amountMinPower").val("$" + $("#slider-range-power").slider("values", 0)),
-                $("#amountMaxPower").val("$" + $("#slider-range-power").slider("values", 1));
-        });
-    </script>
     <script src="~/Scripts/products.js??version=7"></script>
 }
