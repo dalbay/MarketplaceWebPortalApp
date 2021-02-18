@@ -58,10 +58,11 @@ namespace MarketplaceWebPortalApp.Controllers
                 fanFilter.maxVoltage = initialFanFilter.maxVoltage;
                 fanFilter.minPower = initialFanFilter.minPower;
                 fanFilter.maxPower = initialFanFilter.maxPower;
-                fanFilter.minSpeed = initialFanFilter.maxSpeed;
-                fanFilter.maxSpeed = initialFanFilter.maxPower;
+                fanFilter.minSpeed = initialFanFilter.minSpeed;
+                fanFilter.maxSpeed = initialFanFilter.maxSpeed;
                 string json = new JavaScriptSerializer().Serialize(fanFilter);
                 ViewData["jsonStr"] = json;
+                ViewData["Fields"] = "['Height','Voltage','Power','Speed']";
             }
 
             else if (num == 4)
@@ -77,6 +78,7 @@ namespace MarketplaceWebPortalApp.Controllers
                 tabletFilter.maxStorage = initialTabletFilter.maxStorage;
                 string json = new JavaScriptSerializer().Serialize(tabletFilter);
                 ViewData["jsonStr"] = json;
+                ViewData["Fields"] = "['RAM','Screen','Storage']";
             }
 
             else if(num==10)
@@ -88,13 +90,8 @@ namespace MarketplaceWebPortalApp.Controllers
                 sofaFilter.maxLength = initialSofaFilter.maxLength;
                 string json = new JavaScriptSerializer().Serialize(sofaFilter);
                 ViewData["jsonStr"] = json;
+                ViewData["Fields"] = "['Length']";
             }
-
-
-            
-
-            
-           
             TempData["sub_id_from_search"] = id;
             return View();
 

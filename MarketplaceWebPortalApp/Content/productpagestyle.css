@@ -70,6 +70,8 @@
     top: 40em;
     right: 25px;
     margin: 15px 0;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    -webkit-box-shadow: 3px 2px 10px 6px #cef; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 2px 10px 6px #cef; /* Firefox 3.5 - 3.6 */
+    box-shadow: 3px 2px 10px 6px #cef; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
     text-align: center;
 }
