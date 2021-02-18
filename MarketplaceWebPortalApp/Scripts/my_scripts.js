@@ -22,7 +22,7 @@ var subCategories = [];
 function searchFilter(getInput) {
     var categoryName = $(getInput).attr('id');
     $.ajax({
-        url: "GetSubCategory",
+        url: "/Search/GetSubCategory/",
         data: { "categoryName": categoryName },
         type: "post",
         success: function (data) {

@@ -9,22 +9,12 @@ namespace MarketplaceWebPortalApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult AuthorizeUser()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AuthorizeUser(Consumer consumer)
-        {
-            Service service = new Service();
-            var valitConsumer = service.GetValidatedConsumer(consumer.Email, consumer.Password);
-            ViewData["consumer"] = valitConsumer.Email + " - " + valitConsumer.Password;
-            return View();
-        }
-
         public ActionResult Index(string id)
         {
             Service service = new Service();
+            //Get category
+            List<Category> categories = service.GetCategory();
+            ViewBag.Categories = categories;
             //FAN subCategory filtering values.
             MarketplaceWebPortalApp.Models.FanFilter fanFilter = new Models.FanFilter();
             var initialFanFilter = service.InitializeFanFilter(2010, 2020);
