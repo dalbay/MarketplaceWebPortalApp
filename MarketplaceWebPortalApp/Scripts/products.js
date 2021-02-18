@@ -1,9 +1,22 @@
 ﻿var sub_id = 2;
+var filters;
+var fields;
 $(document).ready(function () {
     $("#takeToCompare").hide();
+    filters = JSON.parse($("#min_max__for_filter").text());
+    fields = eval($("#filter_name").text());
     sub_cat = $("#sending_param").text() ?? sub_id;
     $.getJSON("/home/index?ajax=true&id=" + sub_cat, null, iterating);
-
+    for (var key in filters) {
+        if (filters.hasOwnProperty(key)) {
+            console.log(filters[key]);
+        }
+    }
+    for (var field in fields) {
+        let selectors = "#field" + field
+        $(selectors).text(fields[field]);
+        
+    }
 });
 var divToAdd;
 var jsonFile;
@@ -153,3 +166,6 @@ var changing_val = function (id) {
         $("#takeToCompare").attr("href", gefAttr);
     }
 }
+
+
+

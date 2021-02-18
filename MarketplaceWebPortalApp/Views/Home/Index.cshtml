@@ -11,6 +11,8 @@
 
 <div class="container-fluid">
     <div class="row" hidden id="sending_param" name="@TempData["sub_id_from_search"]">@TempData["sub_id_from_search"]</div>
+    <div class="row" hidden id="min_max__for_filter">@ViewData["jsonStr"]</div>
+    <div class="row" hidden id="filter_name">@ViewData["Fields"]</div>
     <div id="button"></div>
     <div class="row">
         <div class="col-md-3 col-12">
@@ -47,10 +49,10 @@
 
                                         <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> </a> <hr />
                                         <ul class="collapse list-unstyled" id="homeSubmenu">
-                                            <li class="filterItem" style="margin-bottom: 20px;" hidden>
+                                            <li class="filterItem" style="margin-bottom: 20px;" hidden id="first">
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">Airflow(CFM)</label>
+                                                    <label for="amount" id="field0">Airflow(CFM)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -64,12 +66,12 @@
                                                 </div>
                                             </li>
                                             @*Power slide bar*@
-                                            <li style="margin-bottom: 20px;" hidden>
+                                            <li style="margin-bottom: 20px;" hidden id="second">
 
 
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">Max Power (W)</label>
+                                                    <label for="amount" id="field1">Max Power (W)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -82,10 +84,10 @@
                                                 </div>
                                             </li>
                                             @*Sound slide bar*@
-                                            <li style="margin-bottom: 20px;" hidden>
+                                            <li style="margin-bottom: 20px;" hidden id="third">
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">Sound at max speed (dBA)</label>
+                                                    <label for="amount" id="field2">Sound at max speed (dBA)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -98,10 +100,10 @@
                                                 </div>
                                             </li>
                                             @*Diameter slide bar*@
-                                            <li style="margin-bottom: 20px;" hidden>
+                                            <li style="margin-bottom: 20px;" hidden id="fourth">
                                                 <p>
                                                     <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount">Fan sweep diameter(in)</label>
+                                                    <label for="amount" id="field3">Fan sweep diameter(in)</label>
                                                 </p>
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -141,7 +143,7 @@
             <div class="row" id="iterating">
 
             </div>
-            <a href="../../compare/index/?list=62&list=63&list=65" id="takeToCompare">Compare</a> 
+            <a href="../../compare/index/?list=62&list=63&list=65" id="takeToCompare">Compare</a>
         </div>
     </div>
 </div>
