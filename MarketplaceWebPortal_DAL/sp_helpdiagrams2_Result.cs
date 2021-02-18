@@ -11,9 +11,12 @@ namespace MarketplaceWebPortal_DAL
 {
     using System;
     
-    public partial class sp_GetAllSubCategories_Result
+    public partial class sp_helpdiagrams2_Result
     {
-        public int SubCategory_ID { get; set; }
-        public string SubCategory_Name { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

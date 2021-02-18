@@ -11,9 +11,13 @@ namespace MarketplaceWebPortal_DAL
 {
     using System;
     
-    public partial class sp_GetAllSubCategories_Result
+    public partial class sp_TabletSubCategorySetFilter3_Result
     {
-        public int SubCategory_ID { get; set; }
-        public string SubCategory_Name { get; set; }
+        public Nullable<double> minScreen { get; set; }
+        public Nullable<double> maxScreen { get; set; }
+        public Nullable<double> minStorage { get; set; }
+        public Nullable<double> maxStorage { get; set; }
+        public Nullable<double> minRAM { get; set; }
+        public Nullable<double> maxRAM { get; set; }
     }
 }

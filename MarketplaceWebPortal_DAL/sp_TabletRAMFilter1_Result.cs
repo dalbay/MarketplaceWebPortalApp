@@ -11,9 +11,9 @@ namespace MarketplaceWebPortal_DAL
 {
     using System;
     
-    public partial class sp_GetAllSubCategories_Result
+    public partial class sp_TabletRAMFilter1_Result
     {
-        public int SubCategory_ID { get; set; }
-        public string SubCategory_Name { get; set; }
+        public Nullable<double> minStorage { get; set; }
+        public Nullable<double> maxStorage { get; set; }
     }
 }

@@ -30,15 +30,21 @@ namespace MarketplaceWebPortalApp.Controllers
         public ActionResult SearchPage()
         {
             Service service = new Service();
-            List<Category> a = service.GetCategory();
-
-
-            
+            List<Category> categories = service.GetCategory();
+            ViewBag.Categories = categories;
             return View();
         }
         public ActionResult Search()
         {
             return View();
+        }
+        public ActionResult GetSubCategory(string categoryName)
+        {
+            Service service = new Service();
+            string s = "Electrical";
+            Console.WriteLine(categoryName);
+            List<SubCategory> subCategories = service.GetSubCategories(categoryName);
+            return Json(subCategories, JsonRequestBehavior.AllowGet);
         }
     }
 }

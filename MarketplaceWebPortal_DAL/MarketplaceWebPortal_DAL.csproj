@@ -102,25 +102,91 @@
     <Compile Include="sp_GetProductSummaryDescription_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition2_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams2_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_SofaLengthFilter1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SofaLengthFilter2_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SofaLengthFilter3_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_SofaLengthFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SofaSubCategorySetFilter1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SofaSubCategorySetFilter2_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_SofaSubCategorySetFilter3_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_SofaSubCategorySetFilter_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_TabletRAMFilter1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletRAMFilter2_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletRAMFilter3_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_TabletRAMFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletScreenFilter1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletScreenFilter2_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletScreenFilter3_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_TabletScreenFilter_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_TabletStorageFilter1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletStorageFilter2_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletStorageFilter3_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_TabletStorageFilter_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletSubCategorySetFilter1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletSubCategorySetFilter2_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_TabletSubCategorySetFilter3_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_TabletSubCategorySetFilter_Result.cs">
@@ -129,7 +195,7 @@
     <Compile Include="sp_UserValidation_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="sysdiagram2.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblApplication.cs">
@@ -157,6 +223,15 @@
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTechnicalSpecifiactionNonValue.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTechnicalSpecifiactionNonValue1.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTechnicalSpecifiactionNonValue2.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTechnicalSpecifiactionNonValue3.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTechSpec.cs">

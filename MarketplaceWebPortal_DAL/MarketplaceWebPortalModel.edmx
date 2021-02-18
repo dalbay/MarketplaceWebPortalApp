@@ -418,20 +418,22 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minHeight" Type="float" Mode="In" />
           <Parameter Name="maxHeight" Type="float" Mode="In" />
+          <Parameter Name="minDate" Type="smallint" Mode="In" />
+          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_FanPoweFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minPower" Type="float" Mode="In" />
           <Parameter Name="maxPower" Type="float" Mode="In" />
-        </Function>
-        <Function Name="sp_FanSetFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ModelYearMin" Type="smallint" Mode="In" />
-          <Parameter Name="ModelYearMax" Type="smallint" Mode="In" />
+          <Parameter Name="minDate" Type="smallint" Mode="In" />
+          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_FanSpeedFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minSpeed" Type="float" Mode="In" />
           <Parameter Name="maxSpeed" Type="float" Mode="In" />
+          <Parameter Name="minDate" Type="smallint" Mode="In" />
+          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_FanSubCategorySetFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModelYearMin" Type="smallint" Mode="In" />
@@ -441,10 +443,14 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Parameter Name="SubCategoryName" Type="nvarchar" Mode="In" />
           <Parameter Name="minVoltage" Type="float" Mode="In" />
           <Parameter Name="maxVoltage" Type="float" Mode="In" />
+          <Parameter Name="minDate" Type="smallint" Mode="In" />
+          <Parameter Name="maxDate" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_GetAllCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetAllCategoryNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_GetAllSubCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAllSubCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryName" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_GetProductCompare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Product_ID" Type="int" Mode="In" />
         </Function>
@@ -597,16 +603,6 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MarketplaceWebPortalDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="tblApplication">
           <Key>
             <PropertyRef Name="Application_ID" />
@@ -683,6 +679,9 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <NavigationProperty Name="tblUseType" Relationship="Self.FK_tblProduct_tblUseType" FromRole="tblProduct" ToRole="tblUseType" />
           <NavigationProperty Name="tblTechSpecFilters" Relationship="Self.FK_tblTechSpecFilter_tblProduct" FromRole="tblProduct" ToRole="tblTechSpecFilter" />
           <NavigationProperty Name="tblTechnicalSpecifiactionNonValues" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct" FromRole="tblProduct" ToRole="tblTechnicalSpecifiactionNonValue" />
+          <NavigationProperty Name="tblTechnicalSpecifiactionNonValues1" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct1" FromRole="tblProduct" ToRole="tblTechnicalSpecifiactionNonValue1" />
+          <NavigationProperty Name="tblTechnicalSpecifiactionNonValues2" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct2" FromRole="tblProduct" ToRole="tblTechnicalSpecifiactionNonValue2" />
+          <NavigationProperty Name="tblTechnicalSpecifiactionNonValues3" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct3" FromRole="tblProduct" ToRole="tblTechnicalSpecifiactionNonValue3" />
         </EntityType>
         <EntityType Name="tblSubCategory">
           <Key>
@@ -705,6 +704,9 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <NavigationProperty Name="tblTechSpecFilters" Relationship="Self.FK_tblTechSpechFilter_tblTechSpec" FromRole="tblTechSpec" ToRole="tblTechSpecFilter" />
           <NavigationProperty Name="tblSubCategories" Relationship="Self.tblTechSpecSubCategory" FromRole="tblTechSpec" ToRole="tblSubCategory" />
           <NavigationProperty Name="tblTechnicalSpecifiactionNonValues" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec" FromRole="tblTechSpec" ToRole="tblTechnicalSpecifiactionNonValue" />
+          <NavigationProperty Name="tblTechnicalSpecifiactionNonValues1" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec1" FromRole="tblTechSpec" ToRole="tblTechnicalSpecifiactionNonValue1" />
+          <NavigationProperty Name="tblTechnicalSpecifiactionNonValues2" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec2" FromRole="tblTechSpec" ToRole="tblTechnicalSpecifiactionNonValue2" />
+          <NavigationProperty Name="tblTechnicalSpecifiactionNonValues3" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec3" FromRole="tblTechSpec" ToRole="tblTechnicalSpecifiactionNonValue3" />
         </EntityType>
         <EntityType Name="tblTechSpecFilter">
           <Key>
@@ -841,7 +843,6 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <End Role="tblTechSpec" Type="Self.tblTechSpec" Multiplicity="*" />
         </Association>
         <EntityContainer Name="MarketplaceWebPortalDataEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="tblApplications" EntityType="Self.tblApplication" />
           <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
           <EntitySet Name="tblConsumers" EntityType="Self.tblConsumer" />
@@ -915,7 +916,9 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           </FunctionImport>
           <FunctionImport Name="sp_GetAllCategories" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetAllCategories_Result)" />
           <FunctionImport Name="sp_GetAllCategoryNames" ReturnType="Collection(String)" />
-          <FunctionImport Name="sp_GetAllSubCategories" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result)" />
+          <FunctionImport Name="sp_GetAllSubCategories" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result)" >
+          <Parameter Name="CategoryName" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_GetProductCompare">
           <Parameter Name="Product_ID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -959,16 +962,22 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minHeight" Mode="In" Type="Double" />
             <Parameter Name="maxHeight" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_FanPoweFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanPoweFilter_Result)">
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minPower" Mode="In" Type="Double" />
             <Parameter Name="maxPower" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_FanSpeedFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSpeedFilter_Result)">
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minSpeed" Mode="In" Type="Double" />
             <Parameter Name="maxSpeed" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_FanSubCategorySetFilter" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSubCategorySetFilter_Result)">
             <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
@@ -978,6 +987,8 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             <Parameter Name="SubCategoryName" Mode="In" Type="String" />
             <Parameter Name="minVoltage" Mode="In" Type="Double" />
             <Parameter Name="maxVoltage" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
           </FunctionImport>
           <EntitySet Name="tblTechnicalSpecifiactionNonValues" EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue" />
           <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct">
@@ -1031,6 +1042,208 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
             <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
           </FunctionImport>
+          <EntitySet Name="tblTechnicalSpecifiactionNonValue1" EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue1" />
+          <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct1" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct1">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblTechnicalSpecifiactionNonValue1" EntitySet="tblTechnicalSpecifiactionNonValue1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblTechSpec1" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec1">
+            <End Role="tblTechSpec" EntitySet="tblTechSpecs" />
+            <End Role="tblTechnicalSpecifiactionNonValue1" EntitySet="tblTechnicalSpecifiactionNonValue1" />
+          </AssociationSet>
+          <FunctionImport Name="sp_SofaLengthFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_SofaLengthFilter1_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minLength" Mode="In" Type="Double" />
+            <Parameter Name="maxLength" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SofaSubCategorySetFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_SofaSubCategorySetFilter1_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletRAMFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletRAMFilter1_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minRAM" Mode="In" Type="Double" />
+            <Parameter Name="maxRAM" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletScreenFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletScreenFilter1_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minScreen" Mode="In" Type="Double" />
+            <Parameter Name="maxScreen" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletStorageFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletStorageFilter1_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minStorage" Mode="In" Type="Double" />
+            <Parameter Name="maxStorage" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletSubCategorySetFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletSubCategorySetFilter1_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_helpdiagramdefinition1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_helpdiagrams1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams1" />
+          <EntitySet Name="tblTechnicalSpecifiactionNonValue2" EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue2" />
+          <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct2" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct2">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblTechnicalSpecifiactionNonValue2" EntitySet="tblTechnicalSpecifiactionNonValue2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblTechSpec2" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec2">
+            <End Role="tblTechSpec" EntitySet="tblTechSpecs" />
+            <End Role="tblTechnicalSpecifiactionNonValue2" EntitySet="tblTechnicalSpecifiactionNonValue2" />
+          </AssociationSet>
+          <FunctionImport Name="sp_SofaLengthFilter2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_SofaLengthFilter2_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minLength" Mode="In" Type="Double" />
+            <Parameter Name="maxLength" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SofaSubCategorySetFilter2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_SofaSubCategorySetFilter2_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletRAMFilter2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletRAMFilter2_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minRAM" Mode="In" Type="Double" />
+            <Parameter Name="maxRAM" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletScreenFilter2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletScreenFilter2_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minScreen" Mode="In" Type="Double" />
+            <Parameter Name="maxScreen" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletStorageFilter2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletStorageFilter2_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minStorage" Mode="In" Type="Double" />
+            <Parameter Name="maxStorage" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletSubCategorySetFilter2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletSubCategorySetFilter2_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetSubCategoryByCategoryName_Result">
+          <Parameter Name="CategoryName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAllSubCategories1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result)">
+          <Parameter Name="CategoryName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="sysdiagram2" EntityType="MarketplaceWebPortalDataModel.sysdiagram2" />
+          <FunctionImport Name="sp_alterdiagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_helpdiagramdefinition2_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams2" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_helpdiagrams2_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram2">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams2" />
+          <EntitySet Name="tblTechnicalSpecifiactionNonValue3" EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue3" />
+          <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct3" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct3">
+            <End Role="tblProduct" EntitySet="tblProducts" />
+            <End Role="tblTechnicalSpecifiactionNonValue3" EntitySet="tblTechnicalSpecifiactionNonValue3" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTechnicalSpecifiactionNonValue_tblTechSpec3" Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec3">
+            <End Role="tblTechSpec" EntitySet="tblTechSpecs" />
+            <End Role="tblTechnicalSpecifiactionNonValue3" EntitySet="tblTechnicalSpecifiactionNonValue3" />
+          </AssociationSet>
+          <FunctionImport Name="sp_SofaLengthFilter3" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_SofaLengthFilter3_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minLength" Mode="In" Type="Double" />
+            <Parameter Name="maxLength" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SofaSubCategorySetFilter3" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_SofaSubCategorySetFilter3_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletRAMFilter3" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletRAMFilter3_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minRAM" Mode="In" Type="Double" />
+            <Parameter Name="maxRAM" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletScreenFilter3" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletScreenFilter3_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minScreen" Mode="In" Type="Double" />
+            <Parameter Name="maxScreen" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletStorageFilter3" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletStorageFilter3_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minStorage" Mode="In" Type="Double" />
+            <Parameter Name="maxStorage" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TabletSubCategorySetFilter3" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_TabletSubCategorySetFilter3_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_FanSubCategoryFilter_Result">
           <Property Type="Double" Name="minAirFlow" Nullable="true" />
@@ -1047,8 +1260,8 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_GetAllSubCategories_Result">
-          <Property Type="Int32" Name="Category_ID" Nullable="false" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SubCategory_ID" Nullable="false" />
+          <Property Type="String" Name="SubCategory_Name" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_GetProductSummaryDescription_Result">
           <Property Type="String" Name="Series" Nullable="true" MaxLength="50" />
@@ -1193,23 +1406,233 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Property Type="Double" Name="minHeight" Nullable="true" />
           <Property Type="Double" Name="maxHeight" Nullable="true" />
         </ComplexType>
+        <EntityType Name="tblTechnicalSpecifiactionNonValue1">
+          <Key>
+            <PropertyRef Name="TechSpech_ID" />
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="TechSpech_ID" Type="Int32" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProduct" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct1" FromRole="tblTechnicalSpecifiactionNonValue1" ToRole="tblProduct" />
+          <NavigationProperty Name="tblTechSpec" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec1" FromRole="tblTechnicalSpecifiactionNonValue1" ToRole="tblTechSpec" />
+        </EntityType>
+        <Association Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct1">
+          <End Type="MarketplaceWebPortalDataModel.tblProduct" Role="tblProduct" Multiplicity="1" />
+          <End Type="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue1" Role="tblTechnicalSpecifiactionNonValue1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="tblTechnicalSpecifiactionNonValue1">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTechnicalSpecifiactionNonValue_tblTechSpec1">
+          <End Type="MarketplaceWebPortalDataModel.tblTechSpec" Role="tblTechSpec" Multiplicity="1" />
+          <End Type="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue1" Role="tblTechnicalSpecifiactionNonValue1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTechSpec">
+              <PropertyRef Name="TechSpec_ID" />
+            </Principal>
+            <Dependent Role="tblTechnicalSpecifiactionNonValue1">
+              <PropertyRef Name="TechSpech_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_SofaLengthFilter1_Result">
+          <Property Type="Double" Name="minLength" Nullable="true" />
+          <Property Type="Double" Name="maxLength" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_SofaSubCategorySetFilter1_Result">
+          <Property Type="Double" Name="minLength" Nullable="true" />
+          <Property Type="Double" Name="maxLength" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletRAMFilter1_Result">
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletScreenFilter1_Result">
+          <Property Type="Double" Name="minScreen" Nullable="true" />
+          <Property Type="Double" Name="maxScreen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletStorageFilter1_Result">
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletSubCategorySetFilter1_Result">
+          <Property Type="Double" Name="minScreen" Nullable="true" />
+          <Property Type="Double" Name="maxScreen" Nullable="true" />
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+          <Property Type="Double" Name="minRAM" Nullable="true" />
+          <Property Type="Double" Name="maxRAM" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition1_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams1_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tblTechnicalSpecifiactionNonValue2">
+          <Key>
+            <PropertyRef Name="TechSpech_ID" />
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="TechSpech_ID" Type="Int32" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProduct" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct2" FromRole="tblTechnicalSpecifiactionNonValue2" ToRole="tblProduct" />
+          <NavigationProperty Name="tblTechSpec" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec2" FromRole="tblTechnicalSpecifiactionNonValue2" ToRole="tblTechSpec" />
+        </EntityType>
+        <Association Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct2">
+          <End Type="MarketplaceWebPortalDataModel.tblProduct" Role="tblProduct" Multiplicity="1" />
+          <End Type="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue2" Role="tblTechnicalSpecifiactionNonValue2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="tblTechnicalSpecifiactionNonValue2">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTechnicalSpecifiactionNonValue_tblTechSpec2">
+          <End Type="MarketplaceWebPortalDataModel.tblTechSpec" Role="tblTechSpec" Multiplicity="1" />
+          <End Type="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue2" Role="tblTechnicalSpecifiactionNonValue2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTechSpec">
+              <PropertyRef Name="TechSpec_ID" />
+            </Principal>
+            <Dependent Role="tblTechnicalSpecifiactionNonValue2">
+              <PropertyRef Name="TechSpech_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_SofaLengthFilter2_Result">
+          <Property Type="Double" Name="minLength" Nullable="true" />
+          <Property Type="Double" Name="maxLength" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_SofaSubCategorySetFilter2_Result">
+          <Property Type="Double" Name="minLength" Nullable="true" />
+          <Property Type="Double" Name="maxLength" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletRAMFilter2_Result">
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletScreenFilter2_Result">
+          <Property Type="Double" Name="minScreen" Nullable="true" />
+          <Property Type="Double" Name="maxScreen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletStorageFilter2_Result">
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletSubCategorySetFilter2_Result">
+          <Property Type="Double" Name="minScreen" Nullable="true" />
+          <Property Type="Double" Name="maxScreen" Nullable="true" />
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+          <Property Type="Double" Name="minRAM" Nullable="true" />
+          <Property Type="Double" Name="maxRAM" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="sysdiagram2">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition2_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams2_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tblTechnicalSpecifiactionNonValue3">
+          <Key>
+            <PropertyRef Name="TechSpech_ID" />
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="TechSpech_ID" Type="Int32" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProduct" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct3" FromRole="tblTechnicalSpecifiactionNonValue3" ToRole="tblProduct" />
+          <NavigationProperty Name="tblTechSpec" Relationship="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec3" FromRole="tblTechnicalSpecifiactionNonValue3" ToRole="tblTechSpec" />
+        </EntityType>
+        <Association Name="FK_tblTechnicalSpecifiactionNonValue_tblProduct3">
+          <End Type="MarketplaceWebPortalDataModel.tblProduct" Role="tblProduct" Multiplicity="1" />
+          <End Type="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue3" Role="tblTechnicalSpecifiactionNonValue3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProduct">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="tblTechnicalSpecifiactionNonValue3">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTechnicalSpecifiactionNonValue_tblTechSpec3">
+          <End Type="MarketplaceWebPortalDataModel.tblTechSpec" Role="tblTechSpec" Multiplicity="1" />
+          <End Type="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue3" Role="tblTechnicalSpecifiactionNonValue3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTechSpec">
+              <PropertyRef Name="TechSpec_ID" />
+            </Principal>
+            <Dependent Role="tblTechnicalSpecifiactionNonValue3">
+              <PropertyRef Name="TechSpech_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_SofaLengthFilter3_Result">
+          <Property Type="Double" Name="minLength" Nullable="true" />
+          <Property Type="Double" Name="maxLength" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_SofaSubCategorySetFilter3_Result">
+          <Property Type="Double" Name="minLength" Nullable="true" />
+          <Property Type="Double" Name="maxLength" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletRAMFilter3_Result">
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletScreenFilter3_Result">
+          <Property Type="Double" Name="minScreen" Nullable="true" />
+          <Property Type="Double" Name="maxScreen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletStorageFilter3_Result">
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_TabletSubCategorySetFilter3_Result">
+          <Property Type="Double" Name="minScreen" Nullable="true" />
+          <Property Type="Double" Name="maxScreen" Nullable="true" />
+          <Property Type="Double" Name="minStorage" Nullable="true" />
+          <Property Type="Double" Name="maxStorage" Nullable="true" />
+          <Property Type="Double" Name="minRAM" Nullable="true" />
+          <Property Type="Double" Name="maxRAM" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MarketplaceWebPortalDataModelStoreContainer" CdmEntityContainer="MarketplaceWebPortalDataEntities">
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MarketplaceWebPortalDataModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblApplications">
             <EntityTypeMapping TypeName="MarketplaceWebPortalDataModel.tblApplication">
               <MappingFragment StoreEntitySet="tblApplication">
@@ -1326,9 +1749,6 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
               <ScalarProperty Name="TechSpec_ID" ColumnName="TechSpec_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MarketplaceWebPortalDataModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MarketplaceWebPortalDataModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MarketplaceWebPortalDataModel.Store.sp_dropdiagram" />
           <FunctionImportMapping FunctionImportName="sp_GetAllCategories" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetAllCategories">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllCategories_Result">
@@ -1341,9 +1761,7 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <FunctionImportMapping FunctionImportName="sp_GetAllSubCategories" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetAllSubCategories">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result">
-                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
-              </ComplexTypeMapping>
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetProductCompare" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetProductCompare" />
@@ -1362,28 +1780,7 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetProductSummaryTechSpec" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetProductSummaryTechSpec" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MarketplaceWebPortalDataModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MarketplaceWebPortalDataModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_RegisterUser" FunctionName="MarketplaceWebPortalDataModel.Store.sp_RegisterUser" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MarketplaceWebPortalDataModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MarketplaceWebPortalDataModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_UserValidation" FunctionName="MarketplaceWebPortalDataModel.Store.sp_UserValidation">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_UserValidation_Result">
@@ -1459,8 +1856,53 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="tblTechnicalSpecifiactionNonValues">
-            <EntityTypeMapping TypeName="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue">
+          <FunctionImportMapping FunctionImportName="sp_GetSubCategoryByCategoryName" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetSubCategoryByCategoryName" />
+          <FunctionImportMapping FunctionImportName="sp_GetSubCategoryByCategoryName_Result" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetSubCategoryByCategoryName" />
+          <FunctionImportMapping FunctionImportName="sp_GetAllSubCategories1" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetAllSubCategories">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result">
+                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
+                <ScalarProperty Name="SubCategory_Name" ColumnName="SubCategory_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="sysdiagram2">
+            <EntityTypeMapping TypeName="MarketplaceWebPortalDataModel.sysdiagram2">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram2" FunctionName="MarketplaceWebPortalDataModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram2" FunctionName="MarketplaceWebPortalDataModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram2" FunctionName="MarketplaceWebPortalDataModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition2" FunctionName="MarketplaceWebPortalDataModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_helpdiagramdefinition2_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams2" FunctionName="MarketplaceWebPortalDataModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_helpdiagrams2_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram2" FunctionName="MarketplaceWebPortalDataModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams2" FunctionName="MarketplaceWebPortalDataModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="tblTechnicalSpecifiactionNonValue3">
+            <EntityTypeMapping TypeName="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue3">
               <MappingFragment StoreEntitySet="tblTechnicalSpecifiactionNonValue">
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
@@ -1468,49 +1910,49 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_SofaLengthFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_SofaLengthFilter">
+          <FunctionImportMapping FunctionImportName="sp_SofaLengthFilter3" FunctionName="MarketplaceWebPortalDataModel.Store.sp_SofaLengthFilter">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_SofaLengthFilter_Result">
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_SofaLengthFilter3_Result">
                 <ScalarProperty Name="minLength" ColumnName="minLength" />
                 <ScalarProperty Name="maxLength" ColumnName="maxLength" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_SofaSubCategorySetFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_SofaSubCategorySetFilter">
+          <FunctionImportMapping FunctionImportName="sp_SofaSubCategorySetFilter3" FunctionName="MarketplaceWebPortalDataModel.Store.sp_SofaSubCategorySetFilter">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_SofaSubCategorySetFilter_Result">
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_SofaSubCategorySetFilter3_Result">
                 <ScalarProperty Name="minLength" ColumnName="minLength" />
                 <ScalarProperty Name="maxLength" ColumnName="maxLength" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_TabletRAMFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletRAMFilter">
+          <FunctionImportMapping FunctionImportName="sp_TabletRAMFilter3" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletRAMFilter">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletRAMFilter_Result">
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletRAMFilter3_Result">
                 <ScalarProperty Name="minStorage" ColumnName="minStorage" />
                 <ScalarProperty Name="maxStorage" ColumnName="maxStorage" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_TabletScreenFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletScreenFilter">
+          <FunctionImportMapping FunctionImportName="sp_TabletScreenFilter3" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletScreenFilter">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletScreenFilter_Result">
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletScreenFilter3_Result">
                 <ScalarProperty Name="minScreen" ColumnName="minScreen" />
                 <ScalarProperty Name="maxScreen" ColumnName="maxScreen" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_TabletStorageFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletStorageFilter">
+          <FunctionImportMapping FunctionImportName="sp_TabletStorageFilter3" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletStorageFilter">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletStorageFilter_Result">
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletStorageFilter3_Result">
                 <ScalarProperty Name="minStorage" ColumnName="minStorage" />
                 <ScalarProperty Name="maxStorage" ColumnName="maxStorage" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_TabletSubCategorySetFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletSubCategorySetFilter">
+          <FunctionImportMapping FunctionImportName="sp_TabletSubCategorySetFilter3" FunctionName="MarketplaceWebPortalDataModel.Store.sp_TabletSubCategorySetFilter">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletSubCategorySetFilter_Result">
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_TabletSubCategorySetFilter3_Result">
                 <ScalarProperty Name="minScreen" ColumnName="minScreen" />
                 <ScalarProperty Name="maxScreen" ColumnName="maxScreen" />
                 <ScalarProperty Name="minStorage" ColumnName="minStorage" />
@@ -1520,22 +1962,7 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetSubCategoryByCategoryName" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetSubCategoryByCategoryName" />
-          <FunctionImportMapping FunctionImportName="sp_FanSetFilter" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanSetFilter">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_FanSetFilter_Result">
-                <ScalarProperty Name="minVoltage" ColumnName="minVoltage" />
-                <ScalarProperty Name="maxVoltage" ColumnName="maxVoltage" />
-                <ScalarProperty Name="minPower" ColumnName="minPower" />
-                <ScalarProperty Name="maxPower" ColumnName="maxPower" />
-                <ScalarProperty Name="minSpeed" ColumnName="minSpeed" />
-                <ScalarProperty Name="maxSpeed" ColumnName="maxSpeed" />
-                <ScalarProperty Name="minHeight" ColumnName="minHeight" />
-                <ScalarProperty Name="maxHeight" ColumnName="maxHeight" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

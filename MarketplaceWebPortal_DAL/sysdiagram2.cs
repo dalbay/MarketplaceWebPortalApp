@@ -10,10 +10,14 @@
 namespace MarketplaceWebPortal_DAL
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_GetAllSubCategories_Result
+    public partial class sysdiagram2
     {
-        public int SubCategory_ID { get; set; }
-        public string SubCategory_Name { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

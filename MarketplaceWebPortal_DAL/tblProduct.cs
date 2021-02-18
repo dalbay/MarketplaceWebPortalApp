@@ -19,6 +19,9 @@ namespace MarketplaceWebPortal_DAL
         {
             this.tblTechSpecFilters = new HashSet<tblTechSpecFilter>();
             this.tblTechnicalSpecifiactionNonValues = new HashSet<tblTechnicalSpecifiactionNonValue>();
+            this.tblTechnicalSpecifiactionNonValues1 = new HashSet<tblTechnicalSpecifiactionNonValue1>();
+            this.tblTechnicalSpecifiactionNonValues2 = new HashSet<tblTechnicalSpecifiactionNonValue2>();
+            this.tblTechnicalSpecifiactionNonValues3 = new HashSet<tblTechnicalSpecifiactionNonValue3>();
         }
     
         public int Product_ID { get; set; }
@@ -44,5 +47,11 @@ namespace MarketplaceWebPortal_DAL
         public virtual ICollection<tblTechSpecFilter> tblTechSpecFilters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTechnicalSpecifiactionNonValue> tblTechnicalSpecifiactionNonValues { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTechnicalSpecifiactionNonValue1> tblTechnicalSpecifiactionNonValues1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTechnicalSpecifiactionNonValue2> tblTechnicalSpecifiactionNonValues2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTechnicalSpecifiactionNonValue3> tblTechnicalSpecifiactionNonValues3 { get; set; }
     }
 }

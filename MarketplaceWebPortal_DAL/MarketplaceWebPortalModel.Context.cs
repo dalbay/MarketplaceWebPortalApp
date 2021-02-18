@@ -27,7 +27,6 @@ namespace MarketplaceWebPortal_DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblApplication> tblApplications { get; set; }
         public virtual DbSet<tblCategory> tblCategories { get; set; }
         public virtual DbSet<tblConsumer> tblConsumers { get; set; }
@@ -41,6 +40,10 @@ namespace MarketplaceWebPortal_DAL
         public virtual DbSet<tblUseType> tblUseTypes { get; set; }
         public virtual DbSet<view_FilterTable> view_FilterTable { get; set; }
         public virtual DbSet<tblTechnicalSpecifiactionNonValue> tblTechnicalSpecifiactionNonValues { get; set; }
+        public virtual DbSet<tblTechnicalSpecifiactionNonValue1> tblTechnicalSpecifiactionNonValue1 { get; set; }
+        public virtual DbSet<tblTechnicalSpecifiactionNonValue2> tblTechnicalSpecifiactionNonValue2 { get; set; }
+        public virtual DbSet<sysdiagram2> sysdiagram2 { get; set; }
+        public virtual DbSet<tblTechnicalSpecifiactionNonValue3> tblTechnicalSpecifiactionNonValue3 { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -120,9 +123,13 @@ namespace MarketplaceWebPortal_DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetAllCategoryNames");
         }
     
-        public virtual ObjectResult<sp_GetAllSubCategories_Result> sp_GetAllSubCategories()
+        public virtual ObjectResult<sp_GetAllSubCategories_Result> sp_GetAllSubCategories(string categoryName)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllSubCategories_Result>("sp_GetAllSubCategories");
+            var categoryNameParameter = categoryName != null ?
+                new ObjectParameter("CategoryName", categoryName) :
+                new ObjectParameter("CategoryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllSubCategories_Result>("sp_GetAllSubCategories", categoryNameParameter);
         }
     
         public virtual int sp_GetProductCompare(Nullable<int> product_ID)
@@ -510,6 +517,608 @@ namespace MarketplaceWebPortal_DAL
                 new ObjectParameter("ModelYearMax", typeof(short));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSetFilter_Result>("sp_FanSetFilter", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_SofaLengthFilter1_Result> sp_SofaLengthFilter1(string subCategoryName, Nullable<double> minLength, Nullable<double> maxLength, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minLengthParameter = minLength.HasValue ?
+                new ObjectParameter("minLength", minLength) :
+                new ObjectParameter("minLength", typeof(double));
+    
+            var maxLengthParameter = maxLength.HasValue ?
+                new ObjectParameter("maxLength", maxLength) :
+                new ObjectParameter("maxLength", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaLengthFilter1_Result>("sp_SofaLengthFilter1", subCategoryNameParameter, minLengthParameter, maxLengthParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_SofaSubCategorySetFilter1_Result> sp_SofaSubCategorySetFilter1(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaSubCategorySetFilter1_Result>("sp_SofaSubCategorySetFilter1", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletRAMFilter1_Result> sp_TabletRAMFilter1(string subCategoryName, Nullable<double> minRAM, Nullable<double> maxRAM, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minRAMParameter = minRAM.HasValue ?
+                new ObjectParameter("minRAM", minRAM) :
+                new ObjectParameter("minRAM", typeof(double));
+    
+            var maxRAMParameter = maxRAM.HasValue ?
+                new ObjectParameter("maxRAM", maxRAM) :
+                new ObjectParameter("maxRAM", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletRAMFilter1_Result>("sp_TabletRAMFilter1", subCategoryNameParameter, minRAMParameter, maxRAMParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletScreenFilter1_Result> sp_TabletScreenFilter1(string subCategoryName, Nullable<double> minScreen, Nullable<double> maxScreen, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minScreenParameter = minScreen.HasValue ?
+                new ObjectParameter("minScreen", minScreen) :
+                new ObjectParameter("minScreen", typeof(double));
+    
+            var maxScreenParameter = maxScreen.HasValue ?
+                new ObjectParameter("maxScreen", maxScreen) :
+                new ObjectParameter("maxScreen", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletScreenFilter1_Result>("sp_TabletScreenFilter1", subCategoryNameParameter, minScreenParameter, maxScreenParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletStorageFilter1_Result> sp_TabletStorageFilter1(string subCategoryName, Nullable<double> minStorage, Nullable<double> maxStorage, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minStorageParameter = minStorage.HasValue ?
+                new ObjectParameter("minStorage", minStorage) :
+                new ObjectParameter("minStorage", typeof(double));
+    
+            var maxStorageParameter = maxStorage.HasValue ?
+                new ObjectParameter("maxStorage", maxStorage) :
+                new ObjectParameter("maxStorage", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletStorageFilter1_Result>("sp_TabletStorageFilter1", subCategoryNameParameter, minStorageParameter, maxStorageParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletSubCategorySetFilter1_Result> sp_TabletSubCategorySetFilter1(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletSubCategorySetFilter1_Result>("sp_TabletSubCategorySetFilter1", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual int sp_alterdiagram1(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram1", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram1(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram1", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram1(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram1", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition1_Result> sp_helpdiagramdefinition1(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition1_Result>("sp_helpdiagramdefinition1", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams1_Result> sp_helpdiagrams1(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams1_Result>("sp_helpdiagrams1", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram1(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram1", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams1");
+        }
+    
+        public virtual ObjectResult<sp_SofaLengthFilter2_Result> sp_SofaLengthFilter2(string subCategoryName, Nullable<double> minLength, Nullable<double> maxLength, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minLengthParameter = minLength.HasValue ?
+                new ObjectParameter("minLength", minLength) :
+                new ObjectParameter("minLength", typeof(double));
+    
+            var maxLengthParameter = maxLength.HasValue ?
+                new ObjectParameter("maxLength", maxLength) :
+                new ObjectParameter("maxLength", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaLengthFilter2_Result>("sp_SofaLengthFilter2", subCategoryNameParameter, minLengthParameter, maxLengthParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_SofaSubCategorySetFilter2_Result> sp_SofaSubCategorySetFilter2(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaSubCategorySetFilter2_Result>("sp_SofaSubCategorySetFilter2", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletRAMFilter2_Result> sp_TabletRAMFilter2(string subCategoryName, Nullable<double> minRAM, Nullable<double> maxRAM, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minRAMParameter = minRAM.HasValue ?
+                new ObjectParameter("minRAM", minRAM) :
+                new ObjectParameter("minRAM", typeof(double));
+    
+            var maxRAMParameter = maxRAM.HasValue ?
+                new ObjectParameter("maxRAM", maxRAM) :
+                new ObjectParameter("maxRAM", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletRAMFilter2_Result>("sp_TabletRAMFilter2", subCategoryNameParameter, minRAMParameter, maxRAMParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletScreenFilter2_Result> sp_TabletScreenFilter2(string subCategoryName, Nullable<double> minScreen, Nullable<double> maxScreen, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minScreenParameter = minScreen.HasValue ?
+                new ObjectParameter("minScreen", minScreen) :
+                new ObjectParameter("minScreen", typeof(double));
+    
+            var maxScreenParameter = maxScreen.HasValue ?
+                new ObjectParameter("maxScreen", maxScreen) :
+                new ObjectParameter("maxScreen", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletScreenFilter2_Result>("sp_TabletScreenFilter2", subCategoryNameParameter, minScreenParameter, maxScreenParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletStorageFilter2_Result> sp_TabletStorageFilter2(string subCategoryName, Nullable<double> minStorage, Nullable<double> maxStorage, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minStorageParameter = minStorage.HasValue ?
+                new ObjectParameter("minStorage", minStorage) :
+                new ObjectParameter("minStorage", typeof(double));
+    
+            var maxStorageParameter = maxStorage.HasValue ?
+                new ObjectParameter("maxStorage", maxStorage) :
+                new ObjectParameter("maxStorage", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletStorageFilter2_Result>("sp_TabletStorageFilter2", subCategoryNameParameter, minStorageParameter, maxStorageParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletSubCategorySetFilter2_Result> sp_TabletSubCategorySetFilter2(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletSubCategorySetFilter2_Result>("sp_TabletSubCategorySetFilter2", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual int sp_GetSubCategoryByCategoryName_Result(string categoryName)
+        {
+            var categoryNameParameter = categoryName != null ?
+                new ObjectParameter("CategoryName", categoryName) :
+                new ObjectParameter("CategoryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GetSubCategoryByCategoryName_Result", categoryNameParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetAllSubCategories_Result> sp_GetAllSubCategories1(string categoryName)
+        {
+            var categoryNameParameter = categoryName != null ?
+                new ObjectParameter("CategoryName", categoryName) :
+                new ObjectParameter("CategoryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllSubCategories_Result>("sp_GetAllSubCategories1", categoryNameParameter);
+        }
+    
+        public virtual int sp_alterdiagram2(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram2", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram2(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram2", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram2(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram2", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition2_Result> sp_helpdiagramdefinition2(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition2_Result>("sp_helpdiagramdefinition2", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams2_Result> sp_helpdiagrams2(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams2_Result>("sp_helpdiagrams2", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram2(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram2", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams2");
+        }
+    
+        public virtual ObjectResult<sp_SofaLengthFilter3_Result> sp_SofaLengthFilter3(string subCategoryName, Nullable<double> minLength, Nullable<double> maxLength, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minLengthParameter = minLength.HasValue ?
+                new ObjectParameter("minLength", minLength) :
+                new ObjectParameter("minLength", typeof(double));
+    
+            var maxLengthParameter = maxLength.HasValue ?
+                new ObjectParameter("maxLength", maxLength) :
+                new ObjectParameter("maxLength", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaLengthFilter3_Result>("sp_SofaLengthFilter3", subCategoryNameParameter, minLengthParameter, maxLengthParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_SofaSubCategorySetFilter3_Result> sp_SofaSubCategorySetFilter3(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SofaSubCategorySetFilter3_Result>("sp_SofaSubCategorySetFilter3", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletRAMFilter3_Result> sp_TabletRAMFilter3(string subCategoryName, Nullable<double> minRAM, Nullable<double> maxRAM, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minRAMParameter = minRAM.HasValue ?
+                new ObjectParameter("minRAM", minRAM) :
+                new ObjectParameter("minRAM", typeof(double));
+    
+            var maxRAMParameter = maxRAM.HasValue ?
+                new ObjectParameter("maxRAM", maxRAM) :
+                new ObjectParameter("maxRAM", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletRAMFilter3_Result>("sp_TabletRAMFilter3", subCategoryNameParameter, minRAMParameter, maxRAMParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletScreenFilter3_Result> sp_TabletScreenFilter3(string subCategoryName, Nullable<double> minScreen, Nullable<double> maxScreen, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minScreenParameter = minScreen.HasValue ?
+                new ObjectParameter("minScreen", minScreen) :
+                new ObjectParameter("minScreen", typeof(double));
+    
+            var maxScreenParameter = maxScreen.HasValue ?
+                new ObjectParameter("maxScreen", maxScreen) :
+                new ObjectParameter("maxScreen", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletScreenFilter3_Result>("sp_TabletScreenFilter3", subCategoryNameParameter, minScreenParameter, maxScreenParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletStorageFilter3_Result> sp_TabletStorageFilter3(string subCategoryName, Nullable<double> minStorage, Nullable<double> maxStorage, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minStorageParameter = minStorage.HasValue ?
+                new ObjectParameter("minStorage", minStorage) :
+                new ObjectParameter("minStorage", typeof(double));
+    
+            var maxStorageParameter = maxStorage.HasValue ?
+                new ObjectParameter("maxStorage", maxStorage) :
+                new ObjectParameter("maxStorage", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletStorageFilter3_Result>("sp_TabletStorageFilter3", subCategoryNameParameter, minStorageParameter, maxStorageParameter, minDateParameter, maxDateParameter);
+        }
+    
+        public virtual ObjectResult<sp_TabletSubCategorySetFilter3_Result> sp_TabletSubCategorySetFilter3(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TabletSubCategorySetFilter3_Result>("sp_TabletSubCategorySetFilter3", modelYearMinParameter, modelYearMaxParameter);
         }
     }
 }

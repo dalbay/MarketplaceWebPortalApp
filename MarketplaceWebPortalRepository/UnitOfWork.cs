@@ -14,6 +14,8 @@ namespace MarketplaceWebPortalRepository
         public IFanSubCategory fanSubCategory;
         public ITabletSubCategory tabletSubCategory;
         public ISofaSubCategory sofaSubCategory;
+        public ICategory category;
+        public ISubCategoryByCategory subCategoryByCategory;
 
         public UnitOfWork(DbContext dbContext)
         {
@@ -22,6 +24,8 @@ namespace MarketplaceWebPortalRepository
             fanSubCategory = new FanSubCategory(dbContext);
             tabletSubCategory = new TabletSubCategory(dbContext);
             sofaSubCategory = new SofaSubCategory(dbContext);
+            category = new Category(dbContext);
+            subCategoryByCategory = new SubCategoryByCategory(dbContext);
         }
     }
 }

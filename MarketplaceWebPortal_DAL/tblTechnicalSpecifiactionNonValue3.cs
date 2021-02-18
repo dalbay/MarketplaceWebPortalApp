@@ -10,10 +10,15 @@
 namespace MarketplaceWebPortal_DAL
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_GetAllSubCategories_Result
+    public partial class tblTechnicalSpecifiactionNonValue3
     {
-        public int SubCategory_ID { get; set; }
-        public string SubCategory_Name { get; set; }
+        public int TechSpech_ID { get; set; }
+        public int Product_ID { get; set; }
+        public string Value { get; set; }
+    
+        public virtual tblProduct tblProduct { get; set; }
+        public virtual tblTechSpec tblTechSpec { get; set; }
     }
 }
