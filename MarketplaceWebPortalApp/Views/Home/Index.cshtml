@@ -9,7 +9,7 @@
 }
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-left: 0px;">
     <div class="row" hidden id="sending_param" name="@TempData["sub_id_from_search"]">@TempData["sub_id_from_search"]</div>
     <div class="row" hidden id="min_max__for_filter">@ViewData["jsonStr"]</div>
     <div class="row" hidden id="filter_name">@ViewData["Fields"]</div>
@@ -18,27 +18,64 @@
         <div class="col-md-3 col-12">
             <table class="table table-bordered">
                 <tbody>
+
                     <tr>
-                        <td colspan="2">
-                            <label>Search:</label>
-                            <button type="submit" class="btn btn-lg btn-info">Save</button>
-                            <button type="submit" class="btn btn-lg btn-info">Clear</button>
+                        <td colspan="2" class="customCol">
+                            <div class="flex-container">
+                                <div class="flex-child">
+                                    <label class="customLabel">Search:</label>
+                                </div>
+                                <div class="flex-child">
+                                    <button type="submit" class="btn btn-sm btn-info btnSearch">Save</button>
+                                </div>
+                                <div class="flex-child">
+
+                                    <button type="submit" style="float:right" class="btn btn-sm btn-info btnSearch">Clear</button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
-                    <tr>
+
+                    <tr id="productDisplay">
                         <td>Product</td>
                         <td>Project</td>
                     </tr>
                     <tr>
-                        <td colspan="2">Product Type</td>
-                    </tr>
-                    <tr>
                         <td colspan="2">
-                            <label>Model Year:</label>
-                            <input type="number" style="width:50px" /><span style="padding-left:10px; padding-right:10px">--</span>
-                            <input type="number" style="width:50px" />
+                            Product Type
+                            <div style="float:right; padding-right:20px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                            </div>
+                        </td>
+                       
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="customRow">
+                            <div class="flex-container">
+                                <div class="flex-child">
+                                    <label id="modelYear">Model Year:</label>
+                                </div>
+                                <div class="flex-child">
+                                    <input type="text" class="customInput" />
+                                </div>
+                                <div style="width:20px; margin-left:25px">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="flex-child">
+                                    <input type="text" class="customInput" />
+                                </div>
+                            </div>
                         </td>
                     </tr>
+
+
                     <tr>
                         <td colspan="2">
                             <nav id="sidebar">
@@ -47,7 +84,13 @@
                                     <li class="active">
                                         <span style="margin-right:30px;">Technical Specifications</span>
 
-                                        <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> </a> <hr />
+                                        <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                                            <div style="float:right; padding-right:20px;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                                </svg>
+                                            </div>
+                                        </a> <hr />
                                         <ul class="collapse list-unstyled" id="homeSubmenu">
                                             <li class="filterItem" style="margin-bottom: 20px;" hidden id="first">
                                                 <p>

@@ -54,13 +54,13 @@ iterating = function iterating(datas) {
         }
 
         divToAdd+=  "       </div>" +
-                    "       <div class='row' style='margin-top:10px'>\n" +
+                    "       <div class='row' style='margin-top:8px'>\n" +
             "           <div class='col-md-6 custom-control custom-checkbox'>\n" +
-            "               <input type='checkbox' class='custom-control-inpuut' value='" + datas[product].id + "' onchange='changing_val(this)'>\n" +
+            "               <input style='float: left;margin-top: 4px;' type='checkbox' class='custom-control-inpuut' value='" + datas[product].id + "' onchange='changing_val(this)'>\n" +
                     "               <label for='defaultIndeterminate2'>Compare</label>\n" +
                     "           </div>\n" +
                     "           <div class='col-md-5 custombutton'>\n" +
-                    "             <a href='/details/index/?pid=" + datas[product].id + "'>  <button type='button' class='btn btn-primary'>Get Details</button></a>\n" +
+                    "             <a href='/details/index/?pid=" + datas[product].id + "'>  <button type='button' class='btn btn-primary'>Details</button></a>\n" +
                     "           </div>\n" +
                     "       </div>\n" +
                     "   </div>\n" +
