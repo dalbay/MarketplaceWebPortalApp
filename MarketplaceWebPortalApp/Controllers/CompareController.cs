@@ -13,13 +13,19 @@ namespace MarketplaceWebPortalApp.Controllers
         [HttpPost]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Home");
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
         }
 
 
         public ActionResult Index(params int[] list)
         {
-
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
             if (Request.IsAjaxRequest())
             {
                 try

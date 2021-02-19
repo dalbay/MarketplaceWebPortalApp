@@ -25,6 +25,10 @@ namespace MarketplaceWebPortalApp.Controllers
 
         public ActionResult Index(string id)
         {
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
             var param = id ?? "2";
             TempData["sub_id"] = id;
             int num;
