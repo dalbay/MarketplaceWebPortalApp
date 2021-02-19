@@ -16,160 +16,162 @@
     <div id="button"></div>
     <div class="row">
         <div class="col-md-3 col-12">
-            <table class="table table-bordered">
-                <tbody>
+            <form>
+                <table class="table table-bordered">
+                    <tbody>
 
-                    <tr>
-                        <td colspan="2" class="customCol">
-                            <div class="flex-container">
-                                <div class="flex-child">
-                                    <label class="customLabel">Search:</label>
+                        <tr>
+                            <td colspan="2" class="customCol">
+                                <div class="flex-container">
+                                    <div class="flex-child">
+                                        <label class="customLabel">Search:</label>
+                                    </div>
+                                    <div class="flex-child">
+                                        <button type="button" class="btn btn-sm btn-info btnSearch">Save</button>
+                                    </div>
+                                    <div class="flex-child">
+
+                                        <button type="reset" style="float:right" class="btn btn-sm btn-info btnSearch">Clear</button>
+                                    </div>
                                 </div>
-                                <div class="flex-child">
-                                    <button type="submit" class="btn btn-sm btn-info btnSearch">Save</button>
+                            </td>
+                        </tr>
+
+                        <tr id="productDisplay">
+                            <td>Product</td>
+                            <td>Project</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Product Type
+                                <div style="float:right; padding-right:20px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                    </svg>
                                 </div>
-                                <div class="flex-child">
+                            </td>
 
-                                    <button type="submit" style="float:right" class="btn btn-sm btn-info btnSearch">Clear</button>
+                        </tr>
+
+                        <tr>
+
+
+                            <td colspan="2" class="customRow">
+                                <div class="flex-container">
+                                    <div class="flex-child">
+                                        <label id="modelYear">Model Year:</label>
+                                    </div>
+                                    <div class="flex-child">
+                                        <input type="text" class="customInput" id="minYear" value="2010" onchange="onYearchange()"/>
+                                    </div>
+                                    <div style="width:20px; margin-left:25px">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="flex-child">
+                                        <input type="text" class="customInput" id="maxYear" value="2021" onchange="onYearchange()"/>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr id="productDisplay">
-                        <td>Product</td>
-                        <td>Project</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            Product Type
-                            <div style="float:right; padding-right:20px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                                </svg>
-                            </div>
-                        </td>
-                       
-                    </tr>
-
-                    <tr>
+                            </td>
+                        </tr>
 
 
-                        <td colspan="2" class="customRow">
-                            <div class="flex-container">
-                                <div class="flex-child">
-                                    <label id="modelYear">Model Year:</label>
-                                </div>
-                                <div class="flex-child">
-                                    <input type="text" class="customInput" />
-                                </div>
-                                <div style="width:20px; margin-left:25px">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-                                            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="flex-child">
-                                    <input type="text" class="customInput" />
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="2">
+                                <nav id="sidebar">
+                                    <ul class="list-unstyled components">
 
+                                        <li class="active">
+                                            <span style="margin-right:30px;">Technical Specifications</span>
 
-                    <tr>
-                        <td colspan="2">
-                            <nav id="sidebar">
-                                <ul class="list-unstyled components">
-
-                                    <li class="active">
-                                        <span style="margin-right:30px;">Technical Specifications</span>
-
-                                        <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                                            <div style="float:right; padding-right:20px;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                                                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-                                                </svg>
-                                            </div>
-                                        </a> <hr />
-                                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                                            <li class="filterItem" style="margin-bottom: 20px;" hidden id="first">
-                                                <p>
-                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount" id="field0">Airflow(CFM)</label>
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <input type="hidden" class="sliderValue" id="amount" readonly />
-                                                        <input type="text" style="" class="sliderValue" id="amountMinAir" readonly />
-                                                    </div>
-                                                    <div id="slider-range" class="col-md-6  sliderBox"></div>
-                                                    <div class="col-md-2">
-                                                        <input type="text" class="sliderValue" id="amountMaxAir" readonly>
-                                                    </div>
+                                            <a style="color:black" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                                                <div style="float:right; padding-right:20px;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                                    </svg>
                                                 </div>
-                                            </li>
-                                            @*Power slide bar*@
-                                            <li style="margin-bottom: 20px;" hidden id="second">
+                                            </a> <hr />
+                                            <ul class="collapse list-unstyled" id="homeSubmenu">
+                                                <li class="filterItem" style="margin-bottom: 20px;" hidden id="first">
+                                                    <p>
+                                                        <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                        <label for="amount" id="field0">Airflow(CFM)</label>
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <input type="hidden" class="sliderValue" id="amount" readonly />
+                                                            <input type="text" style="" class="sliderValue" id="amountMinAir" readonly />
+                                                        </div>
+                                                        <div id="slider-range" class="col-md-6  sliderBox"></div>
+                                                        <div class="col-md-2">
+                                                            <input type="text" class="sliderValue" id="amountMaxAir" readonly>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                @*Power slide bar*@
+                                                <li style="margin-bottom: 20px;" hidden id="second">
 
 
-                                                <p>
-                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount" id="field1">Max Power (W)</label>
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <input type="text" class="sliderValue" id="amountMinPower" readonly />
+                                                    <p>
+                                                        <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                        <label for="amount" id="field1">Max Power (W)</label>
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <input type="text" class="sliderValue" id="amountMinPower" readonly />
+                                                        </div>
+                                                        <div id="slider-range-power" class="col-md-6  sliderBox"></div>
+                                                        <div class="col-md-2">
+                                                            <input type="text" class="sliderValue" id="amountMaxPower" readonly>
+                                                        </div>
                                                     </div>
-                                                    <div id="slider-range-power" class="col-md-6  sliderBox"></div>
-                                                    <div class="col-md-2">
-                                                        <input type="text" class="sliderValue" id="amountMaxPower" readonly>
+                                                </li>
+                                                @*Sound slide bar*@
+                                                <li style="margin-bottom: 20px;" hidden id="third">
+                                                    <p>
+                                                        <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                        <label for="amount" id="field2">Sound at max speed (dBA)</label>
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <input type="text" class="sliderValue" id="amountMinSound" readonly />
+                                                        </div>
+                                                        <div id="slider-range-sound" class="col-md-6  sliderBox"></div>
+                                                        <div class="col-md-2">
+                                                            <input type="text" class="sliderValue" id="amountMaxSound" readonly>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            @*Sound slide bar*@
-                                            <li style="margin-bottom: 20px;" hidden id="third">
-                                                <p>
-                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount" id="field2">Sound at max speed (dBA)</label>
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <input type="text" class="sliderValue" id="amountMinSound" readonly />
+                                                </li>
+                                                @*Diameter slide bar*@
+                                                <li style="margin-bottom: 20px;" hidden id="fourth">
+                                                    <p>
+                                                        <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
+                                                        <label for="amount" id="field3">Fan sweep diameter(in)</label>
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <input type="text" class="sliderValue" id="amountMinDiameter" readonly />
+                                                        </div>
+                                                        <div id="slider-range-diameter" class="col-md-6  sliderBox"></div>
+                                                        <div class="col-md-2">
+                                                            <input type="text" class="sliderValue" id="amountMaxDiameter" readonly>
+                                                        </div>
                                                     </div>
-                                                    <div id="slider-range-sound" class="col-md-6  sliderBox"></div>
-                                                    <div class="col-md-2">
-                                                        <input type="text" class="sliderValue" id="amountMaxSound" readonly>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            @*Diameter slide bar*@
-                                            <li style="margin-bottom: 20px;" hidden id="fourth">
-                                                <p>
-                                                    <i style="margin-right:10px;" class="fas fa-long-arrow-alt-up">&#xf309;</i>
-                                                    <label for="amount" id="field3">Fan sweep diameter(in)</label>
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <input type="text" class="sliderValue" id="amountMinDiameter" readonly />
-                                                    </div>
-                                                    <div id="slider-range-diameter" class="col-md-6  sliderBox"></div>
-                                                    <div class="col-md-2">
-                                                        <input type="text" class="sliderValue" id="amountMaxDiameter" readonly>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
 
 
-                            </nav>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                </nav>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
 
 

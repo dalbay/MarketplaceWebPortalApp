@@ -130,7 +130,48 @@ iterating = function iterating(datas) {
     }
 
 }
-
+var onYearchange = function onYearchange(){
+    if (sub_cat == 2) {
+        Fansearch($("#amountMinAir").val(),
+            $("#amountMinPower").val(),
+            $("#amountMinSound").val(),
+            $("#amountMinDiameter").val(),
+            $("#amountMaxAir").val(),
+            $("#amountMaxPower").val(),
+            $("#amountMaxSound").val(),
+            $("#amountMaxDiameter").val(),
+            $(".firstMin"),
+            $(".secondMin"),
+            $(".thirdMin"),
+            $(".fourthMin"),
+            $(".firstMax"),
+            $(".secondMax"),
+            $(".thirdMax"),
+            $(".fourthMax")
+        );
+    }
+    else if (sub_cat == 10) {
+        Sofasearch($("#amountMinAir").val(),
+            $("#amountMaxAir").val(),
+            $(".firstMin"),
+            $(".firstMax")
+        );
+    }
+    else if (sub_cat == 4) {
+        TabletSearch($("#amountMinAir").val(),
+            $("#amountMinPower").val(),
+            $("#amountMinSound").val(),
+            $("#amountMaxAir").val(),
+            $("#amountMaxPower").val(),
+            $("#amountMaxSound").val(),
+            $(".firstMin"),
+            $(".secondMin"),
+            $(".thirdMin"),
+            $(".firstMax"),
+            $(".secondMax"),
+            $(".thirdMax"));
+    }
+}
 //first one
 $(function () {
     $("#slider-range").slider({
@@ -404,10 +445,11 @@ var changing_val = function (id) {
 
 function Fansearch(minVal1, minVal2, minVal3, minVal4,  maxVal1, maxVal2, maxVal3, maxVal4, minLabels1, minLabels2, minLabels3, minLabels4, maxLabels1, maxLabels2, maxLabels3, maxLabels4 ) {
     for (let i = 0; i < minLabels1.length; i++) {
-        if ((parseInt(minLabels1[i].getAttribute("name")) <= parseInt(minVal1) || parseInt(maxLabels1[i].getAttribute("name")) >= parseInt(maxVal1)) ||
-            (parseInt(minLabels2[i].getAttribute("name")) <= parseInt(minVal2) || parseInt(maxLabels2[i].getAttribute("name")) >= parseInt(maxVal2)) ||
-            (parseInt(minLabels3[i].getAttribute("name")) <= parseInt(minVal3) || parseInt(maxLabels3[i].getAttribute("name")) >= parseInt(maxVal3)) ||
-            (parseInt(minLabels4[i].getAttribute("name")) <= parseInt(minVal4) || parseInt(maxLabels4[i].getAttribute("name")) >= parseInt(maxVal4))) {
+        if ((parseInt(minLabels1[i].getAttribute("name")) < parseInt(minVal1) || parseInt(maxLabels1[i].getAttribute("name")) > parseInt(maxVal1)) ||
+            (parseInt(minLabels2[i].getAttribute("name")) < parseInt(minVal2) || parseInt(maxLabels2[i].getAttribute("name")) > parseInt(maxVal2)) ||
+            (parseInt(minLabels3[i].getAttribute("name")) < parseInt(minVal3) || parseInt(maxLabels3[i].getAttribute("name")) > parseInt(maxVal3)) ||
+            (parseInt(minLabels4[i].getAttribute("name")) < parseInt(minVal4) || parseInt(maxLabels4[i].getAttribute("name")) > parseInt(maxVal4))||
+            ($(".years")[i].getAttribute("name") <= $("#minYear").val()) || ($(".years")[i].getAttribute("name") >= $("#maxYear").val())) {
 
             minLabels1[i].parentElement.parentElement.parentElement.style.display = "none";
 
@@ -420,7 +462,8 @@ function Fansearch(minVal1, minVal2, minVal3, minVal4,  maxVal1, maxVal2, maxVal
 
 function Sofasearch(minVal1, maxVal1, minLabels1,  maxLabels1) {
     for (let i = 0; i < minLabels1.length; i++) {
-        if ((parseInt(minLabels1[i].getAttribute("name")) <= parseInt(minVal1) || parseInt(maxLabels1[i].getAttribute("name")) >= parseInt(maxVal1))) {
+        if (  (parseInt(minLabels1[i].getAttribute("name")) < parseInt(minVal1) || parseInt(maxLabels1[i].getAttribute("name")) > parseInt(maxVal1)) ||
+            ($(".years")[i].getAttribute("name") < $("#minYear").val()) || ($(".years")[i].getAttribute("name") > $("#maxYear").val())){
 
             minLabels1[i].parentElement.parentElement.parentElement.style.display = "none";
 
@@ -434,9 +477,11 @@ function Sofasearch(minVal1, maxVal1, minLabels1,  maxLabels1) {
 
 function TabletSearch(minVal1, minVal2, minVal3,  maxVal1, maxVal2, maxVal3,  minLabels1, minLabels2, minLabels3,  maxLabels1, maxLabels2, maxLabels3) {
     for (let i = 0; i < minLabels1.length; i++) {
-        if ((parseInt(minLabels1[i].getAttribute("name")) <= parseInt(minVal1) || parseInt(maxLabels1[i].getAttribute("name")) >= parseInt(maxVal1)) ||
-            (parseInt(minLabels2[i].getAttribute("name")) <= parseInt(minVal2) || parseInt(maxLabels2[i].getAttribute("name")) >= parseInt(maxVal2)) ||
-            (parseInt(minLabels3[i].getAttribute("name")) <= parseInt(minVal3) || parseInt(maxLabels3[i].getAttribute("name")) >= parseInt(maxVal3))) {
+        if (
+            (parseInt(minLabels1[i].getAttribute("name")) < parseInt(minVal1) || parseInt(maxLabels1[i].getAttribute("name")) > parseInt(maxVal1)) ||
+            (parseInt(minLabels2[i].getAttribute("name")) < parseInt(minVal2) || parseInt(maxLabels2[i].getAttribute("name")) > parseInt(maxVal2)) ||
+            (parseInt(minLabels3[i].getAttribute("name")) < parseInt(minVal3) || parseInt(maxLabels3[i].getAttribute("name")) > parseInt(maxVal3))||
+            ($(".years")[i].getAttribute("name") < $("#minYear").val()) || ($(".years")[i].getAttribute("name") > $("#maxYear").val() ) ) {
 
             minLabels1[i].parentElement.parentElement.parentElement.style.display = "none";
 
