@@ -78,7 +78,7 @@
                         <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
                     </button>
                 </div>
-                <form action="@Url.Action("Register", "UserLogin")" method="post">
+                <form action="@Url.Action("Register", "UserLogin")" method="post" enctype = "multipart/form-data">
                     <div class="modal-body">
 
                         <div class="row">
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="userNameReg" class="col-sm-4 col-form-label regLbl"></label>
-                            <input type="file" name="yourImage" id="yourImage" onchange="loadImage(event)">
+                            <input type="file" name="file" id="yourImage" onchange="loadImage(event)">
                         </div>
                         <div class="form-group row">
                             <label for="userNameReg" class="col-sm-4 col-form-label regLbl">UserName:</label>
