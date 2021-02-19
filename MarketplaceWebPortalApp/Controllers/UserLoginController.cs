@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +14,8 @@ namespace MarketplaceWebPortalApp.Controllers
         // GET: UserLogin
         public ActionResult Index()
         {
+            Session["sessionUser"] = "";
+            Session["pic"] = "../Images/default.png";
             return View();
         }
         public ActionResult LoginPage()
@@ -29,6 +32,7 @@ namespace MarketplaceWebPortalApp.Controllers
             if ((validConsumer.Email == username || validConsumer.UserName == username) && validConsumer.Password == password)
             {
                 Session["sessionUser"] = username;
+                Session["pic"] = validConsumer.Image;
                 return RedirectToAction("SearchPage", "Search");
             }
             else
@@ -37,10 +41,21 @@ namespace MarketplaceWebPortalApp.Controllers
                 return RedirectToAction("LoginPage", "UserLogin");
             }
         }
-        public ActionResult Register()
+        public ActionResult Register(HttpPostedFileBase file)
         {
             Service service = new Service();
-            string image = Request.Form["yourImage"];
+            string image="";
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Images"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+                image = "../Images/" + pic;
+
+            }
             string username = Request.Form["userNameReg"];
             string email = Request.Form["emailReg"];
             string password = Request.Form["passwordReg"];
