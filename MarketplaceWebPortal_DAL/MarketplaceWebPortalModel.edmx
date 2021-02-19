@@ -460,9 +460,6 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
         <Function Name="sp_GetProductSummaryTechSpec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Product_ID" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_GetSubCategoryByCategoryName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="CategoryName" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1044,6 +1041,17 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
             <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
             <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
           </FunctionImport>
+          <FunctionImport Name="sp_FanSetFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_FanSetFilter1_Result)">
+            <Parameter Name="ModelYearMin" Mode="In" Type="Int16" />
+            <Parameter Name="ModelYearMax" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FanSpeedFilter1" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result)">
+            <Parameter Name="SubCategoryName" Mode="In" Type="String" />
+            <Parameter Name="minSpeed" Mode="In" Type="Double" />
+            <Parameter Name="maxSpeed" Mode="In" Type="Double" />
+            <Parameter Name="minDate" Mode="In" Type="Int16" />
+            <Parameter Name="maxDate" Mode="In" Type="Int16" />
+          </FunctionImport>
           <FunctionImport Name="sp_GetAllSubCategories" ReturnType="Collection(MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result)">
             <Parameter Name="CategoryName" Mode="In" Type="String" />
           </FunctionImport>
@@ -1200,6 +1208,16 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
           <Property Type="Double" Name="maxRAM" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_FanSetFilter_Result">
+          <Property Type="Double" Name="minVoltage" Nullable="true" />
+          <Property Type="Double" Name="maxVoltage" Nullable="true" />
+          <Property Type="Double" Name="minPower" Nullable="true" />
+          <Property Type="Double" Name="maxPower" Nullable="true" />
+          <Property Type="Double" Name="minSpeed" Nullable="true" />
+          <Property Type="Double" Name="maxSpeed" Nullable="true" />
+          <Property Type="Double" Name="minHeight" Nullable="true" />
+          <Property Type="Double" Name="maxHeight" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FanSetFilter1_Result">
           <Property Type="Double" Name="minVoltage" Nullable="true" />
           <Property Type="Double" Name="maxVoltage" Nullable="true" />
           <Property Type="Double" Name="minPower" Nullable="true" />
@@ -1528,7 +1546,12 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetSubCategoryByCategoryName" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetSubCategoryByCategoryName" />
+          <FunctionImportMapping FunctionImportName="sp_FanSpeedFilter1" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanSpeedFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result">
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetAllSubCategories" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetAllSubCategories">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result">

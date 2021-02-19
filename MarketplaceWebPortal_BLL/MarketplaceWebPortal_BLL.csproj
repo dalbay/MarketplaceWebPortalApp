@@ -63,17 +63,17 @@
     <Compile Include="TabletFilter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\MarketplaceWebPortalRepository\MarketplaceWebPortalRepository.csproj">
-      <Project>{304844f7-c9ee-4136-87f9-5a959de8fd1e}</Project>
+      <Project>{d3e5cdb3-e7e3-4efa-9286-377bc3d607b7}</Project>
       <Name>MarketplaceWebPortalRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\MarketplaceWebPortal_DAL\MarketplaceWebPortal_DAL.csproj">
-      <Project>{8e5bb8e0-250a-4376-936b-f5c27fbab275}</Project>
+      <Project>{076c5bd5-e5eb-4abf-ac75-4ea7f319aa17}</Project>
       <Name>MarketplaceWebPortal_DAL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

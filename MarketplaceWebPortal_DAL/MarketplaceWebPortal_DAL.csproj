@@ -78,6 +78,9 @@
     <Compile Include="sp_FanPoweFilter_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_FanSetFilter1_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_FanSetFilter_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>

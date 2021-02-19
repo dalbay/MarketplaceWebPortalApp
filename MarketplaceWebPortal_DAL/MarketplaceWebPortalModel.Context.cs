@@ -507,6 +507,44 @@ namespace MarketplaceWebPortal_DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSetFilter_Result>("sp_FanSetFilter", modelYearMinParameter, modelYearMaxParameter);
         }
     
+        public virtual ObjectResult<sp_FanSetFilter1_Result> sp_FanSetFilter1(Nullable<short> modelYearMin, Nullable<short> modelYearMax)
+        {
+            var modelYearMinParameter = modelYearMin.HasValue ?
+                new ObjectParameter("ModelYearMin", modelYearMin) :
+                new ObjectParameter("ModelYearMin", typeof(short));
+    
+            var modelYearMaxParameter = modelYearMax.HasValue ?
+                new ObjectParameter("ModelYearMax", modelYearMax) :
+                new ObjectParameter("ModelYearMax", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSetFilter1_Result>("sp_FanSetFilter1", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetAllSubCategories_Result> sp_FanSpeedFilter1(string subCategoryName, Nullable<double> minSpeed, Nullable<double> maxSpeed, Nullable<short> minDate, Nullable<short> maxDate)
+        {
+            var subCategoryNameParameter = subCategoryName != null ?
+                new ObjectParameter("SubCategoryName", subCategoryName) :
+                new ObjectParameter("SubCategoryName", typeof(string));
+    
+            var minSpeedParameter = minSpeed.HasValue ?
+                new ObjectParameter("minSpeed", minSpeed) :
+                new ObjectParameter("minSpeed", typeof(double));
+    
+            var maxSpeedParameter = maxSpeed.HasValue ?
+                new ObjectParameter("maxSpeed", maxSpeed) :
+                new ObjectParameter("maxSpeed", typeof(double));
+    
+            var minDateParameter = minDate.HasValue ?
+                new ObjectParameter("minDate", minDate) :
+                new ObjectParameter("minDate", typeof(short));
+    
+            var maxDateParameter = maxDate.HasValue ?
+                new ObjectParameter("maxDate", maxDate) :
+                new ObjectParameter("maxDate", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllSubCategories_Result>("sp_FanSpeedFilter1", subCategoryNameParameter, minSpeedParameter, maxSpeedParameter, minDateParameter, maxDateParameter);
+        }
+    
         public virtual ObjectResult<sp_GetAllSubCategories_Result> sp_GetAllSubCategories(string categoryName)
         {
             var categoryNameParameter = categoryName != null ?
