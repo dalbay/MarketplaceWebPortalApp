@@ -19,9 +19,6 @@ namespace MarketplaceWebPortal_DAL
         {
             this.tblTechSpecFilters = new HashSet<tblTechSpecFilter>();
             this.tblTechnicalSpecifiactionNonValues = new HashSet<tblTechnicalSpecifiactionNonValue>();
-            this.tblTechnicalSpecifiactionNonValues1 = new HashSet<tblTechnicalSpecifiactionNonValue1>();
-            this.tblTechnicalSpecifiactionNonValues2 = new HashSet<tblTechnicalSpecifiactionNonValue2>();
-            this.tblTechnicalSpecifiactionNonValues3 = new HashSet<tblTechnicalSpecifiactionNonValue3>();
         }
     
         public int Product_ID { get; set; }
