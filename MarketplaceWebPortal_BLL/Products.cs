@@ -60,7 +60,6 @@ namespace MarketplaceWebPortal_BLL
                                  }
                                  ).ToList();
 
-
                     Hashtable hash = new Hashtable();
                     foreach (Filters f in specs)
                     {
@@ -74,9 +73,7 @@ namespace MarketplaceWebPortal_BLL
                             hash[f.Name] = new List<string> { f.Filter, f.Amount };
                         }
                     }
-
                     p.Specs = hash;
-
 
                 }
 
@@ -135,9 +132,30 @@ namespace MarketplaceWebPortal_BLL
                                  }
                                  ).ToList();
 
-
+                    var non_spec = (from filters in context.tblTechnicalSpecifiactionNonValues
+                                    where filters.Product_ID.ToString() == p.id
+                                    select new Filters
+                                    {
+                                        Product_id = filters.Product_ID.ToString(),
+                                        Name = filters.tblTechSpec.TechSpec_Name,
+                                        Amount = filters.Value.ToString(),
+                                        Filter = "None"
+                                    }
+                                 ).ToList();
                     Hashtable hash = new Hashtable();
                     foreach (Filters f in specs)
+                    {
+                        if (hash.ContainsKey(f.Name))
+                        {
+                            List<string> abc = (List<string>)hash[f.Name];
+                            hash[f.Name] = new List<string> { abc[0].ToString(), abc[1].ToString(), f.Filter, f.Amount };
+                        }
+                        else
+                        {
+                            hash[f.Name] = new List<string> { f.Filter, f.Amount };
+                        }
+                    }
+                    foreach (Filters f in non_spec)
                     {
                         if (hash.ContainsKey(f.Name))
                         {
