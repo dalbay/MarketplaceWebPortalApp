@@ -13,21 +13,36 @@
         <div class="col-1 col-lg-1">
         </div>
         <div class="col-10 col-lg-10">
-            <nav class="navbar row">
-                <a class="nav-link" href="detail.html">Category</a>
-                <span class="nav-link">></span>
-                <a class="nav-link" href="#">SubCategory</a>
-                <span class="nav-link">></span>
-                <a class="nav-link" href="#">Compare</a>
-            </nav>
+            @*<nav class="navbar row">
+            <a class="nav-link" href="detail.html">Category</a>
+            <span class="nav-link">></span>
+            <a class="nav-link" href="#">SubCategory</a>
+            <span class="nav-link">></span>
+            <a class="nav-link" href="#">Compare</a>
+        </nav>*@
+            @*<nav aria-label="breadcrumb">*@
+            <ul class="breadcrumbb">
+                <li class="breadcrumb-item"><a href="#" id="Category">Category</a></li>
+                <li><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+</svg></span><a href="#" id="SubCategory">Subcategory</a></li>
+                <li><span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+    </svg>
+</span><a href="#" id="SubCategory">Compare</a></li>
+            </ul>
+            @*</nav>*@
+
+
 
             <div class="row" hidden>
-                @{ int length = Int32.Parse(ViewData["length"].ToString()); } 
+                @{ int length = Int32.Parse(ViewData["length"].ToString()); }
                 @if (length != 0)
                 {
-                    for(int i = 0; i < length; i++)
+                    for (int i = 0; i < length; i++)
                     {
-                        <div class="ids">@ViewData["id"+i.ToString()]</div>
+                        <div class="ids">@ViewData["id" + i.ToString()]</div>
                     }
                 }
             </div>
@@ -37,9 +52,9 @@
                     <Table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th colspan="4" rowspan="3" >  </th>
-                                <th colspan="4" rowspan="3"  id="image1" class="product1"><img src="~/Images/Fan1.jpg"></th>
-                                <th colspan="4" rowspan="3"  id="image2" hidden class="product2">product[1].image</th>
+                                <th colspan="4" rowspan="3">  </th>
+                                <th colspan="4" rowspan="3" id="image1" class="product1"><img src="~/Images/Fan1.jpg"></th>
+                                <th colspan="4" rowspan="3" id="image2" hidden class="product2">product[1].image</th>
                                 <th colspan="4" rowspan="3" id="image3" hidden class="product3">product[2].image</th>
                             </tr>
                         </thead>
@@ -94,7 +109,7 @@
 
                             </tr>
                             <tr>
-                                <td class="desc" colspan="4" >Accessories</td>
+                                <td class="desc" colspan="4">Accessories</td>
                                 <td colspan="4" id="accesories1" class="product1">Product[0].Accessories</td>
                                 <td colspan="4" id="accesories2" class="product2" hidden>Product[1].Accessories</td>
                                 <td colspan="4" id="accesories3" class="product3" hidden>Product[2].Accessories</td>
@@ -113,7 +128,6 @@
                             </tr>
                         </tbody>
                         <tbody id="toAppend">
-
                         </tbody>
                     </Table>
                 </div>

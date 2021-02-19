@@ -30,6 +30,21 @@
     border: 1px solid transparent;
 }
 
+ul.breadcrumbb {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 10px;
+    background-color: none;
+    border-radius: 0px;
+}
+    ul.breadcrumbb li span {
+        color: royalblue;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
 .equal td {
     width: 25%;
 }
