@@ -14,6 +14,7 @@ namespace MarketplaceWebPortalRepository
     {
        List<sp_GetAllCategories_Result> Sp_GetAllCategories();
 
+
     }
     public class Category : Repository<sp_GetAllCategories_Result>, ICategory
     {
@@ -24,5 +25,6 @@ namespace MarketplaceWebPortalRepository
         {
             return Context.Database.SqlQuery<sp_GetAllCategories_Result>("sp_GetAllCategories").ToList();
         }
+
     }
 }

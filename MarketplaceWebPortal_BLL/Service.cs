@@ -57,6 +57,7 @@ namespace MarketplaceWebPortal_BLL
             fanFilter.maxSpeed = filter.maxSpeed;
             return fanFilter;            
         }
+
         //Get All the category
         public List<MarketplaceWebPortal_BLL.Category> GetCategory()
         {
@@ -79,6 +80,7 @@ namespace MarketplaceWebPortal_BLL
             }
             return subCategoryByCategory;
         }
+
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)
         {
             MarketplaceWebPortal_BLL.Consumer consumer = new MarketplaceWebPortal_BLL.Consumer();
