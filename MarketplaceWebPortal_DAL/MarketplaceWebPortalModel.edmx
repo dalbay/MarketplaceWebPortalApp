@@ -1546,15 +1546,6 @@ warning 6002: The table/view 'MarketplaceWebPortalData.dbo.view_FilterTable' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-<<<<<<< HEAD
-          <FunctionImportMapping FunctionImportName="sp_FanSpeedFilter1" FunctionName="MarketplaceWebPortalDataModel.Store.sp_FanSpeedFilter">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result">
-                </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-=======
->>>>>>> 9bc850a31e70ea1d751f06b5a1e6fe5c1b497f41
           <FunctionImportMapping FunctionImportName="sp_GetAllSubCategories" FunctionName="MarketplaceWebPortalDataModel.Store.sp_GetAllSubCategories">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MarketplaceWebPortalDataModel.sp_GetAllSubCategories_Result">
