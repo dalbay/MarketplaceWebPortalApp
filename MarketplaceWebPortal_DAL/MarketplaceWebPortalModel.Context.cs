@@ -39,11 +39,7 @@ namespace MarketplaceWebPortal_DAL
         public virtual DbSet<tblTechSpecFilter> tblTechSpecFilters { get; set; }
         public virtual DbSet<tblUseType> tblUseTypes { get; set; }
         public virtual DbSet<view_FilterTable> view_FilterTable { get; set; }
-        public virtual DbSet<tblTechnicalSpecifiactionNonValue> tblTechnicalSpecifiactionNonValues { get; set; }
-        public virtual DbSet<tblTechnicalSpecifiactionNonValue1> tblTechnicalSpecifiactionNonValue1 { get; set; }
-        public virtual DbSet<tblTechnicalSpecifiactionNonValue2> tblTechnicalSpecifiactionNonValue2 { get; set; }
-        public virtual DbSet<sysdiagram2> sysdiagram2 { get; set; }
-        public virtual DbSet<tblTechnicalSpecifiactionNonValue3> tblTechnicalSpecifiactionNonValue3 { get; set; }
+        public virtual DbSet<sysdiagram1> sysdiagram { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
