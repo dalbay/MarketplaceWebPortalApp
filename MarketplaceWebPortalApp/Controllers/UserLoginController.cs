@@ -15,11 +15,13 @@ namespace MarketplaceWebPortalApp.Controllers
         public ActionResult Index()
         {
             Session["sessionUser"] = "";
-            Session["pic"] = "../Images/default.png";
+            Session["pic"] = "~/Images/default.png";
             return View();
         }
         public ActionResult LoginPage()
         {
+            Session["sessionUser"] = "";
+            Session["pic"] = "~/Images/default.png";
             return View();
         }
 
@@ -53,7 +55,7 @@ namespace MarketplaceWebPortalApp.Controllers
                 // file is uploaded
                 file.SaveAs(path);
 
-                image = "../Images/" + pic;
+                image = "~/Images/" + pic;
 
             }
             string username = Request.Form["userNameReg"];
