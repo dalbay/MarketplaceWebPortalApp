@@ -12,6 +12,10 @@ namespace MarketplaceWebPortalApp.Controllers
 
         public ActionResult Index(string pid)
         {
+            if(Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
             int num;
             string id = pid ?? "16";
             try
