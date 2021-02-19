@@ -1,6 +1,8 @@
 ﻿var pid = "";
 iterating = function iterating(datas) {
     jsonFile = datas;
+    $("#Category").text(jsonFile[0]["Category"]);
+    $("#SubCategory").text(jsonFile[0]["SubCategory"]);
     for (products in datas) {
         thisProduct = datas[products]
         p = parseInt(products) + 1;
