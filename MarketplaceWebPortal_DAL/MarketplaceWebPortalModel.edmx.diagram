@@ -30,7 +30,6 @@
         <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue" Width="2.75" PointX="9.875" PointY="6.5" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblProduct" />
         <AssociationConnector Association="MarketplaceWebPortalDataModel.FK_tblTechnicalSpecifiactionNonValue_tblTechSpec" />
-        <EntityTypeShape EntityType="MarketplaceWebPortalDataModel.tblTechnicalSpecifiactionNonValue1" Width="1.5" PointX="10.625" PointY="3.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,7 +12,7 @@ namespace MarketplaceWebPortal_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram2
+    public partial class sysdiagram
     {
         public string name { get; set; }
         public int principal_id { get; set; }

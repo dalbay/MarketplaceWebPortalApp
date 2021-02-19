@@ -12,7 +12,9 @@ namespace MarketplaceWebPortalApp.Controllers
     {
         public ActionResult Index(string id)
         {
-          
+            Service service = new Service();
+            List<Category> categories = service.GetCategory();
+            ViewBag.Categories = categories;
             var param = id ?? "2";
             TempData["sub_id"] = id;
             int num;

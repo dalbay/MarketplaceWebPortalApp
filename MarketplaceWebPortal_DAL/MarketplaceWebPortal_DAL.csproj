@@ -108,6 +108,9 @@
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_SofaLengthFilter3_Result.cs">
+      <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_SofaLengthFilter_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
@@ -129,7 +132,7 @@
     <Compile Include="sp_UserValidation_Result.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram2.cs">
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>MarketplaceWebPortalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblApplication.cs">
