@@ -120,11 +120,6 @@ namespace MarketplaceWebPortal_DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetAllCategoryNames");
         }
     
-        public virtual ObjectResult<sp_GetAllSubCategories_Result> sp_GetAllSubCategories()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllSubCategories_Result>("sp_GetAllSubCategories");
-        }
-    
         public virtual int sp_GetProductCompare(Nullable<int> product_ID)
         {
             var product_IDParameter = product_ID.HasValue ?
@@ -510,6 +505,15 @@ namespace MarketplaceWebPortal_DAL
                 new ObjectParameter("ModelYearMax", typeof(short));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FanSetFilter_Result>("sp_FanSetFilter", modelYearMinParameter, modelYearMaxParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetAllSubCategories_Result> sp_GetAllSubCategories(string categoryName)
+        {
+            var categoryNameParameter = categoryName != null ?
+                new ObjectParameter("CategoryName", categoryName) :
+                new ObjectParameter("CategoryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllSubCategories_Result>("sp_GetAllSubCategories", categoryNameParameter);
         }
     }
 }

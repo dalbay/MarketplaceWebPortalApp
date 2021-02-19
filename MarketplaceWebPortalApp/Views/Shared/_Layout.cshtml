@@ -30,13 +30,14 @@
                     <div class="input-group">
                         <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
                         <div class="dropdown-menu categoryDropDown">
-                            <a class="dropdown-item" href="#">Mechanical</a>
-                            <a class="dropdown-item" href="#">Electrical</a>
-                            <a class="dropdown-item" href="#">Stationary</a>
-                            <a class="dropdown-item" href="#">Furniture</a>
+                            @for (var i = 0; i < ViewBag.Categories.Count; i++)
+                            {
+                                var item = @ViewBag.Categories[i].Category_Name;
+                                <a class="dropdown-item" href="#" id="@item" onclick="searchFilter(@item);">@item</a>
+                            }
                         </div>
                         <input type="text" class="form-control form-control-sm searchLbl" id="search" aria-label="Text input with dropdown button">
-                        <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn btn-sm btn-primary"  onclick="redirectToSearch();"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             </div>

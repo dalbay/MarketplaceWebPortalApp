@@ -58,15 +58,27 @@ namespace MarketplaceWebPortal_BLL
             return fanFilter;            
         }
 
+        //Get All the category
         public List<MarketplaceWebPortal_BLL.Category> GetCategory()
         {
-            List<Category> abc = new List<Category>();
+            List<Category> category = new List<Category>();
             var getAllCategories = ufw.category.Sp_GetAllCategories();
-            foreach(var i in getAllCategories)
+            foreach (var i in getAllCategories)
             {
-                abc.Add(new Category { Category_ID = i.Category_ID, Category_Name = i.Category_Name });
+                category.Add(new Category { Category_ID = i.Category_ID, Category_Name = i.Category_Name });
             }
-            return abc;
+            return category;
+        }
+        //Get All SubCategories
+        public List<MarketplaceWebPortal_BLL.SubCategory> GetSubCategories(string categoryName)
+        {
+            List<SubCategory> subCategoryByCategory = new List<SubCategory>();
+            var getAllSubCategories = ufw.subCategoryByCategory.Sp_GetAllSubCategories(categoryName);
+            foreach (var i in getAllSubCategories)
+            {
+                subCategoryByCategory.Add(new SubCategory { SubCategory_ID = i.SubCategory_ID, SubCategory_Name = i.SubCategory_Name });
+            }
+            return subCategoryByCategory;
         }
 
         public MarketplaceWebPortal_BLL.Consumer GetValidatedConsumer(string input, string password)

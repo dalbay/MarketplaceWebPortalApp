@@ -17,9 +17,42 @@ $(document).ready(function () {
         }
     });
 });
+var searchCategory = [];
+var subCategories = [];
+function searchFilter(getInput) {
+    var categoryName = $(getInput).attr('id');
+    $.ajax({
+        url: "/Search/GetSubCategory",
+        data: { "categoryName": categoryName },
+        type: "post",
+        success: function (data) {
+            for (var i = 0; i < data.length; i++) {
+                subCategories.push(data[i].SubCategory_Name)
+            }
+            searchCategory.push(data);
+            console.log(subCategories);
+            console.log(searchCategory);
+        }
+    });
+}
 
-var subCategories = ["Fans", "Vacuums", "Toasters"];
 $("#search").autocomplete({
     source: subCategories
 });
+
+function redirectToSearch() {
+    var search = $("#search").val();
+    for (var i = 0; i <= searchCategory[0].length - 1; i++) {
+        if (searchCategory[0][i].SubCategory_Name == search) {
+            console.log("found");
+            var id = searchCategory[0][i].SubCategory_ID;
+            var url = "/Home/Index?id=" + id;
+            window.location.href = url;
+            subCategories = [];
+            searchCategory = [];
+            break;
+        }
+
+    }
+}
 
