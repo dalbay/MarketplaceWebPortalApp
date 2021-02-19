@@ -12,6 +12,9 @@ namespace MarketplaceWebPortalApp.Controllers
 
         public ActionResult Index(string pid)
         {
+            Service service = new Service();
+            List<Category> categories = service.GetCategory();
+            ViewBag.Categories = categories;
             int num;
             string id = pid ?? "16";
             try

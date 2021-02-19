@@ -13,7 +13,7 @@ namespace MarketplaceWebPortal_DAL
     
     public partial class sp_GetAllSubCategories_Result
     {
-        public int Category_ID { get; set; }
-        public string Category_Name { get; set; }
+        public int SubCategory_ID { get; set; }
+        public string SubCategory_Name { get; set; }
     }
 }

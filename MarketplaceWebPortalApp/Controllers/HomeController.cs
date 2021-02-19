@@ -10,21 +10,11 @@ namespace MarketplaceWebPortalApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult AuthorizeUser()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AuthorizeUser(Consumer consumer)
-        {
-            Service service = new Service();
-            var valitConsumer = service.GetValidatedConsumer(consumer.Email, consumer.Password);
-            ViewData["consumer"] = valitConsumer.Email + " - " + valitConsumer.Password;
-            return View();
-        }
-
         public ActionResult Index(string id)
         {
+            Service service = new Service();
+            List<Category> categories = service.GetCategory();
+            ViewBag.Categories = categories;
             var param = id ?? "2";
             TempData["sub_id"] = id;
             int num;
@@ -45,7 +35,7 @@ namespace MarketplaceWebPortalApp.Controllers
                 List<Product> returning_List = products_category.ByCategory();
                 return Json(returning_List, JsonRequestBehavior.AllowGet);
             }
-            Service service = new Service();
+            
 
             if (num == 2)
             {
