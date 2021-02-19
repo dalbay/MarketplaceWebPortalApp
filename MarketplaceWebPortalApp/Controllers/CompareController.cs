@@ -13,15 +13,26 @@ namespace MarketplaceWebPortalApp.Controllers
         [HttpPost]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Home");
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
+            return View();
         }
 
 
         public ActionResult Index(params int[] list)
         {
+
             Service service = new Service();
             List<Category> categories = service.GetCategory();
             ViewBag.Categories = categories;
+
+
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
 
             if (Request.IsAjaxRequest())
             {

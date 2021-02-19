@@ -12,6 +12,10 @@ namespace MarketplaceWebPortalApp.Controllers
         // GET: Search
         public ActionResult Index()
         {
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
             Service service = new Service();
             MarketplaceWebPortalApp.Models.FanFilter fanFilter = new Models.FanFilter();
             var initialFanFilter =  service.InitializeFanFilter(2010, 2020);
@@ -29,6 +33,10 @@ namespace MarketplaceWebPortalApp.Controllers
 
         public ActionResult SearchPage()
         {
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
             Service service = new Service();
             List<Category> categories = service.GetCategory();
             ViewBag.Categories = categories;
@@ -44,6 +52,10 @@ namespace MarketplaceWebPortalApp.Controllers
         }
         public ActionResult Search()
         {
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
             return View();
         }
     }

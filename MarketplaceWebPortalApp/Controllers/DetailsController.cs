@@ -12,9 +12,16 @@ namespace MarketplaceWebPortalApp.Controllers
 
         public ActionResult Index(string pid)
         {
+
             Service service = new Service();
             List<Category> categories = service.GetCategory();
             ViewBag.Categories = categories;
+
+            if(Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
+
             int num;
             string id = pid ?? "16";
             try

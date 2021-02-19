@@ -12,9 +12,16 @@ namespace MarketplaceWebPortalApp.Controllers
     {
         public ActionResult Index(string id)
         {
+
             Service service = new Service();
             List<Category> categories = service.GetCategory();
             ViewBag.Categories = categories;
+
+            if (Session["sessionUser"] == "")
+            {
+                return RedirectToAction("LoginPage", "UserLogin");
+            }
+
             var param = id ?? "2";
             TempData["sub_id"] = id;
             int num;
