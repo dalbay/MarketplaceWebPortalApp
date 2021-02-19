@@ -156,6 +156,7 @@
     <Content Include="Content\styles.css" />
     <Content Include="Content\details_compare.css" />
     <Content Include="Content\header.JPG" />
+    <Content Include="dbForJoole.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
