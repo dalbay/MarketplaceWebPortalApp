@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿// T4 code generation is enabled for model 'C:\Users\aygun\source\repos\MarketplaceWebPortalApp\MarketplaceWebPortal_DAL\MarketplaceWebPortalModel.edmx'. 
-=======
-﻿// T4 code generation is enabled for model 'C:\Users\shuvh\Source\Repos\MarketplaceWebPortalApp\MarketplaceWebPortal_DAL\MarketplaceWebPortalModel.edmx'. 
->>>>>>> 9bc850a31e70ea1d751f06b5a1e6fe5c1b497f41
+// T4 code generation is enabled for model 'C:\Users\shuvh\Source\Repos\MarketplaceWebPortalApp\MarketplaceWebPortal_DAL\MarketplaceWebPortalModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
