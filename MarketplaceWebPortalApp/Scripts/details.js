@@ -23,7 +23,7 @@ SaveToLocal = function SaveToLocal(datas) {
                     "</tr>";
             }
             else {
-                tr += "<td class='desc'>" + a[key][0] + "</td> <td>" + a[key][1] + "</td class='desc'> <td>" + a[key][2] + "</td> <td>" + a[key][3] + "</td> </tr>";
+                tr += "<td class='desc'>" + a[key][0] + "</td> <td>" + a[key][1] + "</td> <td class='desc'>" + a[key][2] + "</td> <td>" + a[key][3] + "</td> </tr>";
             }
             tbody.append(tr);
             console.log(key + " = " + a[key]);
