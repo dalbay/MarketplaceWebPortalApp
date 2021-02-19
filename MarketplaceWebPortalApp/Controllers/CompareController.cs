@@ -17,6 +17,7 @@ namespace MarketplaceWebPortalApp.Controllers
             {
                 return RedirectToAction("LoginPage", "UserLogin");
             }
+            return View();
         }
 
 
