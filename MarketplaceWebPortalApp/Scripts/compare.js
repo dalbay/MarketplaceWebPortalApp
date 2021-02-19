@@ -4,7 +4,7 @@ iterating = function iterating(datas) {
     for (products in datas) {
         thisProduct = datas[products]
         p = parseInt(products) + 1;
-        $("#image" + p)[0].innerHTML = "<img src='" + thisProduct.Image + "'>";
+        $("#image" + p)[0].innerHTML = "<img style='  width: 200px; height: 300px; object - fit: contain;' src='" + thisProduct.Image + "'>";
         $("#manfacture" + p).text(thisProduct.Manfacture);
         $("#series" + p).text(thisProduct.Series);
         $("#model" + p).text(thisProduct.Model);
